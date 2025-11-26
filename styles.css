@@ -1,0 +1,35 @@
+html { font-family: 'Inter', sans-serif; }
+
+/* Icon hover grow effect */
+.icon-hover {
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.icon-hover:hover {
+  transform: scale(1.12);
+}
+
+/* Tawk.to widget color override */
+#tawkchat-minified-wrapper .tawk-min-container {
+  background-color: #238CFF !important;
+}
+
+
+/* Ensure dropdown menus are right-justified */
+#solutions-desktop .absolute,
+#solutions-mobile .absolute {
+  right: 0;
+  left: auto;
+}
+
+/* Desktop dropdown sticky open state */
+#solutions-desktop-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#solutions-desktop-dropdown.dropdown-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+

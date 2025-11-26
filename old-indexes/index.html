@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN DOCMERSION FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END DOCMERSION FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocMersion – Smarter Public Documents</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-30 bg-white/90 backdrop-blur shadow-sm border-b border-gray-100">
+      <div class="container mx-auto flex items-center justify-between px-4 py-3">
+        <a href="#" class="flex items-center text-2xl font-bold">
+          <span class="text-black">Doc</span><span class="text-brand">Mersion</span>
+        </a>
+        <div class="hidden md:flex space-x-8 items-center">
+          <div class="relative" id="solutions-desktop">
+  <button id="solutions-desktop-btn" class="hover:text-brand transition flex items-center focus:outline-none">
+    <span>Solutions</span>
+    <svg class="w-4 h-4 ml-1 inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </button>
+  <div id="solutions-desktop-dropdown" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50 text-right">
+    <a href="non-profit.html" class="block px-4 py-2 hover:bg-blue-50">Nonprofits</a>
+    <a href="government.html" class="block px-4 py-2 hover:bg-blue-50">Government</a>
+    <a href="associations.html" class="block px-4 py-2 hover:bg-blue-50">Associations</a>
+    <a href="education.html" class="block px-4 py-2 hover:bg-blue-50">Education</a>
+  </div>
+</div>
+          <a href="pricing.html" class="hover:text-brand transition">Pricing</a>
+          <a href="compliance.html" class="hover:text-brand transition">Compliance</a>
+          <a href="https://app.arcade.software/share/Q0aiaL3qDKFfQe9FboXV" target="_blank" rel="noopener" class="hover:text-brand transition">Demo</a>
+          <a href="book-demo.html" class="ml-4 px-5 py-2 rounded-full border border-brand text-brand hover:bg-brand hover:text-white transition font-semibold">Book a Demo</a>
+        </div>
+        <button class="md:hidden text-3xl" id="mobile-menu-btn"><i class="bi bi-list"></i></button>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pb-4">
+        <div class="relative" id="solutions-mobile">
+  <button class="block py-2 w-full text-left hover:text-brand focus:outline-none flex justify-between items-center" id="mobile-solutions-btn">
+    <span>Solutions</span>
+    <svg class="w-4 h-4 ml-2 inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </button>
+  <div id="mobile-solutions-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50 text-right">
+    <a href="non-profit.html" class="block px-4 py-2 hover:bg-blue-50">Nonprofits</a>
+    <a href="government.html" class="block px-4 py-2 hover:bg-blue-50">Government</a>
+    <a href="associations.html" class="block px-4 py-2 hover:bg-blue-50">Associations</a>
+    <a href="education.html" class="block px-4 py-2 hover:bg-blue-50">Education</a>
+  </div>
+</div>
+        <a href="pricing.html" class="block py-2 hover:text-brand">Pricing</a>
+        <a href="compliance.html" class="block py-2 hover:text-brand">Compliance</a>
+        <a href="https://app.arcade.software/share/Q0aiaL3qDKFfQe9FboXV" target="_blank" rel="noopener" class="block py-2 hover:text-brand">Demo</a>
+        <a href="book-demo.html" class="block py-2 mt-2 px-5 rounded-full border border-brand text-brand hover:bg-brand hover:text-white transition font-semibold">Book a Demo</a>
+      </div>
+    </nav>
+    <script>
+      // Mobile nav toggle
+      document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.onclick = () => menu.classList.toggle('hidden');
+
+  // Desktop Solutions Dropdown (click-to-open)
+  const solutionsDesktop = document.getElementById('solutions-desktop');
+  const solutionsDesktopBtn = document.getElementById('solutions-desktop-btn');
+  const solutionsDesktopDropdown = document.getElementById('solutions-desktop-dropdown');
+  let desktopDropdownOpen = false;
+  if (solutionsDesktop && solutionsDesktopBtn && solutionsDesktopDropdown) {
+    solutionsDesktopBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      desktopDropdownOpen = !desktopDropdownOpen;
+      if (desktopDropdownOpen) {
+        solutionsDesktopDropdown.classList.add('dropdown-open');
+      } else {
+        solutionsDesktopDropdown.classList.remove('dropdown-open');
+      }
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (desktopDropdownOpen && !solutionsDesktop.contains(e.target)) {
+        solutionsDesktopDropdown.classList.remove('dropdown-open');
+        desktopDropdownOpen = false;
+      }
+    });
+
+  }
+
+  // Mobile Solutions Dropdown
+  const mobileSolutionsBtn = document.getElementById('mobile-solutions-btn');
+  const mobileSolutionsMenu = document.getElementById('mobile-solutions-menu');
+  if (mobileSolutionsBtn && mobileSolutionsMenu) {
+    mobileSolutionsBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mobileSolutionsMenu.classList.toggle('hidden');
+    });
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mobileSolutionsMenu.classList.contains('hidden')) {
+        if (!mobileSolutionsBtn.contains(e.target) && !mobileSolutionsMenu.contains(e.target)) {
+          mobileSolutionsMenu.classList.add('hidden');
+        }
+      }
+    });
+  }
+});
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-brand/10 to-blue-100 pt-28 pb-16">
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 px-8">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full">
+          <span class="inline-block bg-brand/10 text-brand px-3 py-1 rounded-full text-xs font-semibold mb-4 uppercase tracking-wider">Introducing DocMersion</span>
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+          Ultra<br />
+           Accessible<br />
+            <span class="text-brand">Policies. Procedures. Documents.</span>
+          </h1>
+          <p class="text-base md:text-lg text-gray-700 mb-8"><span class="font-bold text-black">Doc</span><span class="font-bold text-brand">Mersion</span> converts documents into enjoyable user experiences that are ADA compliant, internationalized, uniquely searchable, and much more.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="#demo" class="px-8 py-3 bg-brand text-white rounded-full font-semibold shadow hover:bg-blue-600 transition">Book a Demo</a>
+            
+          </div>
+        </div>
+        <div class="flex-1 flex justify-center lg:basis-7/12 lg:max-w-[55%] w-full">
+  <div style="width:100%;display:flex;justify-content:center;align-items:center;box-sizing:border-box;">
+    <iframe title="vimeo-player" src="https://player.vimeo.com/video/1096774159?h=28810c6853" allowfullscreen style="width:100%;aspect-ratio:16/9;max-width:100%;border-radius:1rem;box-shadow:0 2px 16px 0 #e0eafc;margin:0;display:block;"></iframe>
+  </div>
+</div>
+      </div>
+      <!-- Decorative shapes -->
+      <div class="absolute top-0 left-0 w-40 h-40 bg-brand/20 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute bottom-0 right-0 w-52 h-52 bg-blue-200/30 rounded-full blur-3xl -z-10"></div>
+    </section>
+
+  
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Why Doc<span class="text-brand">Mersion</span>?</h2>
+          <p class="text-gray-600">Everything you need for modern, accessible, branded public docs.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="bg-blue-50 rounded-2xl p-8 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+            <i class="bi bi-lightbulb-fill text-brand text-4xl mb-4"></i>
+            <h3 class="font-bold text-xl mb-2">Consistent AI Answers</h3>
+            <p class="text-gray-500">AI search ensures everyone finds the right info, every time.</p>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-8 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+            <i class="bi bi-palette-fill text-brand text-4xl mb-4"></i>
+            <h3 class="font-bold text-xl mb-2">Fully Branded</h3>
+            <p class="text-gray-500">Customize colors, logos, and add rich content for your org.</p>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-8 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+            <i class="bi bi-shield-lock-fill text-brand text-4xl mb-4"></i>
+            <h3 class="font-bold text-xl mb-2">Granular Access</h3>
+            <p class="text-gray-500">Choose public or private, and control who sees what.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Features Branching Section -->
+  <section class="py-20 pb-16 bg-blue-50 overflow-x-hidden">
+  <div class="container max-w-screen-xl mx-auto px-4">
+  <div class="flex flex-col items-center mb-12">
+    <span class="font-extrabold text-3xl md:text-4xl tracking-tight" style="font-family: 'Inter', sans-serif;"><span class="text-black">Doc</span><span class="text-brand">Mersion</span></span>
+  </div>
+  <div class="bg-white rounded-2xl p-8 shadow max-w-3xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+
+      <!-- Search -->
+      <div class="flex flex-col items-center">
+        <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-200 text-blue-700 shadow-md mb-3">
+          <svg width='32' height='32' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>
+        </span>
+        <span class="text-base font-semibold text-gray-800">Search</span>
+      </div>
+      <!-- Translation -->
+      <div class="flex flex-col items-center">
+  <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-cyan-200 text-cyan-700 shadow-md mb-3">
+    <!-- Globe icon for Translation -->
+    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <ellipse cx="12" cy="12" rx="6" ry="10"/>
+      <path d="M2 12h20"/>
+      <path d="M12 2a15 15 0 0 1 0 20"/>
+      <path d="M12 2a15 15 0 0 0 0 20"/>
+    </svg>
+  </span>
+  <span class="text-base font-semibold text-gray-800">Translation</span>
+</div>
+      <!-- ADA -->
+      <div class="flex flex-col items-center">
+  <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-200 text-orange-700 shadow-md mb-3">
+  <i class="bi bi-person-wheelchair text-4xl"></i>
+</span>
+  <span class="text-base font-semibold text-gray-800">ADA</span>
+</div>
+      <!-- Ask Chatbot -->
+      <div class="flex flex-col items-center">
+        <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-200 text-green-700 shadow-md mb-3">
+          <svg width='32' height='32' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='3' y='6' width='18' height='12' rx='4'/><path d='M7 22h10'/><circle cx='8.5' cy='12' r='1'/><circle cx='15.5' cy='12' r='1'/></svg>
+        </span>
+        <span class="text-base font-semibold text-gray-800">Ask Chatbot</span>
+      </div>
+      <!-- Web UX -->
+      <div class="flex flex-col items-center">
+        <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-cyan-200 text-cyan-700 shadow-md mb-3">
+          <svg width='32' height='32' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><rect x='3' y='8' width='18' height='10' rx='3'/><rect x='6' y='11' width='12' height='2' rx='1'/><rect x='6' y='15' width='7' height='2' rx='1'/></svg>
+        </span>
+        <span class="text-base font-semibold text-gray-800">Web UX</span>
+      </div>
+      <!-- Branding -->
+      <div class="flex flex-col items-center">
+  <span class="icon-hover inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-200 text-orange-700 shadow-md mb-3">
+  <!-- Previous Star icon for Branding -->
+  <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10"/>
+    <polygon points="12,6 14,11 19,11 15,14 16,19 12,16 8,19 9,14 5,11 10,11" fill="currentColor"/>
+  </svg>
+</span>
+  <span class="text-base font-semibold text-gray-800">Branding</span>
+</div>
+    </div>
+  </div>
+
+  
+<!-- Who We Serve Section -->
+<section id="who-we-serve" class="py-20 bg-blue-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-brand">Who We Serve</h2>
+      <p class="text-gray-700">DocMersion is trusted by a broad range of organizations demanding transparency and professionalism.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-mortarboard-fill text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Schools</h3>
+        <p class="text-gray-500 text-sm">Policies, procedures, and board records made easy for students and parents.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-building text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Governments</h3>
+        <p class="text-gray-500 text-sm">Modernize public access to legislation, meetings, and compliance reports.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-heart-pulse-fill text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Nonprofits</h3>
+        <p class="text-gray-500 text-sm">Enhance transparency, reduce admin overhead, unify communications.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-people-fill text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Associations</h3>
+        <p class="text-gray-500 text-sm">Publish agendas, share research, clarify decisions for your members.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How DocMersion Works Section -->
+<section id="how-it-works" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">How Doc<span class="text-brand">Mersion</span> Works</h2>
+      <p class="text-gray-600">Reimagining how institutions present and manage information.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="flex flex-col items-center text-center">
+        <div class="bg-brand/10 text-brand rounded-full p-6 mb-4"><i class="bi bi-upload text-3xl"></i></div>
+        <h3 class="font-bold text-lg mb-2">1. Upload & Organize</h3>
+        <p class="text-gray-500 text-sm">Upload your documents—policies, handbooks, compliance reports—and organize them by collection or topic.</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <div class="bg-brand/10 text-brand rounded-full p-6 mb-4"><i class="bi bi-search text-3xl"></i></div>
+        <h3 class="font-bold text-lg mb-2">2. Brand & Control Access</h3>
+        <p class="text-gray-500 text-sm">Add your logo, colors, and supplemental content. Set public or private access for each document or collection.</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <div class="bg-brand/10 text-brand rounded-full p-6 mb-4"><i class="bi bi-lightning-fill text-3xl"></i></div>
+        <h3 class="font-bold text-lg mb-2">3. Search & Engage</h3>
+        <p class="text-gray-500 text-sm">Users search with natural language and get instant, consistent answers—on any device, always accessible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Integrations & Add-ons Section -->
+<section id="integrations" class="py-20 bg-blue-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-brand">Powerful Tools for Your Documents</h2>
+      <p class="text-gray-700">Unlock more value from your documents with intelligent tools for engagement, discovery, and seamless user experience.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-robot text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Chatbot</h3>
+        <p class="text-gray-500 text-sm">Let users ask questions and get instant answers from your documents with built-in AI chat.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-search text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Search</h3>
+        <p class="text-gray-500 text-sm">Find exactly what you need with lightning-fast, full-text search across all your content.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-window text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Web UX</h3>
+        <p class="text-gray-500 text-sm">Deliver a beautiful, accessible, and intuitive experience for every user on any device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trusted by Institutions Section
+ <section id="trusted" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Trusted by Institutions</h2>
+      <p class="text-gray-600">Thousands of schools, cities, nonprofits, and associations rely on DocMersion.</p>
+    </div>
+   Testimonial Carousel 
+    <div class="max-w-2xl mx-auto mb-10">
+      <div class="bg-blue-50 rounded-2xl p-8 shadow text-center">
+        <i class="bi bi-chat-quote text-3xl text-brand mb-4"></i>
+        <p class="text-lg italic mb-4">“DocMersion has transformed how our board shares policies and updates with the community. The search is a game-changer!”</p>
+        <div class="font-bold text-brand">— School District Administrator</div>
+      </div>
+    </div>
+  Logo Cloud 
+    <div class="flex flex-wrap justify-center gap-8 opacity-70">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google" class="h-10">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3aa9ff" class="h-10 w-10 bg-white rounded p-1 shadow" aria-label="City"><path d="M3 21V8.5a1 1 0 0 1 .553-.894l6-3a1 1 0 0 1 .894 0l6 3A1 1 0 0 1 17 8.5V21h2v-2a1 1 0 1 1 2 0v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-3a1 1 0 1 1 2 0v2h2zm2 0h2v-5a1 1 0 1 1 2 0v5h2V9.382l-5-2.5V21zm7-11.618V21h2V8.882l-2-1z"/></svg>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="Nonprofit" class="h-10">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="Association" class="h-10">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Org" class="h-10">
+-->
+
+    </div>
+  </div>
+</section>
+
+<!-- Security & Compliance Section -->
+<section id="security" class="py-20 bg-blue-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-brand">Security & Compliance</h2>
+      <p class="text-gray-700">Your documents—and your community—are always protected.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-lock-fill text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Data Security</h3>
+        <p class="text-gray-500 text-sm">All documents are encrypted in transit and at rest, ensuring privacy and compliance.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-shield-check text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Compliance Standards</h3>
+        <p class="text-gray-500 text-sm">Meets ADA, WCAG 2.1, and CIPA standards. Trusted by government and education.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <i class="bi bi-people text-brand text-4xl mb-4"></i>
+        <h3 class="font-bold text-lg mb-2">Role-Based Access</h3>
+        <p class="text-gray-500 text-sm">Granular permissions ensure the right people see the right content—no more, no less.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Success Stories Section -->
+<section id="success-stories" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Customer Success Stories</h2>
+      <p class="text-gray-600">See how organizations like yours thrive with DocMersion.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-blue-50 rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial 1" class="w-16 h-16 rounded-full mb-4 shadow">
+        <h3 class="font-bold text-lg mb-1">Carlos M.</h3>
+        <div class="text-brand text-xs mb-2">City Clerk</div>
+        <p class="text-gray-500 text-sm">“Now our residents can find city codes and meeting minutes in seconds. DocMersion is a game-changer!”</p>
+      </div>
+      <div class="bg-blue-50 rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial 2" class="w-16 h-16 rounded-full mb-4 shadow">
+        <h3 class="font-bold text-lg mb-1">Ava P.</h3>
+        <div class="text-brand text-xs mb-2">School Board Chair</div>
+        <p class="text-gray-500 text-sm">“Our policies are finally accessible and branded. The AI search saves our staff hours every week!”</p>
+      </div>
+      <div class="bg-blue-50 rounded-2xl p-8 shadow flex flex-col items-center text-center">
+        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Testimonial 3" class="w-16 h-16 rounded-full mb-4 shadow">
+        <h3 class="font-bold text-lg mb-1">James L.</h3>
+        <div class="text-brand text-xs mb-2">Nonprofit Director</div>
+        <p class="text-gray-500 text-sm">“We can finally share compliance docs with our board and funders in a way that looks professional.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 bg-white border-t border-gray-100">
+      <div class="container mx-auto px-4 max-w-xl">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-brand text-center">Contact Us</h2>
+        <form action="https://formspree.io/f/xblyajlg" method="POST" class="bg-blue-50 rounded-xl shadow p-8 flex flex-col gap-6">
+          <label class="flex flex-col gap-2 font-medium text-gray-700">
+            Your email:
+            <input type="email" name="email" required class="rounded px-4 py-2 border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/30 outline-none transition" placeholder="you@email.com">
+          </label>
+          <label class="flex flex-col gap-2 font-medium text-gray-700">
+            Your message:
+            <textarea name="message" required rows="5" class="rounded px-4 py-2 border border-gray-300 focus:border-brand focus:ring-2 focus:ring-brand/30 outline-none transition" placeholder="How can we help?"></textarea>
+          </label>
+          <button type="submit" class="w-full py-3 rounded-full bg-brand text-white font-semibold shadow hover:bg-blue-600 transition">Send</button>
+        </form>
+      </div>
+    </section>
+
+
+<!-- Mobile Ready & Responsive Section -->
+<section id="mobile-ready" class="py-20 bg-blue-50">
+  <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+    <div class="flex-1 flex justify-center items-center mb-8 md:mb-0">
+  <i class="bi bi-phone text-brand" style="font-size:10rem;"></i>
+</div>
+    <div class="flex-1">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Mobile Ready & Responsive</h2>
+      <p class="text-gray-700 mb-4 text-lg">DocMersion is designed for every device—phone, tablet, or desktop. Your documents look great and stay accessible, no matter how your audience connects.</p>
+      <ul class="text-brand font-semibold space-y-2">
+        <li><i class="bi bi-check-circle-fill mr-2"></i> Touch-friendly navigation</li>
+        <li><i class="bi bi-check-circle-fill mr-2"></i> Fast, smooth scrolling</li>
+        <li><i class="bi bi-check-circle-fill mr-2"></i> Always readable, always beautiful</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- Accessibility Callout Section -->
+<section id="accessibility" class="py-16 bg-brand/90 text-white relative overflow-hidden">
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+      <div class="flex-1">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Why Accessibility Matters</h2>
+        <p class="mb-6 text-lg font-medium">“Our goal with DocMersion was to remove friction from the public document experience. Your audience deserves more than PDFs.”</p>
+        <div class="flex gap-4 items-center flex-wrap">
+          <span class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full font-semibold"><i class="bi bi-universal-access"></i> ADA</span>
+          <span class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full font-semibold"><i class="bi bi-check-circle"></i> WCAG 2.1</span>
+          <span class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full font-semibold"><i class="bi bi-shield-lock"></i> CIPA</span>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center md:justify-end">
+        <div class="bg-white/10 rounded-3xl p-8 shadow-lg max-w-md">
+          <div class="flex items-center mb-2">
+            <i class="bi bi-quote text-3xl text-white mr-2"></i>
+            <span class="font-bold">Stephen Shapiro</span>
+          </div>
+          <div class="text-white/80 text-sm mb-2">Founder & CEO, DocMersion</div>
+          <div class="text-white/80 italic text-sm">“With DocMersion, your community doesn’t have to dig for the information they need.”</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute -top-12 -left-12 w-60 h-60 bg-white/10 rounded-full blur-3xl z-0"></div>
+  <div class="absolute -bottom-12 -right-12 w-60 h-60 bg-white/10 rounded-full blur-3xl z-0"></div>
+</section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-6 mt-12">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-xl font-bold"><span class="text-black">Doc</span><span class="text-brand">Mersion</span></div>
+        <div class="flex gap-6 text-gray-400">
+          <a href="index.html#contact" class="hover:text-brand">Contact</a>
+        </div>
+        <div class="text-sm text-gray-400">© <span id="year"></span> Sopris Apps, LLC</div>
+      </div>
+      <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    </footer>
+  </body>
+</html>
