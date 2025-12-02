@@ -20,22 +20,46 @@
 
         /* Hamburger menu styling */
         .navbar-toggler {
+          display: none;
           border: none;
-          padding: 0.25rem 0.5rem;
+          padding: 0.5rem;
+          background: transparent;
+          cursor: pointer;
         }
 
         .navbar-toggler:focus {
+          outline: none;
           box-shadow: none;
         }
 
         .navbar-toggler-icon {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100%;
+        }
+        
+        /* Show hamburger on mobile */
+        @media (max-width: 1199.98px) {
+          .navbar-toggler {
+            display: block;
+          }
         }
 
         .navbar-collapse {
-          display: flex;
+          display: none;
           flex-grow: 1;
           align-items: center;
+        }
+        
+        /* Show navbar on desktop */
+        @media (min-width: 1200px) {
+          .navbar-collapse {
+            display: flex !important;
+          }
         }
 
         .navbar-nav {
@@ -107,11 +131,14 @@
           border-radius: 999px;
           border-width: 2px;
           padding-inline: 1.5rem;
+          padding-block: 0.625rem;
           font-weight: 500;
           border-color: #238CFF;
           color: #000;
           background-color: transparent;
           transition: all 0.2s ease-in-out;
+          display: inline-block;
+          text-align: center;
         }
 
         .btn-trial:hover {
@@ -626,8 +653,15 @@
           }
 
           .mobile-cta .btn-trial {
-            width: 100%;
+            width: auto;
             text-align: center;
+            padding: 0.65rem 0;
+            font-size: 1rem;
+            border: none;
+            background-color: transparent;
+            color: #000;
+            border-radius: 0;
+            margin: 0 auto;
           }
 
           .mobile-cta a:not(.btn) {
@@ -742,8 +776,8 @@
         }
       </style>
 
-      <nav class="bg-white py-3" style="position: sticky; top: 0; z-index: 1020; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <div class="w-full px-4">
+      <nav class="bg-white py-3" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1020; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <div class="w-full px-4" style="position: relative;">
           <div class="flex items-center justify-between flex-wrap">
             <a class="navbar-brand flex items-center" href="index.html">
               <img src="logo.png" alt="Boardblocs logo" class="mr-2" />
@@ -936,109 +970,102 @@
                 </a>
                 <div class="mobile-submenu" id="mobileSolutions">
                   <div class="mobile-submenu-header">By Industry</div>
-                  <a href="#" class="mobile-submenu-item">Associations</a>
-                  <a href="#" class="mobile-submenu-item">Community Organizations</a>
-                  <a href="#" class="mobile-submenu-item">Education</a>
-                  <a href="#" class="mobile-submenu-item">Government</a>
-                  <a href="#" class="mobile-submenu-item">Healthcare</a>
-                  <a href="#" class="mobile-submenu-item">Real Estate</a>
-                  <a href="#" class="mobile-submenu-item">Technology</a>
+                  <a href="associations.html" class="mobile-submenu-item">Associations</a>
+                  <a href="community-organizations.html" class="mobile-submenu-item">Community Organizations</a>
+                  <a href="education.html" class="mobile-submenu-item">Education</a>
+                  <a href="government.html" class="mobile-submenu-item">Government</a>
+                  <a href="healthcare.html" class="mobile-submenu-item">Healthcare</a>
+                  <a href="real-estate.html" class="mobile-submenu-item">Real Estate</a>
+                  <a href="technology.html" class="mobile-submenu-item">Technology</a>
                   <div class="mobile-submenu-header">By Role</div>
-                  <a href="#" class="mobile-submenu-item">Board Management Solutions for Administrators</a>
-                  <a href="#" class="mobile-submenu-item">Board Management Solutions for Board Leaders</a>
-                  <a href="#" class="mobile-submenu-item">Solutions for Board Members</a>
-                  <a href="#" class="mobile-submenu-item">Solutions for CEOs and Executives</a>
+                  <a href="administrators.html" class="mobile-submenu-item">Board Management Solutions for Administrators</a>
+                  <a href="leaders.html" class="mobile-submenu-item">Board Management Solutions for Board Leaders</a>
+                  <a href="members.html" class="mobile-submenu-item">Solutions for Board Members</a>
+                  <a href="executives.html" class="mobile-submenu-item">Solutions for CEOs and Executives</a>
                 </div>
                 <div class="dropdown-solutions-panel">
                   <div class="solutions-columns">
                     <div>
                       <div class="solutions-column-title">By Industry</div>
                       <div class="solutions-list two-columns">
-                        <div class="solutions-item">
+                        <a href="associations.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-building"></i></div>
                           <div>
                             <div class="solutions-item-title">Associations</div>
                             <p class="solutions-item-body">The platform that simplifies board operations at scale.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="community-organizations.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-people-fill"></i></div>
                           <div>
                             <div class="solutions-item-title">Community Organizations</div>
                             <p class="solutions-item-body">A platform for serving communities and building trust.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="education.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-mortarboard"></i></div>
                           <div>
                             <div class="solutions-item-title">Education</div>
                             <p class="solutions-item-body">Created for informed decision making and collaboration.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="government.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-bank"></i></div>
                           <div>
                             <div class="solutions-item-title">Government</div>
                             <p class="solutions-item-body">Built for better governance and shaping policies.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="healthcare.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-heart-pulse"></i></div>
                           <div>
                             <div class="solutions-item-title">Healthcare</div>
                             <p class="solutions-item-body">The platform to take action on what matters.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="real-estate.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-houses"></i></div>
                           <div>
                             <div class="solutions-item-title">Real Estate</div>
                             <p class="solutions-item-body">One place for all materials and communications.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="technology.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-laptop"></i></div>
                           <div>
                             <div class="solutions-item-title">Technology</div>
                             <p class="solutions-item-body">A cloud-based solution for leaders in tech.</p>
                           </div>
-                        </div>
-                        <div class="solutions-item">
-                          <div class="solutions-item-icon"><i class="bi bi-grid-3x3"></i></div>
-                          <div>
-                            <div class="solutions-item-title">View All Solutions</div>
-                            <p class="solutions-item-body">View All Solutions</p>
-                          </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                     <div>
                       <div class="solutions-column-title">By Role</div>
                       <div class="solutions-list single-column">
-                        <div class="solutions-item">
+                        <a href="administrators.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-briefcase"></i></div>
                           <div>
                             <div class="solutions-item-title">Board Management Solutions for Administrators</div>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="leaders.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-person-badge"></i></div>
                           <div>
                             <div class="solutions-item-title">Board Management Solutions for Board Leaders</div>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="members.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-house-door"></i></div>
                           <div>
                             <div class="solutions-item-title">Solutions for Board Members</div>
                           </div>
-                        </div>
-                        <div class="solutions-item">
+                        </a>
+                        <a href="executives.html" class="solutions-item" style="text-decoration: none; color: inherit;">
                           <div class="solutions-item-icon"><i class="bi bi-person-vcard"></i></div>
                           <div>
                             <div class="solutions-item-title">Solutions for CEOs and Executives</div>
                           </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>

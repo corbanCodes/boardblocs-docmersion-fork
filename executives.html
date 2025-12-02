@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board Portal Software for CEOs & Executives – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <!-- <span class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+            ✨ Introducing DocMersion
+          </span> -->
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Board Portal</span><br />
+            <span class="text-slate-900">Software for</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">CEOs & Executives</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Strengthen board-executive alignment. BoardBlocs gives you the tools to support effective governance, ensure compliance, and keep your board engaged—without adding to your workload.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Strengthen board-executive alignment. BoardBlocs gives you the tools to support effective governance, ensure compliance, and keep your board engaged—without adding to your workload.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is Board Portal Software Section -->
+    <section class="py-16 bg-gradient-to-br from-slate-100 via-blue-50 to-slate-100 border-y-2 border-slate-200">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg">
+              <i class="bi bi-info-circle-fill"></i>
+              <span>WHAT IS BOARD PORTAL SOFTWARE?</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900 leading-tight">
+              The Complete Solution for Board Management
+            </h2>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Board portal software is a specialized platform that centralizes all board activities—from meetings and documents to communication and compliance—in one secure, accessible location.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-slate-200">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <!-- Left: What It Does -->
+              <div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-grid-3x3-gap text-white text-xl"></i>
+                  </div>
+                  <span>What Board Portals Do</span>
+                </h3>
+                <ul class="space-y-4">
+                  <li class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i class="bi bi-check2 text-blue-600 font-bold"></i>
+                    </div>
+                    <span class="text-slate-700"><strong>Replace email and paper</strong> with a centralized digital workspace</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i class="bi bi-check2 text-blue-600 font-bold"></i>
+                    </div>
+                    <span class="text-slate-700"><strong>Streamline meeting preparation</strong> with agendas, packets, and minutes</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i class="bi bi-check2 text-blue-600 font-bold"></i>
+                    </div>
+                    <span class="text-slate-700"><strong>Provide secure document storage</strong> with controlled access</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i class="bi bi-check2 text-blue-600 font-bold"></i>
+                    </div>
+                    <span class="text-slate-700"><strong>Enable collaboration</strong> between board members anywhere, anytime</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <i class="bi bi-check2 text-blue-600 font-bold"></i>
+                    </div>
+                    <span class="text-slate-700"><strong>Ensure compliance</strong> with governance and accessibility requirements</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Right: Why BoardBlocs -->
+              <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-star-fill text-yellow-300 text-xl"></i>
+                  </div>
+                  <span>Why BoardBlocs Stands Out</span>
+                </h3>
+                <ul class="space-y-4">
+                  <li class="flex items-start gap-3">
+                    <i class="bi bi-lightning-charge-fill text-yellow-300 text-xl flex-shrink-0 mt-0.5"></i>
+                    <span><strong class="text-white">Built-in Accessibility:</strong> DocMersion technology ensures ADA & WCAG 2.2 compliance automatically—no lawsuits needed</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="bi bi-lightning-charge-fill text-yellow-300 text-xl flex-shrink-0 mt-0.5"></i>
+                    <span><strong class="text-white">Public & Private Sites:</strong> Beautiful transparency websites plus secure board-only spaces</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="bi bi-lightning-charge-fill text-yellow-300 text-xl flex-shrink-0 mt-0.5"></i>
+                    <span><strong class="text-white">Truly Simple:</strong> Integrates with Google Drive, Office 365, Zoom—no workflow changes required</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="bi bi-lightning-charge-fill text-yellow-300 text-xl flex-shrink-0 mt-0.5"></i>
+                    <span><strong class="text-white">Complete Solution:</strong> Everything from meeting planning to public engagement in one platform</span>
+                  </li>
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-white/20">
+                  <p class="text-sm text-white/90 italic">
+                    "Most board portals force you to choose between accessibility and simplicity. BoardBlocs gives you both."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="mt-10 pt-8 border-t-2 border-slate-200 text-center">
+              <p class="text-slate-700 text-lg mb-4">
+                <strong>Board portal software is a category of software.</strong> BoardBlocs is leading that category with accessibility, transparency, and simplicity.
+              </p>
+              <a href="#features" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+                <span>Explore BoardBlocs Features</span>
+                <i class="bi bi-arrow-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Administrators Choose BoardBlocs -->
+    <section class="py-24 bg-gradient-to-b from-white via-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-20">
+            <div class="inline-block mb-6">
+              <div class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">
+                FOR CEOs & EXECUTIVES
+              </div>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-slate-900 leading-tight">
+              Why CEOs & Executives<br/>Choose BoardBlocs
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+              BoardBlocs helps you <span class="text-slate-900 font-bold">strengthen governance</span> without adding complexity. Support your board's strategic work, ensure compliance, and maintain transparency—while you focus on <span class="text-blue-600 font-bold">running the organization</span>.
+            </p>
+          </div>
+
+          <!-- Benefit Cards - Stacked Design -->
+          <div class="space-y-6 max-w-5xl mx-auto">
+            <!-- Card 1 -->
+            <div class="group relative bg-white border-4 border-slate-900 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] hover:shadow-[12px_12px_0px_0px_rgba(59,130,246,1)] hover:border-blue-600 transition-all duration-300">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0">
+                  <div class="w-20 h-20 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <i class="bi bi-robot text-white text-4xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-3xl font-black text-slate-900 mb-4">Streamline Board Support</h3>
+                  <p class="text-lg text-slate-700 leading-relaxed">Give your board the tools they need to govern effectively. Automated meeting prep, document distribution, and communication—<strong>without burdening your executive team</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group relative bg-white border-4 border-slate-900 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] hover:shadow-[12px_12px_0px_0px_rgba(34,197,94,1)] hover:border-green-600 transition-all duration-300">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0">
+                  <div class="w-20 h-20 bg-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <i class="bi bi-shield-check text-white text-4xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-3xl font-black text-slate-900 mb-4">Ensure Governance & Compliance</h3>
+                  <p class="text-lg text-slate-700 leading-relaxed">Meet transparency requirements and accessibility standards automatically. <strong>Reduce organizational risk</strong> with built-in ADA compliance and audit trails.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group relative bg-white border-4 border-slate-900 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] hover:shadow-[12px_12px_0px_0px_rgba(168,85,247,1)] hover:border-purple-600 transition-all duration-300">
+              <div class="flex items-start gap-6">
+                <div class="flex-shrink-0">
+                  <div class="w-20 h-20 bg-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <i class="bi bi-clock-history text-white text-4xl"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-3xl font-black text-slate-900 mb-4">Strengthen Strategic Alignment</h3>
+                  <p class="text-lg text-slate-700 leading-relaxed">Keep your board informed and engaged with your strategic priorities. <strong>Foster trust and transparency</strong> between executive leadership and governance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Everything You Need Section -->
+    <section class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-20">
+            <div class="inline-block bg-white text-slate-900 px-6 py-3 rounded-lg font-black text-sm tracking-widest mb-6">
+              COMPLETE SOLUTION
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-8 leading-tight">
+              Everything You Need<br/>as a CEO
+            </h2>
+            <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              From <strong class="text-white">governance support</strong> to <strong class="text-white">strategic transparency</strong>, BoardBlocs provides all the tools you need to strengthen your board's effectiveness—without adding to your team's workload.
+            </p>
+          </div>
+
+          <!-- Feature List - Two Column -->
+          <div class="grid md:grid-cols-2 gap-8">
+          
+            <!-- Feature 1 -->
+            <div class="border-l-4 border-blue-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-globe text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Public Sites</h3>
+                  <p class="text-slate-300 leading-relaxed mb-2">Create beautiful, branded public board sites for transparency. Share meeting calendars, public agendas, minutes, and policies—all mobile-friendly and ADA compliant.</p>
+                  <span class="inline-block bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">★ HIGHLIGHT FEATURE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="border-l-4 border-orange-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-folder-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">ADA-Compliant Document Center</h3>
+                  <p class="text-slate-300 leading-relaxed mb-2">Store and share documents with built-in DocMersion technology. PDFs fail accessibility—we transform them into compliant, searchable, mobile-friendly documents.</p>
+                  <span class="inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">★ POWERED BY DOCMERSION</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="border-l-4 border-purple-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-calendar-check text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Meetings & Agendas</h3>
+                  <p class="text-slate-300 leading-relaxed">Streamline meeting prep with integrated Google Drive and Office 365. Build agendas, distribute board packets, and generate minutes—all in one place.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="border-l-4 border-indigo-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-people-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Groups & Committees</h3>
+                  <p class="text-slate-300 leading-relaxed">Organize subcommittees with dedicated spaces for discussions, documents, and calendars. Control privacy and permissions for each group.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="border-l-4 border-green-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-chat-dots-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Avatar-Based Discussions</h3>
+                  <p class="text-slate-300 leading-relaxed">Foster honest feedback with optional avatar-based discussions. Automatic sentiment analysis and enthusiasm tracking help gauge board engagement.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="border-l-4 border-pink-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-phone-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Mobile App & Notifications</h3>
+                  <p class="text-slate-300 leading-relaxed">Keep board members connected on the go. Push notifications, meeting alerts, document access, and video joining—all from the mobile app.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 7 -->
+            <div class="border-l-4 border-cyan-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-camera-video-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Video Meeting Integration</h3>
+                  <p class="text-slate-300 leading-relaxed">Seamlessly integrate Zoom and Google Meet. Host virtual meetings, record for transparency, and automatically generate transcripts.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 8 -->
+            <div class="border-l-4 border-yellow-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-stars text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">BoardBlocs AI</h3>
+                  <p class="text-slate-300 leading-relaxed">AI-powered chat assistant answers questions about your documents, generates meeting summaries, and provides instant access to board information.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 9 -->
+            <div class="border-l-4 border-teal-500 pl-6 py-4 hover:border-l-8 transition-all duration-300">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
+                    <i class="bi bi-bar-chart-fill text-white text-2xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-black text-white mb-2">Surveys & Feedback</h3>
+                  <p class="text-slate-300 leading-relaxed">Gather input from members and board members with integrated surveys. Track responses and analyze results within the platform.</p>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Public & Private -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-20">
+            <div class="inline-block bg-slate-900 text-white px-6 py-3 rounded-lg font-black text-sm tracking-widest mb-6">
+              PUBLIC & PRIVATE
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-slate-900 leading-tight">
+              Transparency Meets<br/>Security
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+              BoardBlocs gives you <strong class="text-slate-900">both worlds</strong>—a public-facing website for member transparency and a <strong class="text-slate-900">secure private portal</strong> for board-only discussions.
+            </p>
+          </div>
+
+          <!-- Two-Column Split -->
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Public Site -->
+            <div class="bg-white border-4 border-blue-600 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(37,99,235,1)]">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-globe text-white text-3xl"></i>
+                </div>
+                <h3 class="text-3xl font-black text-slate-900">Public Site</h3>
+              </div>
+              <p class="text-slate-700 text-lg mb-6 leading-relaxed">Publish transparency websites in minutes with:</p>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-white text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-700">Public meeting calendar with upcoming events</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-white text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-700">Published agendas and approved minutes</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-white text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-700">Policy library and documents</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-white text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-700">Live meeting streams (YouTube/Google integration)</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-white text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-700">Public comment submission</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Private Portal -->
+            <div class="bg-slate-900 border-4 border-slate-900 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] text-white">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center">
+                  <i class="bi bi-shield-lock text-slate-900 text-3xl"></i>
+                </div>
+                <h3 class="text-3xl font-black">Private Portal</h3>
+              </div>
+              <p class="text-slate-300 text-lg mb-6 leading-relaxed">Secure collaboration space for board members only:</p>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-white rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-slate-900 text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-200">Confidential board discussions</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-white rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-slate-900 text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-200">Draft agendas and working documents</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-white rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-slate-900 text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-200">Private committee workspaces</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-white rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-slate-900 text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-200">Sensitive financial documents</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-white rounded flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="bi bi-check text-slate-900 text-sm font-bold"></i>
+                  </div>
+                  <span class="text-slate-200">Secure video meetings with transcription</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Example Site CTA -->
+          <div class="mt-16 text-center">
+            <p class="text-slate-600 text-lg mb-6 font-medium">See a live example of a BoardBlocs public site:</p>
+            <a href="https://docmersion.schoolblocks.com/en-US" target="_blank" class="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-xl font-black text-lg hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+              <span>Board of Buffalo Sample Site</span>
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DocMersion: PDFs Fail vs BoardBlocs Excels -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          
+          <!-- Problem vs Solution Grid -->
+          <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- LEFT: THE PROBLEM -->
+            <div class="bg-white border-4 border-red-600 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(220,38,38,1)]">
+              <div class="inline-block bg-red-600 text-white px-5 py-2 rounded-lg font-black text-xs tracking-widest mb-6">
+                THE PDF PROBLEM
+              </div>
+              <h2 class="text-4xl font-black mb-6 text-slate-900 leading-tight">
+                PDFs Are Not<br/><span class="text-red-600">Accessible</span>
+              </h2>
+              <p class="text-lg text-slate-700 mb-6 leading-relaxed font-medium">Traditional board portals rely on PDFs for document sharing. But PDFs <strong>create liability</strong> and fail users who:</p>
+              
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-x-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1">Use screen readers or assistive technology</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-x-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1">Access content on mobile devices</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-x-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1">Need to search within documents</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-x-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1">Require compliance with ADA and WCAG 2.2</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: THE SOLUTION -->
+            <div class="bg-white border-4 border-green-600 rounded-2xl p-10 shadow-[8px_8px_0px_0px_rgba(22,163,74,1)]">
+              <div class="inline-block bg-green-600 text-white px-5 py-2 rounded-lg font-black text-xs tracking-widest mb-6">
+                THE DOCMERSION SOLUTION
+              </div>
+              <h2 class="text-4xl font-black mb-6 text-slate-900 leading-tight">
+                BoardBlocs<br/><span class="text-green-600">Excels</span>
+              </h2>
+              <p class="text-lg text-slate-700 mb-6 leading-relaxed font-medium">With built-in <strong>DocMersion technology</strong>, BoardBlocs transforms documents into fully accessible, interactive experiences:</p>
+              
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-check-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1"><strong>ADA & WCAG 2.2 Compliant</strong> - Meet legal requirements automatically</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-check-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1"><strong>Mobile-Friendly</strong> - Responsive design for phones and tablets</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-check-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1"><strong>Fully Searchable</strong> - Find information instantly with AI-powered search</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="bi bi-check-lg text-white text-lg font-bold"></i>
+                  </div>
+                  <span class="text-slate-800 font-medium pt-1"><strong>Screen Reader Compatible</strong> - Perfect for assistive technology</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DocMersion Callout -->
+          <div class="mt-12 bg-slate-900 border-4 border-slate-900 rounded-2xl p-8 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] text-center">
+            <p class="text-white font-black text-xl mb-2">DocMersion is a feature of BoardBlocs</p>
+            <p class="text-slate-300 text-lg">It's the technology that makes every document ADA compliant automatically—<strong class="text-white">so you never have to worry about accessibility lawsuits again</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integration -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-20">
+            <div class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-black text-sm tracking-widest mb-6">
+              SEAMLESS INTEGRATION
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-slate-900 leading-tight">
+              Works With Your<br/>Existing Tools
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+              BoardBlocs integrates with the tools your board already uses—<strong class="text-slate-900">no need to change your workflow</strong>.
+            </p>
+          </div>
+
+          <!-- Integration Icons -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-6 text-center hover:border-blue-600 transition-all duration-300">
+              <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-google text-white text-3xl"></i>
+              </div>
+              <h3 class="font-black text-slate-900 mb-2">Google Workspace</h3>
+              <p class="text-slate-600 text-sm">Drive, Docs, Meet, Calendar</p>
+            </div>
+
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-6 text-center hover:border-blue-600 transition-all duration-300">
+              <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-microsoft text-white text-3xl"></i>
+              </div>
+              <h3 class="font-black text-slate-900 mb-2">Microsoft 365</h3>
+              <p class="text-slate-600 text-sm">OneDrive, Office, Teams</p>
+            </div>
+
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-6 text-center hover:border-purple-600 transition-all duration-300">
+              <div class="w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-camera-video text-white text-3xl"></i>
+              </div>
+              <h3 class="font-black text-slate-900 mb-2">Zoom</h3>
+              <p class="text-slate-600 text-sm">Virtual meetings, recordings</p>
+            </div>
+
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-6 text-center hover:border-red-600 transition-all duration-300">
+              <div class="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-youtube text-white text-3xl"></i>
+              </div>
+              <h3 class="font-black text-slate-900 mb-2">YouTube</h3>
+              <p class="text-slate-600 text-sm">Public meeting streams</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border-4 border-slate-900 rounded-2xl p-10 text-center shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+            <p class="text-white text-lg mb-4">Plus email notifications, text messaging, and more</p>
+            <p class="text-white font-black text-2xl">Easier to track than email. Simpler than juggling multiple tools.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Compliance -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-20">
+            <div class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-black text-sm tracking-widest mb-6">
+              SECURITY & COMPLIANCE
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-slate-900 leading-tight">
+              Built for Security and<br/>Peace of Mind
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-medium">
+              Your organization's governance deserves the <strong class="text-slate-900">highest level of protection</strong>. BoardBlocs is built with enterprise-grade security for executive and board communications.
+            </p>
+          </div>
+
+          <!-- Security Features -->
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-8 text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+              <div class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-lock-fill text-white text-3xl"></i>
+              </div>
+              <h3 class="text-slate-900 font-black text-xl mb-2">Encrypted Data</h3>
+              <p class="text-slate-600 font-medium">End-to-end encryption for all documents and communications</p>
+            </div>
+
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-8 text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+              <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-person-check-fill text-white text-3xl"></i>
+              </div>
+              <h3 class="text-slate-900 font-black text-xl mb-2">Role-Based Access</h3>
+              <p class="text-slate-600 font-medium">Granular permissions control who sees what</p>
+            </div>
+
+            <div class="bg-white border-4 border-slate-900 rounded-xl p-8 text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+              <div class="w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-cloud-check-fill text-white text-3xl"></i>
+              </div>
+              <h3 class="text-slate-900 font-black text-xl mb-2">Secure Cloud</h3>
+              <p class="text-slate-600 font-medium">Automatic backups and 99.9% uptime guarantee</p>
+            </div>
+          </div>
+
+          <!-- Compliance Badges -->
+          <div class="bg-slate-900 border-4 border-slate-900 rounded-2xl p-10 text-center shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+            <h3 class="text-white font-black text-3xl mb-6">Compliance Built-In</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-lg font-black text-sm">ADA COMPLIANT</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-lg font-black text-sm">WCAG 2.2</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-lg font-black text-sm">CIPA READY</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-lg font-black text-sm">SOC 2 TYPE II</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">Ready to Strengthen Your Board?</h2>
+          <p class="text-xl text-white/90 mb-10 leading-relaxed">Join CEOs and executives who have transformed their board governance and strategic alignment with BoardBlocs.</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-blue-600 bg-white shadow-2xl transition-all duration-300 hover:shadow-3xl hover:scale-105 text-lg">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            </a>
+            <a href="pricing.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 text-lg">
+              <span class="relative z-10">View Pricing</span>
+              <i class="bi bi-tag relative z-10"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>
