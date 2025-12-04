@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundraising Resource – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section: Fundraising -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-lime-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-lime-500 to-green-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-green-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Actionable tips</span><br />
+            <span class="text-slate-900">to improve</span><br />
+            <span class="bg-gradient-to-r from-lime-600 to-green-600 bg-clip-text text-transparent">fundraising</span>
+          </h1>
+         
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Effective fundraising starts with an engaged board. This resource covers strategies for donor engagement, transparency, and leveraging your board portal to support development efforts.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #84cc16 0%, #16a34a 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Strategies for donor engagement, transparency, and leveraging your board portal for development.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #84cc16 0%, #16a34a 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fundraising Resource Intro -->
+    <section class="py-20 bg-gradient-to-b from-white to-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <!-- Resource Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-lime-100 text-lime-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-cash-coin"></i>
+              <span>FUNDRAISING RESOURCE</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+              Board-Driven<br/>Fundraising Success
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Your board is your most powerful fundraising asset. This resource explores how transparency, engagement, and the right tools can transform your development efforts.
+            </p>
+          </div>
+
+          <!-- What You'll Learn -->
+          <div class="bg-white rounded-3xl border-2 border-slate-200 p-10 mb-12 shadow-lg">
+            <h3 class="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+              <div class="w-10 h-10 bg-lime-600 rounded-lg flex items-center justify-center">
+                <i class="bi bi-lightbulb text-white text-xl"></i>
+              </div>
+              What You'll Learn
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-lime-600 font-bold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Board Member Giving</h4>
+                  <p class="text-slate-600 text-sm">How to encourage and track 100% board participation in giving</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-lime-600 font-bold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Donor Transparency</h4>
+                  <p class="text-slate-600 text-sm">Using your public site to build trust with donors and stakeholders</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-lime-600 font-bold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Board as Ambassadors</h4>
+                  <p class="text-slate-600 text-sm">Equipping members to represent your organization to potential donors</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-lime-600 font-bold text-sm">4</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Development Committee Tools</h4>
+                  <p class="text-slate-600 text-sm">Technology that supports fundraising planning and execution</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Who This Is For -->
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gradient-to-br from-lime-50 to-green-50 rounded-2xl p-6 border border-lime-100">
+              <div class="w-12 h-12 bg-lime-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-heart text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Development Directors</h4>
+              <p class="text-slate-600 text-sm">Engaging board members in fundraising and tracking giving participation</p>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+              <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-people text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Board Members</h4>
+              <p class="text-slate-600 text-sm">Understanding their role in fundraising and accessing donor resources</p>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100">
+              <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-building text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Nonprofit Leaders</h4>
+              <p class="text-slate-600 text-sm">Building a culture of philanthropy across the organization</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fundraising Challenges -->
+    <section class="py-20 bg-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-red-100 text-red-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span>FUNDRAISING CHALLENGES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Why Boards Struggle with Fundraising
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              Even committed board members often underperform in development. These barriers are more common than you think.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Challenge 1 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-cash-stack text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Board members won't ask for money"</h3>
+                  <p class="text-slate-600">Many members joined to govern, not fundraise. They're uncomfortable making asks and avoid donor conversations.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-percent text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"We can't get 100% board giving"</h3>
+                  <p class="text-slate-600">Foundations ask about board participation. Some members haven't given. It's awkward to track and follow up.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 3 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-eye-slash text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Donors don't trust us"</h3>
+                  <p class="text-slate-600">Your website is outdated. Financial reports are buried. Donors can't easily see how their money is used.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-file-earmark-x text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Members don't know our story"</h3>
+                  <p class="text-slate-600">Board members can't articulate the mission. They don't have talking points. They avoid donor conversations because they're unprepared.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-diagram-3 text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Development committee is siloed"</h3>
+                  <p class="text-slate-600">The development committee works in isolation. Other board members don't know what's happening. Opportunities are missed.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 6 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-calendar-x text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Events are disorganized"</h3>
+                  <p class="text-slate-600">Fundraising events lack coordination. Volunteers don't know their roles. Follow-up falls through the cracks.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transition to Solution -->
+          <div class="mt-16 text-center">
+            <div class="inline-flex items-center gap-2 bg-lime-100 text-lime-700 px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <i class="bi bi-arrow-down"></i>
+              <span>FUNDRAISING SOLUTIONS</span>
+            </div>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              The right tools and transparency can transform your board into effective fundraising partners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fundraising Solutions - Bold Intro -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-lime-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-green-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full text-sm font-bold mb-8">
+              <span class="w-2 h-2 bg-lime-400 rounded-full animate-pulse"></span>
+              <span>FUNDRAISING SOLUTIONS</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+              Transparency Builds<br/>
+              <span class="bg-gradient-to-r from-lime-400 via-green-400 to-emerald-400 bg-clip-text text-transparent">Donor Trust</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              Your public board portal shows donors exactly how you operate. Transparency isn't just good governance—it's your best fundraising tool.
+            </p>
+          </div>
+
+          <!-- Fundraising Pillars -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-lime-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-lime-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-lime-500/25">
+                <i class="bi bi-globe text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Public Transparency</h3>
+              <p class="text-slate-400">Show donors your governance in action with public meeting calendars and accessible documents</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-green-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/25">
+                <i class="bi bi-file-earmark-text text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Accessible Documents</h3>
+              <p class="text-slate-400">DocMersion makes financial reports and impact stories accessible to all donors</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-emerald-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/25">
+                <i class="bi bi-people text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Development Committee</h3>
+              <p class="text-slate-400">Dedicated workspace for fundraising planning with the whole board</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fundraising Use Cases -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-lime-100 text-lime-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-check-circle"></i>
+              <span>REAL-WORLD SCENARIOS</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              How BoardBlocs Supports<br/>Fundraising Success
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              From donor transparency to board engagement, here's how nonprofits use BoardBlocs to strengthen their development efforts.
+            </p>
+          </div>
+
+          <!-- Use Cases Grid -->
+          <div class="space-y-8">
+            <!-- Use Case 1 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-lime-500 to-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-globe text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Building Donor Trust Through Transparency</h3>
+                  <p class="text-slate-600 mb-4">A foundation asks to see your governance practices before making a major gift. You share your public BoardBlocs site showing meeting calendars, accessible policies, and board member profiles. They see a well-organized, transparent organization—and the gift comes through.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-lime-100 text-lime-700 px-3 py-1 rounded-full text-xs font-bold">Public Site</span>
+                    <span class="bg-lime-100 text-lime-700 px-3 py-1 rounded-full text-xs font-bold">Transparency</span>
+                    <span class="bg-lime-100 text-lime-700 px-3 py-1 rounded-full text-xs font-bold">Donor Confidence</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 2 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-file-earmark-text text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Making Financial Reports Accessible</h3>
+                  <p class="text-slate-600 mb-4">Your annual report is a 40-page PDF that donors struggle to read on mobile. Using DocMersion, you convert it to searchable, mobile-friendly web pages. Donors can easily find impact metrics, financial summaries, and success stories—increasing engagement and repeat giving.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">DocMersion</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">ADA Compliance</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Mobile Friendly</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 3 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-people text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Coordinating the Development Committee</h3>
+                  <p class="text-slate-600 mb-4">Your development committee plans a major campaign. Using their dedicated workspace, they share prospect lists, discuss strategies, and track progress between meetings. The full board stays informed through updates, and everyone knows their role in the campaign.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Committee Workspace</span>
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Campaign Planning</span>
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Board Updates</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 4 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-megaphone text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Equipping Board Ambassadors</h3>
+                  <p class="text-slate-600 mb-4">Board members want to help with fundraising but don't know what to say. You create a resource section with talking points, impact stories, and FAQs. Members access it on their phones before donor meetings. They feel confident and prepared—and bring in more gifts.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Resource Library</span>
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Mobile Access</span>
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Talking Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-gradient-to-br from-lime-600 via-green-600 to-emerald-600 relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-white mb-8">
+            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <span>FUNDRAISING SUCCESS</span>
+          </div>
+          
+          <h2 class="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
+            Transparency Drives<br/>Donor Confidence
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Show donors exactly how you operate. Build trust through accessible governance and watch your fundraising thrive.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group inline-flex items-center gap-3 bg-white text-lime-600 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-all duration-300 shadow-2xl shadow-black/20">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="https://docmersion.schoolblocks.com/en-US" target="_blank" class="inline-flex items-center gap-3 border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-lime-600 transition-all duration-300">
+              <span>See Board of Buffalo</span>
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

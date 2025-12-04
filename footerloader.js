@@ -48,11 +48,14 @@ function loadFooter() {
           <div>
             <h3 class="font-semibold text-slate-900 mb-4">Resources</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Blog</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Help Center</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Webinars</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Case Studies</a></li>
-              <li><a href="demo.html" class="text-slate-600 hover:text-blue-600 transition-colors">Live Demo</a></li>
+              <li><a href="board-governance.html" class="text-slate-600 hover:text-blue-600 transition-colors">Board Governance</a></li>
+              <li><a href="board-recruitment.html" class="text-slate-600 hover:text-blue-600 transition-colors">Board Recruitment</a></li>
+              <li><a href="board-engagement.html" class="text-slate-600 hover:text-blue-600 transition-colors">Board Engagement</a></li>
+              <li><a href="board-roles-and-responsibilities.html" class="text-slate-600 hover:text-blue-600 transition-colors">Roles & Responsibilities</a></li>
+              <li><a href="board-committee-meetings.html" class="text-slate-600 hover:text-blue-600 transition-colors">Board Meetings</a></li>
+              <li><a href="fundraising.html" class="text-slate-600 hover:text-blue-600 transition-colors">Fundraising</a></li>
+              <li><a href="agenda-resources.html" class="text-slate-600 hover:text-blue-600 transition-colors">Agendas & Minutes</a></li>
+              <li><a href="view-all-resources.html" class="text-slate-600 hover:text-blue-600 transition-colors">View All</a></li>
             </ul>
           </div>
           
@@ -60,7 +63,8 @@ function loadFooter() {
           <div>
             <h3 class="font-semibold text-slate-900 mb-4">Why BoardBlocs</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">About Us</a></li>
+              <li><a href="why-board-blocs.html" class="text-slate-600 hover:text-blue-600 transition-colors">Why BoardBlocs</a></li>
+              <li><a href="about-us.html" class="text-slate-600 hover:text-blue-600 transition-colors">About Us</a></li>
               <li><a href="pricing.html" class="text-slate-600 hover:text-blue-600 transition-colors">Pricing</a></li>
               <li><a href="compliance.html" class="text-slate-600 hover:text-blue-600 transition-colors">Compliance</a></li>
               <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Security</a></li>
@@ -71,7 +75,7 @@ function loadFooter() {
           <div>
             <h3 class="font-semibold text-slate-900 mb-4">Support</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="index.html#contact" class="text-slate-600 hover:text-blue-600 transition-colors">Contact</a></li>
+              <li><a href="contact-us.html" class="text-slate-600 hover:text-blue-600 transition-colors">Contact</a></li>
               <li><a href="book-demo.html" class="text-slate-600 hover:text-blue-600 transition-colors">Get Started</a></li>
               <li><a href="privacy-policy.html" class="text-slate-600 hover:text-blue-600 transition-colors">Privacy Policy</a></li>
             </ul>

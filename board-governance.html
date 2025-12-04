@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board Governance Resource – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section: Board Governance Resource -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <!-- <span class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+            ✨ Introducing DocMersion
+          </span> -->
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Board governance,</span><br />
+            <span class="text-slate-900">for every kind of</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">public-facing board</span>
+          </h1>
+         
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Whether youre a school, city, association, nonprofit, or special district, this resource explains the board portal software category, how public websites and private portals work together, and where accessibility and DocMersion fit in.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Learn how to move beyond PDFs and email threads to a governance model built on accessible documents, public transparency, and a shared home for your boards work.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board Governance Resource Intro -->
+    <section class="py-20 bg-gradient-to-b from-white to-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <!-- Resource Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-book"></i>
+              <span>BOARD GOVERNANCE RESOURCE</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+              Your Guide to Modern<br/>Board Governance
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Whether you're new to board management or looking to modernize your governance practices, this resource will help you understand the tools, strategies, and best practices that make boards more effective.
+            </p>
+          </div>
+
+          <!-- What You'll Learn -->
+          <div class="bg-white rounded-3xl border-2 border-slate-200 p-10 mb-12 shadow-lg">
+            <h3 class="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+              <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <i class="bi bi-lightbulb text-white text-xl"></i>
+              </div>
+              What You'll Learn
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-blue-600 font-bold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">What Board Portal Software Is</h4>
+                  <p class="text-slate-600 text-sm">Understand the category of tools designed specifically for governance teams</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-blue-600 font-bold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Public vs. Private Governance</h4>
+                  <p class="text-slate-600 text-sm">How to balance transparency with secure board collaboration</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-blue-600 font-bold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Accessibility Requirements</h4>
+                  <p class="text-slate-600 text-sm">Why ADA compliance matters and how to achieve it</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-blue-600 font-bold text-sm">4</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">How BoardBlocs Can Help</h4>
+                  <p class="text-slate-600 text-sm">Practical solutions for common governance challenges</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Who This Is For -->
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+              <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-building text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">School Boards</h4>
+              <p class="text-slate-600 text-sm">Managing public meetings, policy updates, and community engagement while staying compliant</p>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
+              <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-bank text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">City & County Boards</h4>
+              <p class="text-slate-600 text-sm">Coordinating council meetings, ordinances, and transparent government operations</p>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+              <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-heart text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Nonprofits & Associations</h4>
+              <p class="text-slate-600 text-sm">Keeping board members aligned, organized, and focused on your mission</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Board Governance Challenges -->
+    <section class="py-20 bg-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-red-100 text-red-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span>COMMON CHALLENGES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Sound Familiar?
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              These are the governance headaches we hear about every day from boards just like yours.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Challenge 1 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-envelope-exclamation text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"I can't find that email..."</h3>
+                  <p class="text-slate-600">Critical documents buried in email threads. Board members asking for the same attachment three times. No single source of truth.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-file-earmark-pdf text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Our PDFs aren't accessible"</h3>
+                  <p class="text-slate-600">Accessibility lawsuits are real. Screen readers can't parse your policy documents. Mobile users struggle to read anything.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 3 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-clock-history text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Meeting prep takes forever"</h3>
+                  <p class="text-slate-600">Late nights assembling board packets. Chasing down signatures. Manually updating multiple calendars and websites.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-people text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"New members are lost"</h3>
+                  <p class="text-slate-600">Onboarding takes months. Historical decisions are scattered. Institutional knowledge walks out the door with departing members.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-eye-slash text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"The public can't find anything"</h3>
+                  <p class="text-slate-600">Your website is outdated. Meeting info is hard to locate. Residents call the office for basic information that should be online.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 6 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-chat-left-dots text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Board members won't speak up"</h3>
+                  <p class="text-slate-600">Difficult topics get avoided. Honest feedback is rare. You never know what members really think until it's too late.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transition to Solution -->
+          <div class="mt-16 text-center">
+            <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <i class="bi bi-arrow-down"></i>
+              <span>THE SOLUTION</span>
+            </div>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              Board portal software was created to solve exactly these problems. Here's what you need to know.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is Board Portal Software - Bold Intro -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full text-sm font-bold mb-8">
+              <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              <span>BOARD PORTAL SOFTWARE IS A CATEGORY</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+              Finally Understand<br/>
+              <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Board Portals</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              Board portal software centralizes governance work—agendas, packets, policies, meetings, and communication—in one secure, accessible place.
+            </p>
+          </div>
+
+          <!-- Stats/Value Props -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-blue-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/25">
+                <i class="bi bi-globe text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Public Transparency</h3>
+              <p class="text-slate-400">Beautiful public sites for community access to meetings, agendas, and policies</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-purple-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/25">
+                <i class="bi bi-shield-lock text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Private Workspace</h3>
+              <p class="text-slate-400">Secure portal for board members to collaborate, discuss, and prepare</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-green-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/25">
+                <i class="bi bi-universal-access text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Built-in Accessibility</h3>
+              <p class="text-slate-400">ADA & WCAG 2.2 compliance without manual PDF remediation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The BoardBlocs Difference - Bento Grid -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-black text-sm tracking-widest mb-6 shadow-lg shadow-blue-500/25">
+              WHY BOARDBLOCS
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">
+              Not Just Another<br/>Board Portal
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Most portals force you to choose between accessibility and simplicity. <strong class="text-slate-900">BoardBlocs gives you both.</strong>
+            </p>
+          </div>
+
+          <!-- Bento Grid -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Large Card - DocMersion -->
+            <div class="md:col-span-2 bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 rounded-3xl p-10 text-white relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6">
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>DOCMERSION TECHNOLOGY</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Where PDFs Fail,<br/>We Excel</h3>
+                <p class="text-xl text-white/90 mb-8 max-w-xl">DocMersion transforms your policies and packets into ADA-compliant, searchable, mobile-friendly web pages—automatically.</p>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-phone text-2xl mb-2"></i>
+                    <p class="font-bold">Mobile-First</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-search text-2xl mb-2"></i>
+                    <p class="font-bold">Fully Searchable</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-eye text-2xl mb-2"></i>
+                    <p class="font-bold">Screen Reader Ready</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-check-circle text-2xl mb-2"></i>
+                    <p class="font-bold">WCAG 2.2</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small Card - Accessibility -->
+            <div class="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden group">
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="bi bi-universal-access text-white text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-3">Accessibility First</h3>
+                <p class="text-slate-400 mb-4">Few companies care about accessibility until they're sued. We built it in from day one.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold">ADA</span>
+                  <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold">WCAG 2.2</span>
+                  <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-bold">Section 508</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small Card - Integrations -->
+            <div class="bg-gradient-to-br from-slate-100 to-slate-200 rounded-3xl p-8 relative overflow-hidden group border-2 border-slate-200">
+              <div class="relative z-10">
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <i class="bi bi-plug text-slate-900 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 mb-3">Works With Your Tools</h3>
+                <p class="text-slate-600 mb-4">Google Drive, Microsoft 365, Zoom, YouTube—no workflow changes required.</p>
+                <div class="flex gap-3">
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow"><i class="bi bi-google text-xl"></i></div>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow"><i class="bi bi-microsoft text-xl"></i></div>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow"><i class="bi bi-camera-video text-xl"></i></div>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow"><i class="bi bi-youtube text-xl text-red-600"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Card - Public + Private -->
+            <div class="md:col-span-2 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl p-10 text-white relative overflow-hidden group">
+              <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6">
+                  <i class="bi bi-columns-gap"></i>
+                  <span>PUBLIC + PRIVATE</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Two Sites, One Platform</h3>
+                <p class="text-xl text-white/90 mb-8 max-w-xl">A branded public site at board.yourdomain.com paired with a secure private portal—all managed together.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h4 class="font-black text-xl mb-3 flex items-center gap-2"><i class="bi bi-globe"></i> Public Site</h4>
+                    <ul class="space-y-2 text-white/80 text-sm">
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Meeting calendars & agendas</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Policy library (DocMersion)</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Live meeting streams</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Public comment submission</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h4 class="font-black text-xl mb-3 flex items-center gap-2"><i class="bi bi-shield-lock"></i> Private Portal</h4>
+                    <ul class="space-y-2 text-white/80 text-sm">
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Draft agendas & packets</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Committee workspaces</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Avatar-based discussions</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> App notifications</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Example - Board of Buffalo -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white relative">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="bg-slate-900 rounded-[2.5rem] p-12 md:p-16 text-white relative overflow-hidden">
+            <!-- Background decoration -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-indigo-500/20 to-pink-500/20 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 text-center">
+              <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2 rounded-full text-sm font-bold mb-8">
+                <i class="bi bi-play-circle"></i>
+                <span>LIVE EXAMPLE</span>
+              </div>
+              <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                See It In Action:<br/>
+                <span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Board of Buffalo</span>
+              </h2>
+              <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                A complete public board site with accessible policies, meeting calendars, agendas, minutes, committee pages, and live meeting streams.
+              </p>
+              
+              <!-- Feature highlights -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                  <i class="bi bi-calendar-event text-blue-400 text-2xl mb-2"></i>
+                  <p class="text-sm font-bold">Public Calendar</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                  <i class="bi bi-file-text text-green-400 text-2xl mb-2"></i>
+                  <p class="text-sm font-bold">ADA Policies</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                  <i class="bi bi-people text-purple-400 text-2xl mb-2"></i>
+                  <p class="text-sm font-bold">Committees</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                  <i class="bi bi-broadcast text-red-400 text-2xl mb-2"></i>
+                  <p class="text-sm font-bold">Meeting Streams</p>
+                </div>
+              </div>
+              
+              <a href="https://docmersion.schoolblocks.com/en-US" target="_blank" class="inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-all duration-300 shadow-2xl shadow-white/20">
+                <span>Explore the Board of Buffalo</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete Feature Set -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-block bg-slate-900 text-white px-6 py-3 rounded-xl font-black text-sm tracking-widest mb-6">
+              COMPLETE FEATURE SET
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">
+              Everything Your<br/>Board Needs
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              From public transparency to private collaboration—all the features that matter for modern governance.
+            </p>
+          </div>
+
+          <!-- Feature Grid - Modern Cards -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Public Sites -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
+              <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">HIGHLIGHT</span>
+              </div>
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-globe text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Public Sites</h3>
+              <p class="text-slate-600 mb-4">Beautiful, branded transparency websites that match your organization. Share calendars, agendas, minutes, and policies publicly.</p>
+              <p class="text-sm text-blue-600 font-bold">board.yourdomain.com</p>
+            </div>
+
+            <!-- Document Center -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-orange-500 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300">
+              <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">DOCMERSION</span>
+              </div>
+              <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-folder-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Document Center</h3>
+              <p class="text-slate-600 mb-4">Store and share documents with built-in DocMersion. PDFs become ADA-compliant, searchable, mobile-friendly web pages.</p>
+              <p class="text-sm text-orange-600 font-bold">Simplicity is everything</p>
+            </div>
+
+            <!-- Groups & Committees -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
+              <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">HUGE</span>
+              </div>
+              <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-people-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Groups & Committees</h3>
+              <p class="text-slate-600 mb-4">Dedicated spaces for subcommittees with their own calendars, documents, discussions, and permissions. Privacy built-in.</p>
+              <p class="text-sm text-purple-600 font-bold">Each committee, their own space</p>
+            </div>
+
+            <!-- Avatar Discussions -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-green-500 hover:shadow-xl hover:shadow-green-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-chat-dots-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Avatar Discussions</h3>
+              <p class="text-slate-600 mb-4">Anonymous avatar-based discussions so members feel comfortable expressing true opinions. Plus sentiment analysis and enthusiasm tracking.</p>
+              <p class="text-sm text-green-600 font-bold">Honest feedback, tracked insights</p>
+            </div>
+
+            <!-- Mobile App -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-cyan-500 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-phone-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Mobile App</h3>
+              <p class="text-slate-600 mb-4">Native app with push notifications, meeting alerts, document access, and video joining. Text messaging integration included.</p>
+              <p class="text-sm text-cyan-600 font-bold">Streamlined communication</p>
+            </div>
+
+            <!-- Meetings & Agendas -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-indigo-500 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-calendar-check text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Meetings & Agendas</h3>
+              <p class="text-slate-600 mb-4">Giant calendar with sub-committee filtering. Agendas as working documents integrated with Google Docs. Minutes stored in Drive.</p>
+              <p class="text-sm text-indigo-600 font-bold">Public or private, your choice</p>
+            </div>
+
+            <!-- Video Integration -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-camera-video-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Meeting Streams</h3>
+              <p class="text-slate-600 mb-4">Zoom and Google Meet integration for virtual meetings. YouTube integration for public live streams and archived recordings.</p>
+              <p class="text-sm text-red-600 font-bold">Live + archived streams</p>
+            </div>
+
+            <!-- AI Assistant -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-yellow-500 hover:shadow-xl hover:shadow-yellow-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-stars text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">BoardBlocs AI</h3>
+              <p class="text-slate-600 mb-4">AI chat assistant that answers questions about your documents. Auto-answers and instant access to board information.</p>
+              <p class="text-sm text-yellow-600 font-bold">Welcome chat + auto answers</p>
+            </div>
+
+            <!-- Surveys -->
+            <div class="group relative bg-white border-2 border-slate-200 rounded-3xl p-8 hover:border-teal-500 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <i class="bi bi-bar-chart-fill text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-black text-slate-900 mb-3">Surveys</h3>
+              <p class="text-slate-600 mb-4">Gather input from board members and stakeholders. Could integrate with Google Forms or built-in survey tools.</p>
+              <p class="text-sm text-teal-600 font-bold">Feedback made simple</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How BoardBlocs Helps - Use Cases -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-check-circle"></i>
+              <span>REAL-WORLD USE CASES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              How BoardBlocs Helps<br/>With Board Governance
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              From day-to-day operations to long-term governance strategy, here's how boards use BoardBlocs to work more effectively.
+            </p>
+          </div>
+
+          <!-- Use Cases Grid -->
+          <div class="space-y-8">
+            <!-- Use Case 1 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-calendar-week text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Preparing for Monthly Board Meetings</h3>
+                  <p class="text-slate-600 mb-4">Instead of emailing PDFs back and forth, administrators build the agenda directly in BoardBlocs. Documents from Google Drive or Microsoft 365 are linked—not re-uploaded—so everyone always sees the latest version. Board members get notified when packets are ready, and they can review materials on their phone during their commute.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Agenda Building</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Document Sharing</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Mobile Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 2 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-file-earmark-text text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Publishing Accessible Policy Documents</h3>
+                  <p class="text-slate-600 mb-4">A school district needs to publish their updated student handbook. Instead of posting a 50-page PDF that fails accessibility checks, they use DocMersion to transform it into a searchable, mobile-friendly web page. Parents can read it on any device, screen readers work perfectly, and the district avoids ADA compliance issues.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">DocMersion</span>
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">ADA Compliance</span>
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Public Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 3 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-people text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Managing Committee Work Between Meetings</h3>
+                  <p class="text-slate-600 mb-4">A finance committee needs to review budget proposals before the next full board meeting. They have their own private workspace with dedicated document storage, a discussion thread, and their own calendar. Members can collaborate asynchronously without flooding the main board's communication channels.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Committees</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Private Workspaces</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Collaboration</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 4 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-globe text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Creating a Public Board Website</h3>
+                  <p class="text-slate-600 mb-4">A city council wants residents to easily find meeting schedules, watch live streams, and access approved minutes. BoardBlocs creates a branded public site at board.cityname.gov that matches their main website. The public calendar shows upcoming meetings, past recordings are archived, and residents can submit public comments online.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Public Sites</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Transparency</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Live Streams</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 5 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-person-plus text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Onboarding New Board Members</h3>
+                  <p class="text-slate-600 mb-4">When a new member joins the board, they don't have to dig through years of emails. Everything is in one place: past meeting minutes, current policies, committee structures, and ongoing discussions. They can search across all documents, catch up on recent decisions, and get up to speed in days instead of months.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">Onboarding</span>
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">Search</span>
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">History</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 6 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-chat-heart text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Getting Honest Feedback on Difficult Topics</h3>
+                  <p class="text-slate-600 mb-4">A nonprofit board needs to discuss a sensitive personnel matter. Using avatar-based discussions, members can share their honest opinions without the social pressure of being identified. The system tracks sentiment and enthusiasm levels, giving leadership insight into how the board really feels—not just what they're willing to say out loud.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Avatar Discussions</span>
+                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Sentiment Analysis</span>
+                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Honest Feedback</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Integrations -->
+    <section class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left - Security -->
+            <div>
+              <div class="inline-block bg-green-500 text-white px-5 py-2 rounded-lg font-black text-xs tracking-widest mb-6">
+                SECURITY
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                Enterprise-Grade<br/>Security
+              </h2>
+              <p class="text-xl text-slate-300 mb-8">
+                Your board's sensitive information deserves the highest level of protection. BoardBlocs is built with security from the ground up.
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                  <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-lock-fill text-white text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">End-to-End Encryption</h4>
+                    <p class="text-slate-400 text-sm">All documents and communications encrypted</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                  <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-person-check-fill text-white text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Role-Based Access</h4>
+                    <p class="text-slate-400 text-sm">Granular permissions for every user</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                  <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-cloud-check-fill text-white text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">99.9% Uptime</h4>
+                    <p class="text-slate-400 text-sm">Automatic backups and guaranteed availability</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right - Integrations -->
+            <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-10 border border-white/10">
+              <div class="inline-block bg-blue-500 text-white px-5 py-2 rounded-lg font-black text-xs tracking-widest mb-6">
+                INTEGRATIONS
+              </div>
+              <h3 class="text-3xl font-black mb-6">Works With Your Tools</h3>
+              <p class="text-slate-300 mb-8">No need to change your workflow. BoardBlocs integrates with everything you already use.</p>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/10 rounded-xl p-5 text-center hover:bg-white/20 transition-colors">
+                  <i class="bi bi-google text-3xl mb-2"></i>
+                  <p class="font-bold text-sm">Google Workspace</p>
+                  <p class="text-slate-400 text-xs">Drive, Docs, Meet, Calendar</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-5 text-center hover:bg-white/20 transition-colors">
+                  <i class="bi bi-microsoft text-3xl mb-2"></i>
+                  <p class="font-bold text-sm">Microsoft 365</p>
+                  <p class="text-slate-400 text-xs">OneDrive, Office, Teams</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-5 text-center hover:bg-white/20 transition-colors">
+                  <i class="bi bi-camera-video text-3xl mb-2"></i>
+                  <p class="font-bold text-sm">Zoom</p>
+                  <p class="text-slate-400 text-xs">Virtual meetings</p>
+                </div>
+                <div class="bg-white/10 rounded-xl p-5 text-center hover:bg-white/20 transition-colors">
+                  <i class="bi bi-youtube text-3xl text-red-500 mb-2"></i>
+                  <p class="font-bold text-sm">YouTube</p>
+                  <p class="text-slate-400 text-xs">Public streams</p>
+                </div>
+              </div>
+              
+              <div class="mt-6 pt-6 border-t border-white/10 text-center">
+                <p class="text-slate-400 text-sm">Plus email, text messaging, and more</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compliance Badges -->
+          <div class="mt-16 text-center">
+            <p class="text-slate-400 mb-6 font-bold uppercase tracking-widest text-sm">Compliance Built-In</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-xl font-black text-sm">ADA COMPLIANT</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-xl font-black text-sm">WCAG 2.2</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-xl font-black text-sm">SECTION 508</span>
+              <span class="bg-white text-slate-900 px-6 py-3 rounded-xl font-black text-sm">SOC 2 TYPE II</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-white mb-8">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span>READY TO GET STARTED?</span>
+          </div>
+          
+          <h2 class="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
+            Your Board<br/>Deserves Better
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Join boards who have moved beyond PDFs, email threads, and accessibility lawsuits to a governance model that actually works.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group inline-flex items-center gap-3 bg-white text-blue-600 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-all duration-300 shadow-2xl shadow-black/20">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="https://docmersion.schoolblocks.com/en-US" target="_blank" class="inline-flex items-center gap-3 border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+              <span>See Board of Buffalo</span>
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

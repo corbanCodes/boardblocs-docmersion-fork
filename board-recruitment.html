@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board Recruitment & Onboarding Resource – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section: Board Recruitment & Onboarding -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-teal-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Attract top talent,</span><br />
+            <span class="text-slate-900">ensure a</span><br />
+            <span class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">smooth transition</span>
+          </h1>
+         
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Finding the right board members is only half the battle. This resource covers strategies for recruiting qualified candidates and onboarding them effectively so they can contribute from day one.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Learn strategies for recruiting qualified board candidates and onboarding them effectively so they can contribute from day one.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board Recruitment Resource Intro -->
+    <section class="py-20 bg-gradient-to-b from-white to-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <!-- Resource Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-person-plus"></i>
+              <span>RECRUITMENT & ONBOARDING RESOURCE</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+              Build a Stronger Board<br/>From Day One
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Great boards don't happen by accident. This resource covers how to attract qualified candidates, create a compelling board experience, and onboard new members so they can contribute immediately.
+            </p>
+          </div>
+
+          <!-- What You'll Learn -->
+          <div class="bg-white rounded-3xl border-2 border-slate-200 p-10 mb-12 shadow-lg">
+            <h3 class="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+              <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
+                <i class="bi bi-lightbulb text-white text-xl"></i>
+              </div>
+              What You'll Learn
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-emerald-600 font-bold text-sm">1</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Attracting Top Talent</h4>
+                  <p class="text-slate-600 text-sm">Strategies for finding and recruiting qualified board candidates</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-emerald-600 font-bold text-sm">2</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Creating a Compelling Experience</h4>
+                  <p class="text-slate-600 text-sm">How modern tools make board service more attractive</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-emerald-600 font-bold text-sm">3</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Smooth Onboarding</h4>
+                  <p class="text-slate-600 text-sm">Getting new members up to speed in days, not months</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-emerald-600 font-bold text-sm">4</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 mb-1">Preserving Institutional Knowledge</h4>
+                  <p class="text-slate-600 text-sm">Ensuring continuity when members transition</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Who This Is For -->
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100">
+              <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-person-badge text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Board Chairs</h4>
+              <p class="text-slate-600 text-sm">Leading recruitment efforts and ensuring smooth leadership transitions</p>
+            </div>
+            <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-6 border border-teal-100">
+              <div class="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-clipboard-check text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Nominating Committees</h4>
+              <p class="text-slate-600 text-sm">Identifying, vetting, and recommending qualified candidates</p>
+            </div>
+            <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-6 border border-cyan-100">
+              <div class="w-12 h-12 bg-cyan-600 rounded-xl flex items-center justify-center mb-4">
+                <i class="bi bi-gear text-white text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 mb-2">Administrators</h4>
+              <p class="text-slate-600 text-sm">Managing the logistics of onboarding and member transitions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recruitment & Onboarding Challenges -->
+    <section class="py-20 bg-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-red-100 text-red-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span>COMMON CHALLENGES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              The Recruitment Reality
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              Finding and keeping great board members is harder than ever. These challenges sound familiar to most organizations.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Challenge 1 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-person-x text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Nobody wants to serve"</h3>
+                  <p class="text-slate-600">Qualified candidates see board service as a burden. Outdated processes and endless email chains make the role unappealing to busy professionals.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-hourglass-split text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Onboarding takes forever"</h3>
+                  <p class="text-slate-600">New members spend months getting up to speed. They miss context, can't find historical documents, and feel lost in their first meetings.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 3 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-box-arrow-right text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Knowledge walks out the door"</h3>
+                  <p class="text-slate-600">When experienced members leave, their institutional knowledge goes with them. Years of context and relationships disappear overnight.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-question-circle text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"What did we decide last year?"</h3>
+                  <p class="text-slate-600">Past decisions are buried in email threads and filing cabinets. New members can't understand why things are done a certain way.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-shuffle text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Every transition is chaos"</h3>
+                  <p class="text-slate-600">Leadership changes create disruption. Incoming chairs don't know what's in progress. Outgoing members forget to hand off critical information.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 6 -->
+            <div class="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-red-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-graph-down text-red-600 text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-2">"Engagement drops off"</h3>
+                  <p class="text-slate-600">New members start strong but disengage over time. Without clear communication channels and easy access to information, participation fades.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transition to Solution -->
+          <div class="mt-16 text-center">
+            <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-5 py-2 rounded-full text-sm font-bold mb-4">
+              <i class="bi bi-arrow-down"></i>
+              <span>A BETTER APPROACH</span>
+            </div>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              Modern board portals solve these problems by creating a professional, organized experience that attracts talent and accelerates onboarding.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Modern Tools Matter for Recruitment -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full text-sm font-bold mb-8">
+              <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+              <span>THE MODERN BOARD EXPERIENCE</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+              Attract Talent With<br/>
+              <span class="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">A Professional Experience</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+              Top candidates expect modern tools. When your board runs on email chains and paper packets, you're competing with one hand tied behind your back.
+            </p>
+          </div>
+
+          <!-- Value Props for Recruitment -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-emerald-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/25">
+                <i class="bi bi-phone text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Mobile-First Access</h3>
+              <p class="text-slate-400">Busy professionals can review materials, join meetings, and stay informed from anywhere</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-teal-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/25">
+                <i class="bi bi-search text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Instant Context</h3>
+              <p class="text-slate-400">New members can search past decisions, policies, and discussions to get up to speed fast</p>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:border-cyan-400/50">
+              <div class="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/25">
+                <i class="bi bi-clock text-white text-4xl"></i>
+              </div>
+              <h3 class="text-2xl font-black mb-3">Respect Their Time</h3>
+              <p class="text-slate-400">Streamlined processes mean less busywork and more meaningful contribution</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Onboarding Features - Bento Grid -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-xl font-black text-sm tracking-widest mb-6 shadow-lg shadow-emerald-500/25">
+              ONBOARDING MADE SIMPLE
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">
+              New Members Hit the<br/>Ground Running
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              With BoardBlocs, new board members can access everything they need from day one—no more months of catching up.
+            </p>
+          </div>
+
+          <!-- Bento Grid -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Large Card - Searchable History -->
+            <div class="md:col-span-2 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 rounded-3xl p-10 text-white relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6">
+                  <i class="bi bi-archive"></i>
+                  <span>INSTITUTIONAL MEMORY</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Every Decision,<br/>Searchable</h3>
+                <p class="text-xl text-white/90 mb-8 max-w-xl">New members can search years of meeting minutes, policy decisions, and discussions. No more asking "why do we do it this way?"</p>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-search text-2xl mb-2"></i>
+                    <p class="font-bold">Full-Text Search</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-calendar3 text-2xl mb-2"></i>
+                    <p class="font-bold">Meeting Archives</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-file-text text-2xl mb-2"></i>
+                    <p class="font-bold">Policy History</p>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                    <i class="bi bi-chat-square-text text-2xl mb-2"></i>
+                    <p class="font-bold">Discussion Threads</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small Card - Day One Access -->
+            <div class="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden group">
+              <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="bi bi-key text-white text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-3">Day One Access</h3>
+                <p class="text-slate-400 mb-4">One login gives new members access to everything: documents, calendars, committees, and communication.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-xs font-bold">Single Sign-On</span>
+                  <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-xs font-bold">Mobile App</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small Card - Committee Spaces -->
+            <div class="bg-gradient-to-br from-slate-100 to-slate-200 rounded-3xl p-8 relative overflow-hidden group border-2 border-slate-200">
+              <div class="relative z-10">
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <i class="bi bi-people text-slate-900 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black text-slate-900 mb-3">Committee Onboarding</h3>
+                <p class="text-slate-600 mb-4">Each committee has its own space with dedicated docs, discussions, and history for new members to explore.</p>
+                <div class="flex gap-2">
+                  <span class="bg-slate-300 text-slate-700 px-3 py-1 rounded-full text-xs font-bold">Finance</span>
+                  <span class="bg-slate-300 text-slate-700 px-3 py-1 rounded-full text-xs font-bold">Governance</span>
+                  <span class="bg-slate-300 text-slate-700 px-3 py-1 rounded-full text-xs font-bold">Programs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large Card - Smooth Transitions -->
+            <div class="md:col-span-2 bg-gradient-to-br from-teal-600 via-cyan-600 to-blue-700 rounded-3xl p-10 text-white relative overflow-hidden group">
+              <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6">
+                  <i class="bi bi-arrow-left-right"></i>
+                  <span>SMOOTH TRANSITIONS</span>
+                </div>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Leadership Changes<br/>Without Chaos</h3>
+                <p class="text-xl text-white/90 mb-8 max-w-xl">When chairs rotate or members leave, nothing is lost. All context, relationships, and in-progress work stays in the system.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h4 class="font-black text-xl mb-3 flex items-center gap-2"><i class="bi bi-person-check"></i> Incoming Members</h4>
+                    <ul class="space-y-2 text-white/80 text-sm">
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Full access to history</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> See what's in progress</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Understand past decisions</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Join discussions immediately</li>
+                    </ul>
+                  </div>
+                  <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h4 class="font-black text-xl mb-3 flex items-center gap-2"><i class="bi bi-person-dash"></i> Outgoing Members</h4>
+                    <ul class="space-y-2 text-white/80 text-sm">
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Knowledge stays in system</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> No handoff documents needed</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Discussions preserved</li>
+                      <li class="flex items-center gap-2"><i class="bi bi-check"></i> Clean access revocation</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recruitment & Onboarding Use Cases -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-5 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-check-circle"></i>
+              <span>REAL-WORLD SCENARIOS</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              How BoardBlocs Helps With<br/>Recruitment & Onboarding
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              From attracting candidates to getting them productive, here's how boards use BoardBlocs to build stronger teams.
+            </p>
+          </div>
+
+          <!-- Use Cases Grid -->
+          <div class="space-y-8">
+            <!-- Use Case 1 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-megaphone text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Showcasing Your Board to Candidates</h3>
+                  <p class="text-slate-600 mb-4">When recruiting new members, you can share your public board site to demonstrate professionalism. Candidates see organized meeting archives, accessible policies, and clear committee structures—not a chaotic mess of PDFs and outdated web pages. First impressions matter.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Public Sites</span>
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">First Impressions</span>
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Professionalism</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 2 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-person-plus text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Day-One Onboarding</h3>
+                  <p class="text-slate-600 mb-4">A new board member is elected and starts next week. Instead of sending 47 emails with attachments, you create their account and they immediately have access to everything: bylaws, recent meeting minutes, committee assignments, upcoming agendas, and the mobile app. They're prepared for their first meeting.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Instant Access</span>
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Mobile App</span>
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">Self-Service</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 3 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-search text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Catching Up on History</h3>
+                  <p class="text-slate-600 mb-4">A new member wants to understand why the board made a controversial decision last year. Instead of asking around or digging through email, they search "budget reduction 2024" and find the meeting minutes, the discussion thread, and the final vote. Context in seconds, not weeks.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">Search</span>
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">Meeting Archives</span>
+                    <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-bold">Institutional Memory</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 4 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-arrow-left-right text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Smooth Chair Transitions</h3>
+                  <p class="text-slate-600 mb-4">The board chair is rotating out after three years. Instead of a frantic knowledge transfer, the incoming chair already has access to everything: ongoing initiatives, committee reports, pending decisions, and communication history. The transition happens without missing a beat.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Leadership Transition</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Continuity</span>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">No Knowledge Loss</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 5 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-people text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Committee Assignment Onboarding</h3>
+                  <p class="text-slate-600 mb-4">A member is assigned to the finance committee mid-term. They're added to the committee workspace and immediately see: past budget discussions, current proposals under review, the committee calendar, and who else is on the committee. They can contribute to ongoing work right away.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Committees</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Private Workspaces</span>
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Quick Ramp-Up</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Use Case 6 -->
+            <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 md:p-10 hover:shadow-xl transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <i class="bi bi-phone text-white text-3xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-black text-slate-900 mb-3">Attracting Busy Professionals</h3>
+                  <p class="text-slate-600 mb-4">A qualified candidate hesitates because they travel frequently. You show them the mobile app: they can review board packets on a plane, join meetings from anywhere, get push notifications for urgent items, and never miss a beat. Modern tools attract modern talent.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Mobile App</span>
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Flexibility</span>
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold">Talent Attraction</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-white mb-8">
+            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <span>BUILD A BETTER BOARD</span>
+          </div>
+          
+          <h2 class="text-5xl md:text-7xl font-black mb-8 text-white leading-tight">
+            Attract Better Talent.<br/>Onboard Faster.
+          </h2>
+          <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Modern tools attract modern board members. Give your candidates a reason to say yes—and your new members a reason to stay engaged.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group inline-flex items-center gap-3 bg-white text-emerald-600 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-all duration-300 shadow-2xl shadow-black/20">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="https://docmersion.schoolblocks.com/en-US" target="_blank" class="inline-flex items-center gap-3 border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-emerald-600 transition-all duration-300">
+              <span>See Board of Buffalo</span>
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

@@ -952,7 +952,7 @@
                     </div>
                   </div>
                   <div class="product-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1070,7 +1070,7 @@
                     </div>
                   </div>
                   <div class="solutions-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1091,121 +1091,107 @@
                 </a>
                 <div class="mobile-submenu" id="mobileResources">
                   <div class="mobile-submenu-header">By Topic</div>
-                  <a href="#" class="mobile-submenu-item">Board Governance</a>
-                  <a href="#" class="mobile-submenu-item">Board Recruitment & Onboarding</a>
-                  <a href="#" class="mobile-submenu-item">Board Engagement</a>
-                  <a href="#" class="mobile-submenu-item">Board Roles & Responsibilities</a>
-                  <a href="#" class="mobile-submenu-item">Board & Committee Meetings</a>
-                  <a href="#" class="mobile-submenu-item">Fundraising</a>
-                  <a href="#" class="mobile-submenu-item">Agendas, Minutes & Record Keeping</a>
+                  <a href="board-governance.html" class="mobile-submenu-item">Board Governance</a>
+                  <a href="board-recruitment.html" class="mobile-submenu-item">Board Recruitment & Onboarding</a>
+                  <a href="board-engagement.html" class="mobile-submenu-item">Board Engagement</a>
+                  <a href="board-roles-and-responsibilities.html" class="mobile-submenu-item">Board Roles & Responsibilities</a>
+                  <a href="board-committee-meetings.html" class="mobile-submenu-item">Board & Committee Meetings</a>
+                  <a href="fundraising.html" class="mobile-submenu-item">Fundraising</a>
+                  <a href="agenda-resources.html" class="mobile-submenu-item">Agendas, Minutes & Record Keeping</a>
                   <div class="mobile-submenu-header">By Type</div>
-                  <a href="#" class="mobile-submenu-item">Blogs</a>
-                  <a href="#" class="mobile-submenu-item">Case Studies</a>
-                  <a href="#" class="mobile-submenu-item">E-books & Whitepapers</a>
-                  <a href="#" class="mobile-submenu-item">Webinars & Events</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs Consultant</a>
+                  <a href="blog.html" class="mobile-submenu-item">Blogs</a>
+                  <a href="case-studies.html" class="mobile-submenu-item">Case Studies</a>
+                  <a href="book-demo.html" class="mobile-submenu-item">Boardblocs Consultant</a>
                 </div>
                 <div class="dropdown-resources-panel">
                   <div class="resources-columns">
                     <div>
                       <div class="resources-column-title">View By Topic</div>
                       <div class="resources-list two-columns">
-                        <div class="resources-item">
+                        <a href="board-governance.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-diagram-3"></i></div>
                           <div>
                             <div class="resources-item-title">Board Governance</div>
                             <p class="resources-item-body">Best practices for policies, regulations, and board management.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="board-recruitment.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-person-arms-up"></i></div>
                           <div>
                             <div class="resources-item-title">Board Recruitment & Onboarding</div>
                             <p class="resources-item-body">Attract top talent and make a smooth transition.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="board-engagement.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-people"></i></div>
                           <div>
                             <div class="resources-item-title">Board Engagement</div>
                             <p class="resources-item-body">Strategies to optimize board collaboration.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="board-roles-and-responsibilities.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-card-list"></i></div>
                           <div>
                             <div class="resources-item-title">Board Roles & Responsibilities</div>
                             <p class="resources-item-body">Insightful resources on defining board roles and duties.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="board-committee-meetings.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-calendar3"></i></div>
                           <div>
                             <div class="resources-item-title">Board & Committee Meetings</div>
                             <p class="resources-item-body">Resources for effective virtual and in-person meetings.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="fundraising.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-cash-coin"></i></div>
                           <div>
                             <div class="resources-item-title">Fundraising</div>
                             <p class="resources-item-body">Actionable tips and strategies to improve fundraising.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="agenda-resources.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-journal-text"></i></div>
                           <div>
                             <div class="resources-item-title">Agendas, Minutes & Record Keeping</div>
                             <p class="resources-item-body">Best practices and templates for meeting materials.</p>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="view-all-resources.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-grid-3x3"></i></div>
                           <div>
                             <div class="resources-item-title">View All Resources</div>
                           </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                     <div>
                       <div class="resources-column-title">View By Type</div>
                       <div class="resources-list single-column">
-                        <div class="resources-item">
+                        <a href="blog.html" class="resources-item no-underline">
                           <div class="resources-item-icon"><i class="bi bi-rss"></i></div>
                           <div>
                             <div class="resources-item-title">Blogs</div>
                           </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="case-studies.html" class="resources-item no-underline">
                           <div class="resources-item-icon"><i class="bi bi-file-earmark-text"></i></div>
                           <div>
                             <div class="resources-item-title">Case Studies</div>
                           </div>
-                        </div>
-                        <div class="resources-item">
-                          <div class="resources-item-icon"><i class="bi bi-book"></i></div>
-                          <div>
-                            <div class="resources-item-title">E-books & Whitepapers</div>
-                          </div>
-                        </div>
-                        <div class="resources-item">
-                          <div class="resources-item-icon"><i class="bi bi-mic"></i></div>
-                          <div>
-                            <div class="resources-item-title">Webinars & Events</div>
-                          </div>
-                        </div>
-                        <div class="resources-item">
+                        </a>
+                        <a href="book-demo.html" class="resources-item no-underline">
                           <div class="resources-item-icon"><i class="bi bi-phone"></i></div>
                           <div>
                             <div class="resources-item-title">Boardblocs Consultant</div>
                             <p class="resources-item-body">Meet Boardblocs Consultant, your new go-to advisor for elevating your nonprofit!</p>
                           </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
                   <div class="resources-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1217,41 +1203,47 @@
                 </div>
               </li>
               <li class="nav-item dropdown-why">
-                <a class="nav-link flex items-center gap-1" href="#" id="navWhy">
+                <a class="nav-link flex items-center gap-1" href="why-board-blocs.html" id="navWhy">
                   <span>Why Boardblocs</span>
                   <span class="nav-caret"></span>
                 </a>
                 <div class="mobile-submenu" id="mobileWhy">
-                  <a href="#" class="mobile-submenu-item">About Us</a>
-                  <a href="#" class="mobile-submenu-item">Contact Us</a>
-                  <a href="#" class="mobile-submenu-item">Why Boardblocs</a>
+                  <a href="about-us.html" class="mobile-submenu-item">About Us</a>
+                  <a href="contact-us.html" class="mobile-submenu-item">Contact Us</a>
+                  <a href="why-board-blocs.html" class="mobile-submenu-item">Why Boardblocs</a>
                 </div>
                 <div class="dropdown-why-panel">
                   <div class="why-sections">
                     <div class="why-item">
-                      <div class="why-item-icon"><i class="bi bi-card-heading"></i></div>
-                      <div>
-                        <div class="why-item-title">About Us</div>
-                        <p class="why-item-body">Discover how Boardblocs revolutionizes nonprofit board management with a mission-driven team and cutting-edge technology.</p>
-                      </div>
+                      <a href="about-us.html" class="flex gap-3">
+                        <div class="why-item-icon"><i class="bi bi-card-heading"></i></div>
+                        <div>
+                          <div class="why-item-title">About Us</div>
+                          <p class="why-item-body">Discover how Boardblocs revolutionizes nonprofit board management with a mission-driven team and cutting-edge technology.</p>
+                        </div>
+                      </a>
                     </div>
                     <div class="why-item">
-                      <div class="why-item-icon"><i class="bi bi-envelope"></i></div>
-                      <div>
-                        <div class="why-item-title">Contact Us</div>
-                        <p class="why-item-body">Get in touch with Boardblocs—whether you have questions, need a demo, or want to elevate your board meetings, we're here to help!</p>
-                      </div>
+                      <a href="contact-us.html" class="flex gap-3">
+                        <div class="why-item-icon"><i class="bi bi-envelope"></i></div>
+                        <div>
+                          <div class="why-item-title">Contact Us</div>
+                          <p class="why-item-body">Get in touch with Boardblocs—whether you have questions, need a demo, or want to elevate your board meetings, we're here to help!</p>
+                        </div>
+                      </a>
                     </div>
                     <div class="why-item">
-                      <div class="why-item-icon"><i class="bi bi-patch-check"></i></div>
-                      <div>
-                        <div class="why-item-title">Why Boardblocs</div>
-                        <p class="why-item-body">Learn why nonprofit leaders choose Boardblocs to streamline meetings, improve collaboration, and deliver impact that endures.</p>
-                      </div>
+                      <a href="why-board-blocs.html" class="flex gap-3">
+                        <div class="why-item-icon"><i class="bi bi-patch-check"></i></div>
+                        <div>
+                          <div class="why-item-title">Why Boardblocs</div>
+                          <p class="why-item-body">Learn why nonprofit leaders choose Boardblocs to streamline meetings, improve collaboration, and deliver impact that endures.</p>
+                        </div>
+                      </a>
                     </div>
                   </div>
                   <div class="why-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1265,12 +1257,12 @@
             </ul>
 
             <div class="mobile-cta lg:hidden">
-              <a href="#" class="btn-trial">Start Trial</a>
+              <a href="book-demo.html" class="btn-trial">Start Trial</a>
               <a href="#" class="no-underline text-gray-800">Log In</a>
             </div>
 
             <div class="hidden lg:flex items-center gap-3">
-              <a href="#" class="btn-trial">Start Trial</a>
+              <a href="book-demo.html" class="btn-trial">Start Trial</a>
               <a href="#" class="no-underline text-gray-800 flex items-center gap-1">
                 <span>Log In</span>
                 <img src="log-in.png" alt="Log in" class="login-arrow" />

@@ -893,7 +893,7 @@
                     </div>
                   </div>
                   <div class="product-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1018,7 +1018,7 @@
                     </div>
                   </div>
                   <div class="solutions-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1039,7 +1039,7 @@
                 </a>
                 <div class="mobile-submenu" id="mobileResources">
                   <div class="mobile-submenu-header">By Topic</div>
-                  <a href="#" class="mobile-submenu-item">Board Governance</a>
+                  <a href="board-governance.html" class="mobile-submenu-item">Board Governance</a>
                   <a href="#" class="mobile-submenu-item">Board Recruitment & Onboarding</a>
                   <a href="#" class="mobile-submenu-item">Board Engagement</a>
                   <a href="#" class="mobile-submenu-item">Board Roles & Responsibilities</a>
@@ -1051,14 +1051,14 @@
                   <a href="#" class="mobile-submenu-item">Case Studies</a>
                   <a href="#" class="mobile-submenu-item">E-books & Whitepapers</a>
                   <a href="#" class="mobile-submenu-item">Webinars & Events</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs Consultant</a>
+                  <a href="book-demo.html" class="mobile-submenu-item">Boardblocs Consultant</a>
                 </div>
                 <div class="dropdown-resources-panel">
                   <div class="resources-columns">
                     <div>
                       <div class="resources-column-title">View By Topic</div>
                       <div class="resources-list two-columns">
-                        <div class="resources-item">
+                        <div class="resources-item" onclick="window.location.href='board-governance.html'">
                           <div class="resources-item-icon"><i class="bi bi-diagram-3"></i></div>
                           <div>
                             <div class="resources-item-title">Board Governance</div>
@@ -1142,7 +1142,7 @@
                             <div class="resources-item-title">Webinars & Events</div>
                           </div>
                         </div>
-                        <div class="resources-item">
+                        <div class="resources-item" onclick="window.location.href='book-demo.html'">
                           <div class="resources-item-icon"><i class="bi bi-phone"></i></div>
                           <div>
                             <div class="resources-item-title">Boardblocs Consultant</div>
@@ -1153,7 +1153,7 @@
                     </div>
                   </div>
                   <div class="resources-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>
@@ -1199,7 +1199,7 @@
                     </div>
                   </div>
                   <div class="why-footer">
-                    <a href="#">
+                    <a href="book-demo.html">
                       <i class="bi bi-person-circle"></i>
                       <span>Start free trial</span>
                     </a>

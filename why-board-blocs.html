@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board Portal Software for Associations – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <!-- <span class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+            ✨ Introducing DocMersion
+          </span> -->
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Board Portal</span><br />
+            <span class="text-slate-900">Software for</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Associations</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Empower your association's board with a complete portal solution—streamlined meetings, document management, public transparency, and accessible communication all in one place.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Empower your association's board with a complete portal solution—streamlined meetings, document management, public transparency, and accessible communication all in one place.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why BoardBlocs: Simple Overview -->
+    <section class="py-16 bg-white border-t border-slate-200">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-10">
+          <div class="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold mb-4 tracking-wide">
+            <i class="bi bi-info-circle-fill text-sm"></i>
+            <span>WHY BOARD PORTAL SOFTWARE MATTERS</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">
+            One place for your board website, documents, and discussions
+          </h2>
+          <p class="text-slate-600 text-base md:text-lg leading-relaxed">
+            BoardBlocs is modern board portal software that gives you a
+            <strong>public-facing board site</strong>, a
+            <strong>private workspace for your board</strong>, and
+            <strong>accessible documents powered by DocMersion</strong>&mdash;all in one platform.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 text-left">
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <i class="bi bi-window text-blue-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Board website + portal</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              A branded board site at <span class="font-mono text-xs">board.yourdomain.com</span> plus a secure portal for agendas, minutes, and internal work.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 text-left">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+              <i class="bi bi-universal-access text-emerald-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Accessible by default</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              DocMersion transforms policies and board packets into ADA-friendly, searchable web pages instead of static PDFs.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 text-left">
+            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mb-4">
+              <i class="bi bi-chat-dots text-indigo-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Built for real conversations</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Avatar-based discussions, sentiment tracking, and notifications make it easy to see how your board really feels.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public + Private in One Platform -->
+    <section class="py-16 bg-slate-50 border-y border-slate-200">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">
+              Public transparency and private collaboration
+            </h2>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+              BoardBlocs keeps what should be public, public&mdash;and what should be private, private. Your community sees a clean, accessible board site. Your board sees a focused workspace.
+            </p>
+
+            <div class="space-y-3 text-sm text-slate-700">
+              <div class="flex gap-2">
+                <span class="mt-0.5 text-blue-600"><i class="bi bi-globe"></i></span>
+                <p><strong>Public board site</strong> with meetings, agendas, minutes, streams, and policies that match your main website's look and feel.</p>
+              </div>
+              <div class="flex gap-2">
+                <span class="mt-0.5 text-slate-800"><i class="bi bi-shield-lock"></i></span>
+                <p><strong>Private portal</strong> for early drafts, committee work, and internal conversations.</p>
+              </div>
+              <div class="flex gap-2">
+                <span class="mt-0.5 text-emerald-600"><i class="bi bi-universal-access"></i></span>
+                <p><strong>DocMersion policies library</strong> so your most important documents are ADA- and mobile-friendly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 md:p-7 shadow-sm">
+            <p class="text-xs font-semibold tracking-wide text-slate-500 mb-3">LIVE EXAMPLE</p>
+            <p class="text-sm text-slate-700 mb-4">
+              See how a public board site can look with BoardBlocs and DocMersion powering the pages behind it.
+            </p>
+            <a
+              href="https://docmersion.schoolblocks.com/en-US"
+              target="_blank"
+              class="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg"
+            >
+              <span>View the Board of Buffalo sample site</span>
+              <i class="bi bi-box-arrow-up-right text-xs"></i>
+            </a>
+
+            <div class="mt-5 border-t border-slate-200 pt-4 text-xs text-slate-500 leading-relaxed">
+              <p>
+                DocMersion is a feature inside BoardBlocs. It turns PDFs into accessible, searchable web content&mdash;ideal for policies, agendas, and minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Get with BoardBlocs -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3">
+            What you actually get with BoardBlocs
+          </h2>
+          <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+            No long feature matrix. Just the pieces a public-facing board needs to stay organized, transparent, and accessible.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+          <ul class="space-y-3">
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-blue-600"><i class="bi bi-calendar-check"></i></span>
+              <span>Public and private meeting calendars with agendas, packets, and minutes.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-indigo-600"><i class="bi bi-people-fill"></i></span>
+              <span>Groups and committees with their own spaces, documents, and notifications.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-emerald-600"><i class="bi bi-phone"></i></span>
+              <span>Mobile access and alerts so board members dont have to live in their inbox.</span>
+            </li>
+          </ul>
+
+          <ul class="space-y-3">
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-slate-800"><i class="bi bi-google"></i></span>
+              <span>Integrations with Google Workspace, Microsoft 365, Zoom/Meet, and YouTube.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-rose-600"><i class="bi bi-emoji-smile"></i></span>
+              <span>Avatar-based discussions and sentiment tracking to understand real engagement.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="mt-0.5 text-emerald-600"><i class="bi bi-universal-access"></i></span>
+              <span>DocMersion-powered document center so PDFs dont hold your board back from ADA/WCAG expectations.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">Ready to Transform Your Association Board?</h2>
+          <p class="text-xl text-white/90 mb-10 leading-relaxed">Join forward-thinking associations who have streamlined their board operations with BoardBlocs.</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-blue-600 bg-white shadow-2xl transition-all duration-300 hover:shadow-3xl hover:scale-105 text-lg">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            </a>
+            <a href="pricing.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 text-lg">
+              <span class="relative z-10">View Pricing</span>
+              <i class="bi bi-tag relative z-10"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

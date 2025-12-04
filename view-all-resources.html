@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Resources – BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- HLS.js for video streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for Search Story Animation -->
+    <style>
+      @keyframes scroll-up {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+      }
+      
+      .animate-scroll-up {
+        animation: scroll-up 8s linear infinite;
+      }
+      
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(20, end);
+      }
+      
+      /* Hide scrollbar for feature cards carousel */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+    <script>
+// Initialize HLS video players
+document.addEventListener('DOMContentLoaded', function() {
+  // Hero video
+  const heroVideo = document.getElementById('hero-video');
+  const playButton = document.getElementById('play-button');
+  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+  
+  let isPlaying = false;
+  
+  if (Hls.isSupported()) {
+    const heroHls = new Hls();
+    heroHls.loadSource(heroVideoSrc);
+    heroHls.attachMedia(heroVideo);
+  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS support
+    heroVideo.src = heroVideoSrc;
+  }
+  
+  // Video click handler
+  function toggleVideo() {
+    if (isPlaying) {
+      heroVideo.pause();
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    } else {
+      heroVideo.play();
+      playButton.style.opacity = '0';
+      isPlaying = true;
+    }
+  }
+  
+  // Add click handlers
+  heroVideo.addEventListener('click', toggleVideo);
+  playButton.addEventListener('click', toggleVideo);
+  
+  // Hide play button when video is playing
+  heroVideo.addEventListener('play', function() {
+    playButton.style.opacity = '0';
+    isPlaying = true;
+  });
+  
+  // Show play button when video is paused
+  heroVideo.addEventListener('pause', function() {
+    playButton.style.opacity = '1';
+    isPlaying = false;
+  });
+
+  
+  // Engagement video
+  const engagementVideo = document.getElementById('engagement-video');
+  if (engagementVideo) {
+    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
+    
+    if (Hls.isSupported()) {
+      const engagementHls = new Hls();
+      engagementHls.loadSource(engagementVideoSrc);
+      engagementHls.attachMedia(engagementVideo);
+    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      engagementVideo.src = engagementVideoSrc;
+    }
+  }
+  
+  // Search Story Animation
+  function initSearchStoryAnimation() {
+    const textWall = document.getElementById('text-wall');
+    const searchOverlay = document.getElementById('search-overlay');
+    const cleanResult = document.getElementById('clean-result');
+    const typingText = document.getElementById('typing-text');
+    const replayButton = document.getElementById('replay-animation');
+    
+    let animationTimeout;
+    
+    function startAnimation() {
+      // Reset all states
+      textWall.style.opacity = '1';
+      searchOverlay.style.opacity = '0';
+      cleanResult.style.opacity = '0';
+      typingText.textContent = '';
+      
+      // Clear any existing timeouts
+      if (animationTimeout) clearTimeout(animationTimeout);
+      
+      // Step 1: Show scrolling text for 3 seconds
+      animationTimeout = setTimeout(() => {
+        // Step 2: Show search overlay
+        searchOverlay.style.opacity = '1';
+        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
+        
+        // Step 3: Type search query
+        const searchQuery = 'DocMersion transforms';
+        let currentChar = 0;
+        
+        const typeInterval = setInterval(() => {
+          if (currentChar < searchQuery.length) {
+            typingText.textContent = searchQuery.substring(0, currentChar + 1);
+            currentChar++;
+          } else {
+            clearInterval(typeInterval);
+            
+            // Step 4: Fade out text wall and search, show result
+            setTimeout(() => {
+              textWall.style.opacity = '0';
+              searchOverlay.style.opacity = '0';
+              cleanResult.style.opacity = '1';
+            }, 500);
+          }
+        }, 100);
+        
+      }, 3000);
+    }
+    
+    // Start animation when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    const container = document.getElementById('search-story-container');
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startAnimation);
+    }
+  }
+  
+  // Initialize search story animation
+  initSearchStoryAnimation();
+  
+  // PDF Transform Animation
+  function initPDFTransformAnimation() {
+    const staticPdf = document.getElementById('static-pdf');
+    const interactiveWebpage = document.getElementById('interactive-webpage');
+    const replayButton = document.getElementById('replay-pdf-transform');
+    const pdfContainer = document.getElementById('pdf-transform-container');
+    
+    let transformTimeout;
+    
+    function startTransformation() {
+      // Reset states
+      staticPdf.style.opacity = '1';
+      staticPdf.style.transform = 'scale(1)';
+      interactiveWebpage.style.opacity = '0';
+      interactiveWebpage.style.transform = 'scale(0.8)';
+      
+      // Clear any existing timeouts
+      if (transformTimeout) clearTimeout(transformTimeout);
+      
+      // Start transformation after 2 seconds
+      transformTimeout = setTimeout(() => {
+        // Shrink and fade out PDF
+        staticPdf.style.transform = 'scale(0.8)';
+        staticPdf.style.opacity = '0';
+        
+        // Fade in and scale up webpage
+        setTimeout(() => {
+          interactiveWebpage.style.opacity = '1';
+          interactiveWebpage.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
+    
+    // Click handler for PDF
+    if (staticPdf) {
+      staticPdf.addEventListener('click', startTransformation);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startTransformation, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (pdfContainer) {
+      observer.observe(pdfContainer);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', startTransformation);
+    }
+  }
+  
+  // Initialize PDF transform animation
+  initPDFTransformAnimation();
+  
+  // Clutter to Clarity Animation
+  function initClutterClarityAnimation() {
+    const paperClutter = document.getElementById('paper-clutter');
+    const organizedDocs = document.getElementById('organized-docs');
+    const replayButton = document.getElementById('replay-clutter-clarity');
+    const container = document.getElementById('clutter-clarity-container');
+    
+    let clutterTimeout;
+    
+    // Define target positions for organized grid (4x2 grid)
+    const targetPositions = [
+      { x: -180, y: -60 },  // Top row, 1st position
+      { x: -60, y: -60 },   // Top row, 2nd position  
+      { x: 60, y: -60 },    // Top row, 3rd position
+      { x: 180, y: -60 },   // Top row, 4th position
+      { x: -180, y: 60 },   // Bottom row, 1st position
+      { x: -60, y: 60 },    // Bottom row, 2nd position
+      { x: 60, y: 60 },     // Bottom row, 3rd position
+      { x: 180, y: 60 }     // Bottom row, 4th position
+    ];
+    
+    function startClutterTransform() {
+      // Reset states
+      paperClutter.style.opacity = '1';
+      organizedDocs.style.opacity = '0';
+      
+      // Clear any existing timeouts
+      if (clutterTimeout) clearTimeout(clutterTimeout);
+      
+      // Start transformation after 2 seconds
+      clutterTimeout = setTimeout(() => {
+        // Organize papers into grid positions
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          const target = targetPositions[index];
+          if (target) {
+            setTimeout(() => {
+              // Move to organized position and straighten
+              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
+              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, index * 150);
+          }
+        });
+        
+        // After papers are organized, fade to final organized view
+        setTimeout(() => {
+          paperClutter.style.opacity = '0';
+          organizedDocs.style.opacity = '1';
+        }, 2000);
+      }, 2000);
+    }
+    
+    // Click handler for container
+    if (container) {
+      container.addEventListener('click', startClutterTransform);
+    }
+    
+    // Auto-start when section comes into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(startClutterTransform, 1000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (container) {
+      observer.observe(container);
+    }
+    
+    // Replay button functionality
+    if (replayButton) {
+      replayButton.addEventListener('click', () => {
+        // Reset paper positions to original chaotic state
+        const papers = paperClutter.querySelectorAll('.paper');
+        papers.forEach((paper, index) => {
+          paper.style.transition = 'none';
+          paper.style.transform = paper.getAttribute('data-original-transform') || '';
+          paper.style.opacity = '1';
+        });
+        
+        // Store original transforms if not already stored
+        papers.forEach(paper => {
+          if (!paper.getAttribute('data-original-transform')) {
+            const computedStyle = window.getComputedStyle(paper);
+            const transform = computedStyle.transform;
+            paper.setAttribute('data-original-transform', paper.style.transform);
+          }
+        });
+        
+        setTimeout(startClutterTransform, 100);
+      });
+    }
+    
+    // Store original transforms on load
+    setTimeout(() => {
+      const papers = paperClutter.querySelectorAll('.paper');
+      papers.forEach(paper => {
+        paper.setAttribute('data-original-transform', paper.style.transform);
+      });
+    }, 100);
+  }
+  
+  // Initialize clutter to clarity animation
+  initClutterClarityAnimation();
+  
+  // Feature carousel navigation
+  const carousel = document.getElementById('feature-carousel');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+  
+  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
+  
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      console.log('Left button clicked, scrolling left');
+      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+      console.log('Right button clicked, scrolling right');
+      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    console.log('Event listeners attached successfully');
+  } else {
+    console.error('Failed to find carousel elements');
+  }
+});
+    </script>
+
+    <!-- Hero Section: All Resources -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="container mx-auto px-8 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2 rounded-full text-sm font-bold text-white mb-8">
+            <i class="bi bi-grid-3x3"></i>
+            <span>RESOURCE CENTER</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+            All Resources
+          </h1>
+          <p class="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Everything you need to run an effective board. Explore our guides on governance, engagement, meetings, and more.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Grid -->
+    <section class="py-20 bg-gradient-to-b from-white to-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- By Topic Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Browse by Topic</h2>
+            <p class="text-lg text-slate-600">Deep-dive resources on key board management topics</p>
+          </div>
+
+          <!-- Resource Cards Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <!-- Board Governance -->
+            <a href="board-governance.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-diagram-3 text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Board Governance</h3>
+              <p class="text-slate-600 text-sm mb-4">Best practices for policies, regulations, and board management.</p>
+              <span class="inline-flex items-center gap-1 text-blue-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Board Recruitment -->
+            <a href="board-recruitment.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-person-arms-up text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-teal-600 transition-colors">Board Recruitment & Onboarding</h3>
+              <p class="text-slate-600 text-sm mb-4">Attract top talent and make a smooth transition.</p>
+              <span class="inline-flex items-center gap-1 text-teal-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Board Engagement -->
+            <a href="board-engagement.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-purple-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-people text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Board Engagement</h3>
+              <p class="text-slate-600 text-sm mb-4">Strategies to optimize board collaboration.</p>
+              <span class="inline-flex items-center gap-1 text-purple-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Board Roles & Responsibilities -->
+            <a href="board-roles-and-responsibilities.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-amber-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-card-list text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Board Roles & Responsibilities</h3>
+              <p class="text-slate-600 text-sm mb-4">Insightful resources on defining board roles and duties.</p>
+              <span class="inline-flex items-center gap-1 text-amber-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Board & Committee Meetings -->
+            <a href="board-committee-meetings.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-cyan-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-calendar3 text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">Board & Committee Meetings</h3>
+              <p class="text-slate-600 text-sm mb-4">Resources for effective virtual and in-person meetings.</p>
+              <span class="inline-flex items-center gap-1 text-cyan-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Fundraising -->
+            <a href="fundraising.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-lime-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-lime-500 to-green-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-cash-coin text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-lime-600 transition-colors">Fundraising</h3>
+              <p class="text-slate-600 text-sm mb-4">Actionable tips and strategies to improve fundraising.</p>
+              <span class="inline-flex items-center gap-1 text-lime-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Agendas, Minutes & Record Keeping -->
+            <a href="agenda-resources.html" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-violet-400 hover:shadow-xl transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <i class="bi bi-journal-text text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-violet-600 transition-colors">Agendas, Minutes & Record Keeping</h3>
+              <p class="text-slate-600 text-sm mb-4">Best practices and templates for meeting materials.</p>
+              <span class="inline-flex items-center gap-1 text-violet-600 font-bold text-sm">
+                Read More <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+          </div>
+
+          <!-- By Type Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Browse by Type</h2>
+            <p class="text-lg text-slate-600">Different formats to match how you learn</p>
+          </div>
+
+          <!-- Type Cards -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Blog -->
+            <a href="blog.html" class="group bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-5">
+                <i class="bi bi-rss text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-white mb-2">Blog</h3>
+              <p class="text-slate-400 text-sm mb-4">Latest insights and updates on board management.</p>
+              <span class="inline-flex items-center gap-1 text-white font-bold text-sm">
+                View Posts <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- Case Studies -->
+            <a href="case-studies.html" class="group bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mb-5">
+                <i class="bi bi-file-earmark-text text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-white mb-2">Case Studies</h3>
+              <p class="text-slate-400 text-sm mb-4">Real-world success stories from BoardBlocs customers.</p>
+              <span class="inline-flex items-center gap-1 text-white font-bold text-sm">
+                Read Stories <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+
+            <!-- BoardBlocs Consultant -->
+            <a href="book-demo.html" class="group bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-5">
+                <i class="bi bi-phone text-white text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-black text-white mb-2">BoardBlocs Consultant</h3>
+              <p class="text-blue-100 text-sm mb-4">Get personalized guidance from our team.</p>
+              <span class="inline-flex items-center gap-1 text-white font-bold text-sm">
+                Book a Call <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-slate-900">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-black text-white mb-6">
+            Ready to Transform Your Board?
+          </h2>
+          <p class="text-xl text-slate-300 mb-8">
+            See how BoardBlocs can streamline your governance with a personalized demo.
+          </p>
+          <a href="book-demo.html" class="group inline-flex items-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-all duration-300 shadow-2xl">
+            <span>Book a Demo</span>
+            <i class="bi bi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>
