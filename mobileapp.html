@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile App & Notifications – Stay Connected Anywhere | BoardBlocs</title>
+    <meta name="description" content="Access your board portal from anywhere with our mobile app. Push notifications, agenda updates, discussion alerts, and document access—all in your pocket.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Mobile App &</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Notifications</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Your board portal in your pocket. Access documents, join discussions, and stay updated with push notifications—all from your mobile device. Easier to track than email.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Your board portal in your pocket. Access documents, join discussions, and stay updated with push notifications—all from your mobile device. Easier to track than email.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PWA Technology Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-bold mb-8">
+            <i class="bi bi-lightning-charge-fill"></i>
+            <span>PROGRESSIVE WEB APP</span>
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl font-black mb-8">
+            Skip the App Store
+          </h2>
+          
+          <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Our Progressive Web App technology delivers native app performance directly through your browser. Instant loading, offline functionality, and push notifications—all without the download.
+          </p>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-lightning-charge text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Instant Access</h3>
+              <p class="text-blue-100 text-sm">No app store, no download. Add to home screen in seconds.</p>
+            </div>
+            
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-hdd text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Zero Storage</h3>
+              <p class="text-blue-100 text-sm">Requires near-zero mobile hard drive space.</p>
+            </div>
+            
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-wifi-off text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Works Offline</h3>
+              <p class="text-blue-100 text-sm">Access important information even without internet.</p>
+            </div>
+            
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-arrow-repeat text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Auto Updates</h3>
+              <p class="text-blue-100 text-sm">Always current. Updates happen automatically in background.</p>
+            </div>
+          </div>
+          
+          <!-- Comparison -->
+          <div class="mt-16 bg-white/10 rounded-3xl p-8 backdrop-blur-sm">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+              <div class="text-left">
+                <h4 class="font-bold text-lg mb-4 text-white/70">Traditional Apps</h4>
+                <ul class="space-y-2 text-sm text-white/60">
+                  <li class="flex items-center gap-2"><i class="bi bi-x-circle text-red-300"></i> App store approval</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-x-circle text-red-300"></i> Large downloads</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-x-circle text-red-300"></i> Update delays</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-x-circle text-red-300"></i> Storage space required</li>
+                </ul>
+              </div>
+              
+              <div class="text-center">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto">
+                  <span class="text-2xl font-black">VS</span>
+                </div>
+              </div>
+              
+              <div class="text-left">
+                <h4 class="font-bold text-lg mb-4">BoardBlocs PWA</h4>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-emerald-300"></i> Instant access</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-emerald-300"></i> Lightweight</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-emerald-300"></i> Auto-updates</li>
+                  <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-emerald-300"></i> Zero storage</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Push Notifications Section -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Content -->
+            <div>
+              <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-bell-fill"></i>
+                <span>PUSH NOTIFICATIONS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                Never Miss What Matters
+              </h2>
+              <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                Push notifications deliver important updates directly to your device's home screen. Agenda changes, discussion replies, document updates—you'll know instantly.
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-calendar-event text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Meeting Reminders</h3>
+                    <p class="text-slate-600">Get notified before meetings so you're always prepared and on time.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-list-check text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Agenda Updates</h3>
+                    <p class="text-slate-600">Know immediately when agendas are published or modified.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-chat-dots text-emerald-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Discussion Alerts</h3>
+                    <p class="text-slate-600">Get notified when someone replies to your comments or mentions you.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-file-earmark-arrow-up text-amber-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Document Updates</h3>
+                    <p class="text-slate-600">Know when new documents are uploaded or existing ones are revised.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Visual - Phone with Notifications -->
+            <div class="flex justify-center">
+              <div class="relative">
+                <div class="w-72 h-[580px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl">
+                  <div class="w-full h-full bg-gradient-to-b from-slate-100 to-slate-200 rounded-[2.5rem] overflow-hidden">
+                    <!-- Status Bar -->
+                    <div class="bg-slate-800 text-white px-6 py-2 flex justify-between text-xs">
+                      <span>9:41</span>
+                      <div class="flex gap-1">
+                        <i class="bi bi-reception-4"></i>
+                        <i class="bi bi-wifi"></i>
+                        <i class="bi bi-battery-full"></i>
+                      </div>
+                    </div>
+                    
+                    <!-- Lock Screen -->
+                    <div class="p-6 pt-12 text-center">
+                      <div class="text-5xl font-light text-slate-800 mb-1">9:41</div>
+                      <div class="text-sm text-slate-500 mb-8">Thursday, December 12</div>
+                      
+                      <!-- Notifications -->
+                      <div class="space-y-3 text-left">
+                        <div class="bg-white rounded-2xl p-4 shadow-lg">
+                          <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <i class="bi bi-calendar-event text-white"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-slate-900">BoardBlocs</span>
+                                <span class="text-xs text-slate-400">now</span>
+                              </div>
+                              <p class="text-sm text-slate-600 font-medium">Meeting Reminder</p>
+                              <p class="text-xs text-slate-500 truncate">Board meeting starts in 1 hour</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-4 shadow-lg">
+                          <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <i class="bi bi-chat-dots text-white"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-slate-900">BoardBlocs</span>
+                                <span class="text-xs text-slate-400">5m ago</span>
+                              </div>
+                              <p class="text-sm text-slate-600 font-medium">New Reply</p>
+                              <p class="text-xs text-slate-500 truncate">Jane replied to your comment</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-4 shadow-lg">
+                          <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <i class="bi bi-file-earmark-text text-white"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-slate-900">BoardBlocs</span>
+                                <span class="text-xs text-slate-400">15m ago</span>
+                              </div>
+                              <p class="text-sm text-slate-600 font-medium">Agenda Updated</p>
+                              <p class="text-xs text-slate-500 truncate">New item added to tonight's agenda</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Floating badge -->
+                <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg animate-pulse">
+                  3
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SMS & Email Section -->
+    <section class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Visual -->
+            <div class="order-2 lg:order-1">
+              <div class="bg-slate-800 rounded-3xl p-6 border border-slate-700">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-700">
+                  <i class="bi bi-gear text-2xl text-blue-400"></i>
+                  <span class="font-bold">Notification Preferences</span>
+                </div>
+                
+                <div class="space-y-4">
+                  <!-- Push Notifications -->
+                  <div class="bg-slate-700/50 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <i class="bi bi-bell text-blue-400"></i>
+                        <span>Push Notifications</span>
+                      </div>
+                      <div class="w-12 h-6 bg-blue-500 rounded-full relative">
+                        <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- SMS -->
+                  <div class="bg-slate-700/50 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <i class="bi bi-chat-text text-emerald-400"></i>
+                        <span>SMS Text Messages</span>
+                      </div>
+                      <div class="w-12 h-6 bg-emerald-500 rounded-full relative">
+                        <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Email -->
+                  <div class="bg-slate-700/50 rounded-xl p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <i class="bi bi-envelope text-purple-400"></i>
+                        <span>Email Notifications</span>
+                      </div>
+                      <div class="w-12 h-6 bg-purple-500 rounded-full relative">
+                        <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Notification Types -->
+                  <div class="mt-6 pt-4 border-t border-slate-700">
+                    <div class="text-sm text-slate-400 mb-4">Notify me about:</div>
+                    <div class="space-y-3">
+                      <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500">
+                        <span class="text-sm">Meeting reminders</span>
+                      </label>
+                      <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500">
+                        <span class="text-sm">Agenda updates</span>
+                      </label>
+                      <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500">
+                        <span class="text-sm">Discussion replies</span>
+                      </label>
+                      <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500">
+                        <span class="text-sm">New documents</span>
+                      </label>
+                      <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500">
+                        <span class="text-sm">Committee updates</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Content -->
+            <div class="order-1 lg:order-2">
+              <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-chat-text-fill"></i>
+                <span>MULTIPLE CHANNELS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black mb-6">
+                Your Way, Your Channel
+              </h2>
+              <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                Not everyone checks their phone the same way. BoardBlocs lets each member choose how they want to be notified—push, SMS, or email.
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Push notifications</strong> — Instant alerts on your device</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">SMS text messages</strong> — For urgent updates</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Email digests</strong> — Daily or weekly summaries</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Granular controls</strong> — Choose what you're notified about</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Quiet hours</strong> — No notifications during off-hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Features -->
+    <section class="py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-phone"></i>
+              <span>MOBILE FEATURES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Everything, Everywhere
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              The full BoardBlocs experience on your mobile device. Access documents, join discussions, review agendas—all optimized for touch.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Document Access -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-file-earmark-text text-blue-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Document Access</h3>
+              <p class="text-slate-600">View policies, agendas, minutes, and board packets right from your phone. DocMersion makes them mobile-friendly.</p>
+            </div>
+            
+            <!-- Discussions -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-chat-dots text-purple-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Join Discussions</h3>
+              <p class="text-slate-600">Participate in board and committee discussions on the go. Reply, react, and stay engaged.</p>
+            </div>
+            
+            <!-- Calendar -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-calendar-check text-emerald-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Meeting Calendar</h3>
+              <p class="text-slate-600">View upcoming meetings, add to your calendar, and access meeting materials before you arrive.</p>
+            </div>
+            
+            <!-- Offline Access -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-wifi-off text-amber-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Offline Access</h3>
+              <p class="text-slate-600">Download documents for offline viewing. Perfect for meetings in areas with poor connectivity.</p>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-lightning text-rose-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Quick Actions</h3>
+              <p class="text-slate-600">One-tap access to your most-used features. Jump straight to the next meeting or latest discussion.</p>
+            </div>
+            
+            <!-- Secure Login -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+              <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-4">
+                <i class="bi bi-fingerprint text-indigo-600 text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Secure Login</h3>
+              <p class="text-slate-600">Use Face ID, Touch ID, or PIN to securely access your board portal. Fast and secure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Better Than Email -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-8">
+            Easier to Track Than Email
+          </h2>
+          <p class="text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
+            Email threads get buried. Attachments get lost. BoardBlocs keeps everything organized and accessible—so you can focus on governance, not inbox management.
+          </p>
+          
+          <div class="grid md:grid-cols-2 gap-8 text-left">
+            <!-- Email Problems -->
+            <div class="bg-red-50 rounded-2xl p-8 border border-red-100">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-envelope text-red-500 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Email Chaos</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-x-circle text-red-500 mt-0.5"></i>
+                  <span>Important messages buried in inbox</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-x-circle text-red-500 mt-0.5"></i>
+                  <span>Attachments scattered across threads</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-x-circle text-red-500 mt-0.5"></i>
+                  <span>No central record of decisions</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-x-circle text-red-500 mt-0.5"></i>
+                  <span>Reply-all confusion</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-x-circle text-red-500 mt-0.5"></i>
+                  <span>Hard to search past discussions</span>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- BoardBlocs Solution -->
+            <div class="bg-emerald-50 rounded-2xl p-8 border border-emerald-100">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-phone text-emerald-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">BoardBlocs Mobile</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+                  <span>All updates in one organized feed</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+                  <span>Documents attached to meetings</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+                  <span>Discussions linked to decisions</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+                  <span>Clear notification preferences</span>
+                </li>
+                <li class="flex items-start gap-3 text-slate-600">
+                  <i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+                  <span>Full-text search across everything</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-6">
+            Ready to Go Mobile?
+          </h2>
+          <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+            Give your board members the freedom to stay connected from anywhere. Mobile access and smart notifications keep everyone in the loop.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="discussions.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/20 text-white font-bold rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 text-lg">
+              <span>Explore Discussions</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+  </body>
+</html>

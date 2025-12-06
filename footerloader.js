@@ -21,12 +21,13 @@ function loadFooter() {
           <div>
             <h3 class="font-semibold text-slate-900 mb-4">Product</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Modern Meetings</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Document Center</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">BoardBlocs AI</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Public Sites</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Accessibility</a></li>
-              <li><a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">Discussions</a></li>
+              <li><a href="public-and-private-sites.html" class="text-slate-600 hover:text-blue-600 transition-colors">Public & Private Sites</a></li>
+              <li><a href="policies-&-documents.html" class="text-slate-600 hover:text-blue-600 transition-colors">Policies & Documents</a></li>
+              <li><a href="meetings-and-agenda.html" class="text-slate-600 hover:text-blue-600 transition-colors">Meetings & Agendas</a></li>
+              <li><a href="committees-&-groups.html" class="text-slate-600 hover:text-blue-600 transition-colors">Committees & Groups</a></li>
+              <li><a href="discussions.html" class="text-slate-600 hover:text-blue-600 transition-colors">Discussions</a></li>
+              <li><a href="mobileapp.html" class="text-slate-600 hover:text-blue-600 transition-colors">Mobile App</a></li>
+              <li><a href="accessibility.html" class="text-slate-600 hover:text-blue-600 transition-colors">Accessibility</a></li>
             </ul>
           </div>
           

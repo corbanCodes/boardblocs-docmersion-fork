@@ -678,8 +678,8 @@
 
         .product-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 0.85rem 1.75rem;
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 1rem 2rem;
         }
 
         .product-item {
@@ -802,152 +802,88 @@
                 </a>
                 <div class="mobile-submenu" id="mobileProduct">
                   <div class="mobile-submenu-header">Product</div>
-                  <a href="#" class="mobile-submenu-item">Modern Meetings</a>
-                  <a href="#" class="mobile-submenu-item">Document Center</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs AI</a>
-                  <a href="#" class="mobile-submenu-item">Agenda Builder</a>
-                  <a href="#" class="mobile-submenu-item">Groups & Committees</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs Mobile App</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs Video</a>
-                  <a href="#" class="mobile-submenu-item">Boardblocs Surveys</a>
+                  <a href="public-and-private-sites.html" class="mobile-submenu-item">Public and Private Sites</a>
+                  <a href="policies-&-documents.html" class="mobile-submenu-item">Policies &amp; Documents (DocMersion ADA Engine)</a>
+                  <a href="meetings-and-agenda.html" class="mobile-submenu-item">Meetings &amp; Agendas</a>
+                  <a href="committees-&-groups.html" class="mobile-submenu-item">Committees &amp; Groups</a>
+                  <a href="discussions.html" class="mobile-submenu-item">Discussions (Avatar-Based + Sentiment)</a>
                   <a href="#" class="mobile-submenu-item">Integrations</a>
-                  <a href="#" class="mobile-submenu-item">Public Sites</a>
-                  <a href="#" class="mobile-submenu-item">eSignatures</a>
-                  <a href="#" class="mobile-submenu-item">Accessibility</a>
-                  <a href="#" class="mobile-submenu-item">Discussions</a>
-                  <a href="#" class="mobile-submenu-item">Task Manager</a>
-                  <a href="#" class="mobile-submenu-item">Reporting</a>
-                  <a href="#" class="mobile-submenu-item">Polls</a>
-                  <a href="#" class="mobile-submenu-item">Security</a>
-                  <a href="#" class="mobile-submenu-item">View All Features</a>
+                  <a href="mobileapp.html" class="mobile-submenu-item">Mobile App &amp; Notifications</a>
+                  <a href="accessibility.html" class="mobile-submenu-item">Accessibility (Compliance Suite)</a>
+                  <a href="#" class="mobile-submenu-item">Welcome Chat (BoardBlocs AI Assistant)</a>
+                  <a href="#" class="mobile-submenu-item">Board News &amp; Updates</a>
                 </div>
                 <div class="dropdown-product-panel">
                   <div class="product-grid-title">Product</div>
                   <div class="product-grid">
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-calendar-check"></i></div>
+                    <a href="public-and-private-sites.html" class="product-item">
+                      <div class="product-item-icon"><i class="bi bi-megaphone"></i></div>
                       <div>
-                        <div class="product-item-title">Modern Meetings</div>
-                        <p class="product-item-body">Everything from prep to follow-up — streamlined with intuitive tools and AI support.</p>
+                        <div class="product-item-title">Public and Private Sites</div>
+                        <p class="product-item-body">ADA-compliant public and secure private hubs for agendas, minutes, policies, and key board information.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
+                    </a>
+                    <a href="policies-&-documents.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-folder"></i></div>
                       <div>
-                        <div class="product-item-title">Document Center</div>
-                        <p class="product-item-body">Access all your files securely — no digging through emails required.</p>
+                        <div class="product-item-title">Policies &amp; Documents (DocMersion ADA Engine)</div>
+                        <p class="product-item-body">Centralized, accessible storage for all policies, documents, and ADA-friendly files.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-stars"></i></div>
+                    </a>
+                    <a href="meetings-and-agenda.html" class="product-item">
+                      <div class="product-item-icon"><i class="bi bi-calendar-check"></i></div>
                       <div>
-                        <div class="product-item-title">Boardblocs AI</div>
-                        <p class="product-item-body">Easy-to-use AI-powered assistance where nonprofits need it most.</p>
+                        <div class="product-item-title">Meetings &amp; Agendas</div>
+                        <p class="product-item-body">Plan, organize, and share board and committee meetings with clear agendas.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-list-ul"></i></div>
-                      <div>
-                        <div class="product-item-title">Agenda Builder</div>
-                        <p class="product-item-body">Start fast with customizable templates and intuitive agenda creation.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
+                    </a>
+                    <a href="committees-&-groups.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-people"></i></div>
                       <div>
-                        <div class="product-item-title">Groups & Committees</div>
-                        <p class="product-item-body">Empower committees and task forces with focused, dedicated workspaces.</p>
+                        <div class="product-item-title">Committees &amp; Groups</div>
+                        <p class="product-item-body">Dedicated spaces to keep committees and working groups aligned and on task.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-phone"></i></div>
+                    </a>
+                    <a href="discussions.html" class="product-item">
+                      <div class="product-item-icon"><i class="bi bi-chat-dots"></i></div>
                       <div>
-                        <div class="product-item-title">Boardblocs Mobile App</div>
-                        <p class="product-item-body">Stay connected and productive on the go with the Boardblocs Mobile App.</p>
+                        <div class="product-item-title">Discussions (Avatar-Based + Sentiment)</div>
+                        <p class="product-item-body">Facilitate secure, avatar-guided discussions with insight into sentiment and tone.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-camera-video"></i></div>
-                      <div>
-                        <div class="product-item-title">Boardblocs Video</div>
-                        <p class="product-item-body">Hold seamless virtual meetings with built-in video and instant AI-generated minutes.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-clipboard-data"></i></div>
-                      <div>
-                        <div class="product-item-title">Boardblocs Surveys</div>
-                        <p class="product-item-body">Easily gather feedback to make better decisions for your nonprofit organization.</p>
-                      </div>
-                    </div>
+                    </a>
                     <div class="product-item">
                       <div class="product-item-icon"><i class="bi bi-link-45deg"></i></div>
                       <div>
                         <div class="product-item-title">Integrations</div>
-                        <p class="product-item-body">Our platform integrates easily with the apps you use every day.</p>
+                        <p class="product-item-body">Connect BoardBlocs with the tools and systems your board already uses.</p>
                       </div>
                     </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-megaphone"></i></div>
+                    <a href="mobileapp.html" class="product-item">
+                      <div class="product-item-icon"><i class="bi bi-phone"></i></div>
                       <div>
-                        <div class="product-item-title">Public Sites</div>
-                        <p class="product-item-body">ADA-compliant public hub for agendas, minutes, and policies.</p>
+                        <div class="product-item-title">Mobile App &amp; Notifications</div>
+                        <p class="product-item-body">Stay current on the go with mobile access and timely push notifications.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-pen"></i></div>
-                      <div>
-                        <div class="product-item-title">eSignatures</div>
-                        <p class="product-item-body">Request and track eSignatures — all in one place.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
+                    </a>
+                    <a href="accessibility.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-universal-access"></i></div>
                       <div>
-                        <div class="product-item-title">Accessibility</div>
-                        <p class="product-item-body">The most accessible board software — designed for every board member, on any device.</p>
+                        <div class="product-item-title">Accessibility (Compliance Suite)</div>
+                        <p class="product-item-body">Built-in tools to support accessibility and compliance across your board work.</p>
+                      </div>
+                    </a>
+                    <div class="product-item">
+                      <div class="product-item-icon"><i class="bi bi-stars"></i></div>
+                      <div>
+                        <div class="product-item-title">Welcome Chat (BoardBlocs AI Assistant)</div>
+                        <p class="product-item-body">An AI-powered assistant to welcome visitors and guide stakeholders to what they need.</p>
                       </div>
                     </div>
                     <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-chat-dots"></i></div>
+                      <div class="product-item-icon"><i class="bi bi-newspaper"></i></div>
                       <div>
-                        <div class="product-item-title">Discussions</div>
-                        <p class="product-item-body">Keep board communication secure, organized, and on track between meetings.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-check-square"></i></div>
-                      <div>
-                        <div class="product-item-title">Task Manager</div>
-                        <p class="product-item-body">Keep track of to-dos and due dates to stay on task and on target.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-graph-up"></i></div>
-                      <div>
-                        <div class="product-item-title">Reporting</div>
-                        <p class="product-item-body">Use platform data to generate reports that optimize your board's performance.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-bar-chart"></i></div>
-                      <div>
-                        <div class="product-item-title">Polls</div>
-                        <p class="product-item-body">Polls encourages decision-making between and leading up to meetings.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-shield-check"></i></div>
-                      <div>
-                        <div class="product-item-title">Security</div>
-                        <p class="product-item-body">Added safeguards and systems ensure better governance and privacy.</p>
-                      </div>
-                    </div>
-                    <div class="product-item">
-                      <div class="product-item-icon"><i class="bi bi-play-circle"></i></div>
-                      <div>
-                        <div class="product-item-title">View All Features</div>
-                        <p class="product-item-body">See how our features work together through the entire meeting lifecycle.</p>
+                        <div class="product-item-title">Board News &amp; Updates</div>
+                        <p class="product-item-body">Share timely updates, announcements, and highlights with your board and community.</p>
                       </div>
                     </div>
                   </div>

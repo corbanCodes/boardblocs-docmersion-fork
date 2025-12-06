@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussions – Avatar-Based Conversations with Sentiment Analysis | BoardBlocs</title>
+    <meta name="description" content="Facilitate secure, avatar-based board discussions with sentiment tracking. Help members express their true opinions in a safe, constructive environment.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Avatar-Based</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Discussions</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Facilitate secure, thoughtful board conversations where members feel comfortable expressing their true opinions. With sentiment analysis and avatar anonymity, discussions become more honest and productive.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Facilitate secure, thoughtful board conversations where members feel comfortable expressing their true opinions. With sentiment analysis and avatar anonymity, discussions become more honest and productive.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unique Advantage Section -->
+    <section class="py-24 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-bold mb-8">
+            <i class="bi bi-star-fill"></i>
+            <span>UNIQUE TO BOARDBLOCS</span>
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl font-black mb-8">
+            No Other Board Portal Has This
+          </h2>
+          
+          <p class="text-xl text-purple-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Traditional board portals treat discussions as an afterthought. BoardBlocs puts thoughtful conversation at the center—with features designed specifically for board governance dynamics.
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-person-circle text-3xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Avatar Anonymity</h3>
+              <p class="text-purple-100">Members can express opinions without personal bias affecting how others receive their input.</p>
+            </div>
+            
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-emoji-smile text-3xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Sentiment Analysis</h3>
+              <p class="text-purple-100">Automatically track the mood and tone of discussions to understand where the board stands.</p>
+            </div>
+            
+            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
+              <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-graph-up-arrow text-3xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Enthusiasm Tracking</h3>
+              <p class="text-purple-100">See engagement levels across topics to identify what matters most to your board.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Visual - Discussion Thread Mock -->
+            <div>
+              <div class="bg-slate-100 rounded-3xl p-6">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-4">
+                    <div class="flex items-center gap-3">
+                      <i class="bi bi-chat-dots-fill text-white text-xl"></i>
+                      <span class="text-white font-bold">Policy Committee Discussion</span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-4 space-y-4">
+                    <!-- Thread 1 -->
+                    <div class="flex gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-lg">🦊</div>
+                      <div class="flex-1">
+                        <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="font-semibold text-slate-900">Member A</span>
+                            <span class="text-xs text-slate-400">2 hours ago</span>
+                          </div>
+                          <p class="text-slate-700 text-sm">I think we should consider updating Section 3.2 to reflect the new state guidelines. The current language is outdated.</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-2 ml-2">
+                          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <i class="bi bi-emoji-smile"></i> Constructive
+                          </span>
+                          <span class="text-xs text-slate-400">3 replies</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Thread 2 -->
+                    <div class="flex gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-lg">🦉</div>
+                      <div class="flex-1">
+                        <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="font-semibold text-slate-900">Member B</span>
+                            <span class="text-xs text-slate-400">1 hour ago</span>
+                          </div>
+                          <p class="text-slate-700 text-sm">Agreed. I've drafted some language we could use. Let me share the document for everyone to review before Thursday.</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-2 ml-2">
+                          <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <i class="bi bi-hand-thumbs-up"></i> Supportive
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Thread 3 -->
+                    <div class="flex gap-3">
+                      <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center text-white text-lg">🦁</div>
+                      <div class="flex-1">
+                        <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="font-semibold text-slate-900">Member C</span>
+                            <span class="text-xs text-slate-400">30 min ago</span>
+                          </div>
+                          <p class="text-slate-700 text-sm">Can we discuss timeline concerns? I want to make sure we're not rushing this through without proper review.</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-2 ml-2">
+                          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full flex items-center gap-1">
+                            <i class="bi bi-exclamation-circle"></i> Cautious
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sentiment Summary -->
+                  <div class="p-4 bg-slate-50 border-t border-slate-100">
+                    <div class="text-xs font-semibold text-slate-500 mb-2">DISCUSSION SENTIMENT</div>
+                    <div class="flex gap-2">
+                      <div class="flex-1 bg-emerald-100 rounded-full h-2"></div>
+                      <div class="flex-1 bg-emerald-100 rounded-full h-2"></div>
+                      <div class="flex-1 bg-blue-100 rounded-full h-2"></div>
+                      <div class="flex-1 bg-amber-100 rounded-full h-2"></div>
+                      <div class="w-8 bg-slate-200 rounded-full h-2"></div>
+                    </div>
+                    <div class="flex justify-between mt-2 text-xs text-slate-500">
+                      <span>Overall: Positive</span>
+                      <span>4 participants</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Content -->
+            <div>
+              <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-chat-square-heart"></i>
+                <span>SAFER CONVERSATIONS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                Express True Opinions
+              </h2>
+              <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                Board dynamics can be complicated. Senior members may dominate, newer members may hold back. Avatar-based discussions level the playing field so every voice is heard on its merits.
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-incognito text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Reduce Bias</h3>
+                    <p class="text-slate-600">When ideas aren't attached to names, they're judged on merit—not on who said them.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-shield-check text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Safe Space</h3>
+                    <p class="text-slate-600">Members can raise concerns or dissent without fear of personal repercussions.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-lightbulb text-emerald-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Better Ideas</h3>
+                    <p class="text-slate-600">When everyone feels safe to contribute, you get more diverse perspectives and better outcomes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sentiment Analysis Deep Dive -->
+    <section class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Content -->
+            <div>
+              <div class="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-bar-chart-line"></i>
+                <span>SENTIMENT ANALYSIS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black mb-6">
+                Understand the Mood
+              </h2>
+              <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                BoardBlocs automatically analyzes the tone and sentiment of discussions, giving you real-time insight into how the board feels about any topic.
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Positive/Negative/Neutral</strong> — Track overall sentiment</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Enthusiasm levels</strong> — See engagement intensity</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Concern detection</strong> — Identify hesitation early</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Trend tracking</strong> — See how sentiment changes over time</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-400 text-xl"></i>
+                  <span class="text-slate-300"><strong class="text-white">Topic analysis</strong> — Understand what drives reactions</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Visual - Sentiment Dashboard Mock -->
+            <div class="bg-slate-800 rounded-3xl p-6 border border-slate-700">
+              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-700">
+                <i class="bi bi-speedometer2 text-2xl text-blue-400"></i>
+                <span class="font-bold">Sentiment Dashboard</span>
+              </div>
+              
+              <!-- Overall Sentiment -->
+              <div class="bg-slate-700/50 rounded-xl p-4 mb-4">
+                <div class="text-sm text-slate-400 mb-2">Overall Board Sentiment</div>
+                <div class="flex items-center gap-4">
+                  <div class="text-4xl font-black text-emerald-400">78%</div>
+                  <div class="flex-1">
+                    <div class="text-sm text-white mb-1">Positive</div>
+                    <div class="w-full bg-slate-600 rounded-full h-2">
+                      <div class="bg-emerald-400 h-2 rounded-full" style="width: 78%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Sentiment Breakdown -->
+              <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="bg-emerald-500/20 rounded-xl p-3 text-center">
+                  <div class="text-2xl font-bold text-emerald-400">12</div>
+                  <div class="text-xs text-slate-400">Supportive</div>
+                </div>
+                <div class="bg-amber-500/20 rounded-xl p-3 text-center">
+                  <div class="text-2xl font-bold text-amber-400">4</div>
+                  <div class="text-xs text-slate-400">Cautious</div>
+                </div>
+                <div class="bg-red-500/20 rounded-xl p-3 text-center">
+                  <div class="text-2xl font-bold text-red-400">1</div>
+                  <div class="text-xs text-slate-400">Opposed</div>
+                </div>
+              </div>
+              
+              <!-- Topic Sentiment -->
+              <div class="space-y-3">
+                <div class="text-sm text-slate-400 mb-2">By Topic</div>
+                <div class="flex items-center gap-3">
+                  <span class="text-sm text-white flex-1">Budget Proposal</span>
+                  <div class="w-24 bg-slate-600 rounded-full h-2">
+                    <div class="bg-emerald-400 h-2 rounded-full" style="width: 85%"></div>
+                  </div>
+                  <span class="text-xs text-emerald-400">85%</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-sm text-white flex-1">Policy Update</span>
+                  <div class="w-24 bg-slate-600 rounded-full h-2">
+                    <div class="bg-emerald-400 h-2 rounded-full" style="width: 72%"></div>
+                  </div>
+                  <span class="text-xs text-emerald-400">72%</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-sm text-white flex-1">Timeline Concerns</span>
+                  <div class="w-24 bg-slate-600 rounded-full h-2">
+                    <div class="bg-amber-400 h-2 rounded-full" style="width: 45%"></div>
+                  </div>
+                  <span class="text-xs text-amber-400">45%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Committee-Specific Discussions -->
+    <section class="py-24 bg-gradient-to-br from-slate-50 to-purple-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-people-fill"></i>
+              <span>COMMITTEE DISCUSSIONS</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Private Spaces for Every Group
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              Each committee gets its own discussion space. Finance talks stay in Finance. Policy discussions stay in Policy. Privacy is built in.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Finance Committee -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-cash-stack text-emerald-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">Finance Committee</h3>
+                  <span class="text-xs text-slate-500">5 members • 3 active threads</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-600 mb-4">Budget discussions, financial reports, and audit reviews.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Private</span>
+                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">2 new</span>
+              </div>
+            </div>
+            
+            <!-- Policy Committee -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-file-earmark-text text-purple-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">Policy Committee</h3>
+                  <span class="text-xs text-slate-500">4 members • 5 active threads</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-600 mb-4">Policy reviews, updates, and compliance discussions.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Private</span>
+                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">5 new</span>
+              </div>
+            </div>
+            
+            <!-- Facilities Committee -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-building text-amber-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">Facilities Committee</h3>
+                  <span class="text-xs text-slate-500">3 members • 2 active threads</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-600 mb-4">Building projects, maintenance, and capital planning.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Private</span>
+              </div>
+            </div>
+            
+            <!-- Personnel Committee -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-person-badge text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">Personnel Committee</h3>
+                  <span class="text-xs text-slate-500">4 members • 1 active thread</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-600 mb-4">HR matters, evaluations, and staffing decisions.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">Confidential</span>
+              </div>
+            </div>
+            
+            <!-- Curriculum Committee -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-book text-rose-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">Curriculum Committee</h3>
+                  <span class="text-xs text-slate-500">6 members • 4 active threads</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-600 mb-4">Academic programs, textbooks, and educational standards.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">Private</span>
+                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">1 new</span>
+              </div>
+            </div>
+            
+            <!-- Full Board -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-lg text-white">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                  <i class="bi bi-people-fill text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold">Full Board</h3>
+                  <span class="text-xs text-slate-400">9 members • 8 active threads</span>
+                </div>
+              </div>
+              <div class="text-sm text-slate-300 mb-4">Board-wide discussions visible to all members.</div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs bg-white/20 text-white px-2 py-1 rounded-full">All Members</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Discussion Features
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+              Everything you need for productive, secure board conversations.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-reply text-purple-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Threaded Replies</h3>
+              <p class="text-sm text-slate-600">Keep conversations organized with nested replies.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-paperclip text-blue-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">File Attachments</h3>
+              <p class="text-sm text-slate-600">Share documents directly in discussions.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-at text-emerald-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">@Mentions</h3>
+              <p class="text-sm text-slate-600">Tag specific members to get their attention.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-bell text-amber-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Notifications</h3>
+              <p class="text-sm text-slate-600">Get alerted when someone replies to you.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-search text-rose-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Search</h3>
+              <p class="text-sm text-slate-600">Find past discussions and decisions quickly.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-archive text-indigo-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Archive</h3>
+              <p class="text-sm text-slate-600">Keep a record of all board discussions.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-phone text-cyan-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Mobile Access</h3>
+              <p class="text-sm text-slate-600">Participate in discussions from anywhere.</p>
+            </div>
+            
+            <div class="text-center p-6">
+              <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-lock text-slate-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Privacy Controls</h3>
+              <p class="text-sm text-slate-600">Control who can see each discussion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-6">
+            Ready for Better Board Conversations?
+          </h2>
+          <p class="text-xl text-purple-100 mb-10 max-w-2xl mx-auto">
+            Give your board a safe space to discuss, debate, and decide—with insights that help you understand where everyone stands.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="committees-&-groups.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/20 text-white font-bold rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 text-lg">
+              <span>Explore Committees</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+  </body>
+</html>

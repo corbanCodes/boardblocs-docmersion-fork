@@ -467,9 +467,9 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     <!-- All-in-One Board Management Hub Section -->
-    <section class="py-20 bg-white overflow-hidden">
+    <section class="py-20 bg-white" style="overflow: visible;">
+      <!-- Header stays in container -->
       <div class="container mx-auto px-4">
-        <!-- Header -->
         <div class="mb-12 max-w-6xl mx-auto">
           <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-bold mb-6">
             <i class="bi bi-grid-3x3-gap"></i>
@@ -478,122 +478,297 @@ document.addEventListener('DOMContentLoaded', function() {
           <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Your All-in-One Board Management Hub</h2>
           <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">BoardBlocs brings everything your board needs into one streamlined platform. Schedule meetings, share documents, collaborate seamlessly, and connect via mobile or video—all in one place. With AI-powered tools to simplify tasks, you can focus on what matters most: driving your mission with an engaged, organized board.</p>
         </div>
+      </div>
         
-        <!-- Feature Cards Carousel -->
-        <div class="relative -mx-4">
-            <div id="feature-carousel" class="flex gap-6 py-8 px-8 snap-x snap-mandatory scrollbar-hide" style="overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch;">
-              <!-- Document Center Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-folder-fill text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Document Center</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Access polished board materials, including board packets, directly from the Document Center.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
+      <!-- Feature Cards - Responsive Grid on Mobile, Carousel on Desktop -->
+      <div class="container mx-auto px-4">
+        <!-- Mobile/Tablet Grid (hidden on xl+) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:hidden">
+          <!-- 1. Public and Private Sites -->
+          <a href="#" class="block bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-megaphone-fill text-xl"></i>
               </div>
-
-              <!-- Mobile App Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-phone-fill text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Mobile App</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Get alerts, join meetings fast, and access or share documents on the go.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
+              <h3 class="text-lg font-bold mb-2">Public & Private Sites</h3>
+              <p class="text-white/90 text-sm leading-relaxed">ADA-compliant public and secure private hubs for agendas, minutes, and policies.</p>
+            </div>
+          </a>
+          <!-- 2. Policies & Documents -->
+          <a href="#" class="block bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-folder-fill text-xl"></i>
               </div>
-
-              <!-- Accessibility Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-universal-access text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Accessibility</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Give every board member an equal voice with robust, compliance-focused accessibility features.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
+              <h3 class="text-lg font-bold mb-2">Policies & Documents</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Centralized, accessible storage for all policies and ADA-friendly files.</p>
+            </div>
+          </a>
+          <!-- 3. Meetings & Agendas -->
+          <a href="#" class="block bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-calendar-check-fill text-xl"></i>
               </div>
-
-              <!-- Board Packet Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-file-earmark-text-fill text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Board Packet</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Build and distribute polished board packets in a click—no formatting headaches.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
+              <h3 class="text-lg font-bold mb-2">Meetings & Agendas</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Plan, organize, and share board meetings with clear agendas.</p>
+            </div>
+          </a>
+          <!-- 4. Committees & Groups -->
+          <a href="#" class="block bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-people-fill text-xl"></i>
               </div>
-
-              <!-- AI-Powered Tools Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-yellow-500 to-amber-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-stars text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">AI-Powered Tools</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Save time with guided workflows and auto-generated meeting notes that keep everyone aligned.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
+              <h3 class="text-lg font-bold mb-2">Committees & Groups</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Dedicated spaces to keep committees aligned and on task.</p>
+            </div>
+          </a>
+          <!-- 5. Discussions -->
+          <a href="#" class="block bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-chat-dots-fill text-xl"></i>
               </div>
+              <h3 class="text-lg font-bold mb-2">Discussions</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Secure, avatar-guided discussions with sentiment insights.</p>
+            </div>
+          </a>
+          <!-- 6. Integrations -->
+          <a href="#" class="block bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-link-45deg text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Integrations</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Connect with the tools your board already uses.</p>
+            </div>
+          </a>
+          <!-- 7. Mobile App & Notifications -->
+          <a href="#" class="block bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-phone-fill text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Mobile App & Notifications</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Stay current on the go with timely push notifications.</p>
+            </div>
+          </a>
+          <!-- 8. Accessibility -->
+          <a href="#" class="block bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-universal-access text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Accessibility</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Built-in tools to support accessibility and compliance.</p>
+            </div>
+          </a>
+          <!-- 9. Welcome Chat -->
+          <a href="#" class="block bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-stars text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Welcome Chat</h3>
+              <p class="text-white/90 text-sm leading-relaxed">AI-powered assistant to guide stakeholders to what they need.</p>
+            </div>
+          </a>
+          <!-- 10. Board News & Updates -->
+          <a href="#" class="block bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                <i class="bi bi-newspaper text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2">Board News & Updates</h3>
+              <p class="text-white/90 text-sm leading-relaxed">Share timely updates and highlights with your community.</p>
+            </div>
+          </a>
+        </div>
 
-              <!-- Video Meetings Card -->
-              <div class="flex-shrink-0 w-80 snap-start relative z-0 hover:z-10" style="overflow: visible;">
-                <div class="h-full bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-3xl p-8 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                  <div class="relative z-10">
-                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
-                      <i class="bi bi-camera-video-fill text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Video Meetings</h3>
-                    <p class="text-white/90 mb-6 leading-relaxed">Seamlessly host virtual board meetings with integrated video, AI transcription, and instant summaries.</p>
-                    <a href="#" class="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all">
-                      Learn More <i class="bi bi-arrow-right"></i>
-                    </a>
+        <!-- Desktop Carousel (hidden below xl) -->
+        <div class="hidden xl:block relative" style="overflow: visible;">
+          <div id="feature-carousel" class="flex gap-6 py-8 snap-x snap-mandatory scrollbar-hide" style="overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch;">
+            <!-- 1. Public and Private Sites Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-megaphone-fill text-2xl"></i>
                   </div>
+                  <h3 class="text-xl font-bold mb-2">Public & Private Sites</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">ADA-compliant public and secure private hubs for agendas, minutes, and policies.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
                 </div>
               </div>
             </div>
-            
-            <!-- Navigation Arrows -->
-            <div class="flex gap-3 mt-6 max-w-6xl mx-auto px-8">
-              <button type="button" id="scroll-left" onclick="document.getElementById('feature-carousel').scrollBy({ left: -350, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
-                <i class="bi bi-chevron-left text-xl"></i>
-              </button>
-              <button type="button" id="scroll-right" onclick="document.getElementById('feature-carousel').scrollBy({ left: 350, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
-                <i class="bi bi-chevron-right text-xl"></i>
-              </button>
+            <!-- 2. Policies & Documents Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-folder-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Policies & Documents</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Centralized, accessible storage for all policies and ADA-friendly files.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
             </div>
+            <!-- 3. Meetings & Agendas Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-calendar-check-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Meetings & Agendas</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Plan, organize, and share board meetings with clear agendas.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 4. Committees & Groups Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-people-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Committees & Groups</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Dedicated spaces to keep committees aligned and on task.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 5. Discussions Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-chat-dots-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Discussions</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Secure, avatar-guided discussions with sentiment insights.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 6. Integrations Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-link-45deg text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Integrations</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Connect with the tools your board already uses.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 7. Mobile App & Notifications Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-phone-fill text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Mobile App & Notifications</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Stay current on the go with timely push notifications.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 8. Accessibility Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-universal-access text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Accessibility</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Built-in tools to support accessibility and compliance.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 9. Welcome Chat Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-yellow-500 to-amber-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-stars text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Welcome Chat</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">AI-powered assistant to guide stakeholders to what they need.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 10. Board News & Updates Card -->
+            <div class="flex-shrink-0 w-72 snap-start">
+              <div class="h-full bg-gradient-to-br from-rose-500 to-rose-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
+                <div class="relative z-10">
+                  <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
+                    <i class="bi bi-newspaper text-2xl"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">Board News & Updates</h3>
+                  <p class="text-white/90 mb-5 leading-relaxed text-sm">Share timely updates and highlights with your community.</p>
+                  <span class="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                    Learn More <i class="bi bi-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Arrows (Desktop only) -->
+          <div class="flex gap-3 mt-6">
+            <button type="button" id="scroll-left" onclick="document.getElementById('feature-carousel').scrollBy({ left: -300, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
+              <i class="bi bi-chevron-left text-xl"></i>
+            </button>
+            <button type="button" id="scroll-right" onclick="document.getElementById('feature-carousel').scrollBy({ left: 300, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
+              <i class="bi bi-chevron-right text-xl"></i>
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Committees & Groups – Private Workspaces | BoardBlocs</title>
+    <meta name="description" content="Private committee workspaces with permissions, internal documents, agendas, minutes, and secure discussions. Keep your committees aligned and organized.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Committees &</span><br />
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Groups</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Private workspaces for every committee. Internal documents, agendas, minutes, and secure discussions—all with granular permissions to keep sensitive work protected.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <div class="w-full max-w-md px-4">
+            <img 
+              src="logo.png" 
+              alt="Boardblocs Logo" 
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Private workspaces for every committee. Internal documents, agendas, minutes, and secure discussions—all with granular permissions to keep sensitive work protected.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Committees Get -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+              <i class="bi bi-people-fill"></i>
+              <span>PRIVATE WORKSPACES</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Everything Your Committees Need
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+              Each committee gets its own private space with documents, agendas, minutes, and discussions. Logged-out users can't access committee content—privacy is built in.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Private Pages -->
+            <div class="bg-gradient-to-br from-purple-600 to-violet-700 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-shield-lock text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Private Committee Pages</h3>
+              <p class="text-purple-100 leading-relaxed">
+                Each committee has its own private portal. Only members with permission can access. Logged-out users see nothing.
+              </p>
+            </div>
+            
+            <!-- Internal Documents -->
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-folder-fill text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Internal Documents</h3>
+              <p class="text-blue-100 leading-relaxed">
+                Store committee-specific documents, reports, and working files. Google Drive integration keeps everything in sync.
+              </p>
+            </div>
+            
+            <!-- Committee Agendas -->
+            <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-list-check text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Committee Agendas</h3>
+              <p class="text-emerald-100 leading-relaxed">
+                Separate agendas for each committee meeting. Prepare, share, and track independently from the main board.
+              </p>
+            </div>
+            
+            <!-- Committee Minutes -->
+            <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-journal-text text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Committee Minutes</h3>
+              <p class="text-orange-100 leading-relaxed">
+                Document committee decisions and discussions. Draft in Google Docs, publish when approved.
+              </p>
+            </div>
+            
+            <!-- Notifications -->
+            <div class="bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-bell-fill text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Committee Notifications</h3>
+              <p class="text-rose-100 leading-relaxed">
+                Push notifications and email alerts for committee members. New documents, upcoming meetings, discussion replies.
+              </p>
+            </div>
+            
+            <!-- Subcommittees -->
+            <div class="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-8 text-white">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                <i class="bi bi-diagram-3 text-3xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-4">Subcommittees</h3>
+              <p class="text-cyan-100 leading-relaxed">
+                Create subcommittees within committees. Nested permissions keep work organized at every level.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Permissions Section -->
+    <section class="py-24 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Content -->
+            <div>
+              <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-key-fill"></i>
+                <span>GRANULAR PERMISSIONS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black mb-6">
+                Control Who Sees What
+              </h2>
+              <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                Not everyone needs access to everything. BoardBlocs gives you fine-grained control over who can view, edit, and manage committee content.
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-person-badge text-emerald-400 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white mb-1">Role-Based Access</h3>
+                    <p class="text-slate-400">Board members, committee chairs, staff, and guests each get appropriate access levels.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-eye-slash text-blue-400 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white mb-1">Private by Default</h3>
+                    <p class="text-slate-400">Committee content is invisible to non-members. No accidental exposure.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-pencil-square text-purple-400 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white mb-1">View vs. Edit</h3>
+                    <p class="text-slate-400">Some members can view, others can edit. You decide who does what.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-clock-history text-amber-400 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white mb-1">Audit Trail</h3>
+                    <p class="text-slate-400">Track who accessed what and when. Full visibility for compliance.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Visual - Permissions UI Mock -->
+            <div class="bg-slate-800 rounded-3xl p-6 border border-slate-700">
+              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-700">
+                <i class="bi bi-shield-lock text-2xl text-emerald-400"></i>
+                <span class="font-bold">Finance Committee Permissions</span>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="bg-slate-700/50 rounded-xl p-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">JD</div>
+                      <div>
+                        <div class="font-semibold">Jane Doe</div>
+                        <div class="text-xs text-slate-400">Committee Chair</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full">Full Access</span>
+                  </div>
+                </div>
+                
+                <div class="bg-slate-700/50 rounded-xl p-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">MS</div>
+                      <div>
+                        <div class="font-semibold">Mike Smith</div>
+                        <div class="text-xs text-slate-400">Board Member</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full">View & Comment</span>
+                  </div>
+                </div>
+                
+                <div class="bg-slate-700/50 rounded-xl p-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold">SJ</div>
+                      <div>
+                        <div class="font-semibold">Sarah Johnson</div>
+                        <div class="text-xs text-slate-400">Staff Support</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full">Edit Documents</span>
+                  </div>
+                </div>
+                
+                <div class="bg-slate-700/50 rounded-xl p-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-slate-500 rounded-full flex items-center justify-center text-white font-bold">?</div>
+                      <div>
+                        <div class="font-semibold text-slate-400">Public / Logged Out</div>
+                        <div class="text-xs text-slate-500">Non-member</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-full">No Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discussions Section -->
+    <section class="py-24 bg-gradient-to-br from-slate-50 to-purple-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Visual - Discussion Mock -->
+            <div class="order-2 lg:order-1">
+              <div class="bg-white rounded-3xl shadow-2xl p-6 border border-slate-100">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                  <i class="bi bi-chat-dots text-2xl text-purple-600"></i>
+                  <span class="font-bold text-slate-900">Policy Committee Discussion</span>
+                </div>
+                
+                <div class="space-y-4">
+                  <!-- Discussion Thread -->
+                  <div class="flex gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">A</div>
+                    <div class="flex-1">
+                      <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-semibold text-slate-900">Alice Chen</span>
+                          <span class="text-xs text-slate-400">2 hours ago</span>
+                        </div>
+                        <p class="text-slate-700 text-sm">I think we should consider updating Section 3.2 to reflect the new state guidelines. Thoughts?</p>
+                      </div>
+                      <div class="flex items-center gap-4 mt-2 ml-2">
+                        <span class="text-xs text-emerald-600 flex items-center gap-1">
+                          <i class="bi bi-emoji-smile"></i> Positive sentiment
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">B</div>
+                    <div class="flex-1">
+                      <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-semibold text-slate-900">Bob Martinez</span>
+                          <span class="text-xs text-slate-400">1 hour ago</span>
+                        </div>
+                        <p class="text-slate-700 text-sm">Agreed. I've drafted some language we could use. Let me share the document.</p>
+                      </div>
+                      <div class="flex items-center gap-4 mt-2 ml-2">
+                        <span class="text-xs text-emerald-600 flex items-center gap-1">
+                          <i class="bi bi-emoji-smile"></i> Supportive
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="flex gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">C</div>
+                    <div class="flex-1">
+                      <div class="bg-slate-100 rounded-2xl rounded-tl-none p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-semibold text-slate-900">Carol Williams</span>
+                          <span class="text-xs text-slate-400">30 min ago</span>
+                        </div>
+                        <p class="text-slate-700 text-sm">Can we discuss this at Thursday's meeting? I have some concerns about timeline.</p>
+                      </div>
+                      <div class="flex items-center gap-4 mt-2 ml-2">
+                        <span class="text-xs text-amber-600 flex items-center gap-1">
+                          <i class="bi bi-emoji-neutral"></i> Cautious
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Reply Box -->
+                <div class="mt-6 pt-4 border-t border-slate-100">
+                  <div class="flex gap-3">
+                    <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-500">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="flex-1 bg-slate-100 rounded-2xl p-3 flex items-center">
+                      <span class="text-slate-400 text-sm">Add a comment...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Content -->
+            <div class="order-1 lg:order-2">
+              <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-chat-square-dots"></i>
+                <span>SECURE DISCUSSIONS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                Avatar-Based Discussions
+              </h2>
+              <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                Committee members can discuss topics in a secure, threaded format. Avatar-based identities help people feel comfortable expressing their true opinions.
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-500 text-xl"></i>
+                  <span class="text-slate-700"><strong>Private threads</strong> — Only committee members can see</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-500 text-xl"></i>
+                  <span class="text-slate-700"><strong>Sentiment tracking</strong> — Understand the mood of discussions</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-500 text-xl"></i>
+                  <span class="text-slate-700"><strong>Document sharing</strong> — Attach files to any comment</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-500 text-xl"></i>
+                  <span class="text-slate-700"><strong>Notifications</strong> — Get alerted when someone replies</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="bi bi-check-circle-fill text-emerald-500 text-xl"></i>
+                  <span class="text-slate-700"><strong>Enthusiasm tracking</strong> — See engagement levels</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile App & Notifications -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left Content -->
+            <div>
+              <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <i class="bi bi-phone"></i>
+                <span>MOBILE & NOTIFICATIONS</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                Stay Connected Everywhere
+              </h2>
+              <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                Committee work doesn't stop when you leave the office. Mobile app access and push notifications keep everyone in the loop—easier to track than email.
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-phone-fill text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Mobile App Access</h3>
+                    <p class="text-slate-600">Full committee access from your phone. Documents, discussions, and meetings on the go.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-bell-fill text-emerald-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Push Notifications</h3>
+                    <p class="text-slate-600">Instant alerts for new documents, discussion replies, and meeting reminders.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-chat-text-fill text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">SMS Alerts</h3>
+                    <p class="text-slate-600">Text message notifications for urgent updates. Never miss critical information.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-graph-up text-amber-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Easier to Track</h3>
+                    <p class="text-slate-600">Centralized communication is easier to track than scattered email threads.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Visual - Phone Mock -->
+            <div class="flex justify-center">
+              <div class="relative">
+                <div class="w-72 h-[580px] bg-slate-900 rounded-[3rem] p-3 shadow-2xl">
+                  <div class="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                    <!-- Phone Header -->
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 pt-8">
+                      <div class="flex items-center gap-3">
+                        <i class="bi bi-people-fill text-white text-xl"></i>
+                        <span class="text-white font-bold">Finance Committee</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="p-4 space-y-3">
+                      <div class="bg-blue-50 rounded-xl p-3 border-l-4 border-blue-500">
+                        <div class="flex items-center gap-2 mb-1">
+                          <i class="bi bi-file-earmark-text text-blue-600"></i>
+                          <span class="font-semibold text-sm text-slate-900">New Document</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Q4 Budget Report uploaded</p>
+                        <span class="text-xs text-slate-400">2 min ago</span>
+                      </div>
+                      
+                      <div class="bg-purple-50 rounded-xl p-3 border-l-4 border-purple-500">
+                        <div class="flex items-center gap-2 mb-1">
+                          <i class="bi bi-chat-dots text-purple-600"></i>
+                          <span class="font-semibold text-sm text-slate-900">New Reply</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Jane replied to your comment</p>
+                        <span class="text-xs text-slate-400">15 min ago</span>
+                      </div>
+                      
+                      <div class="bg-emerald-50 rounded-xl p-3 border-l-4 border-emerald-500">
+                        <div class="flex items-center gap-2 mb-1">
+                          <i class="bi bi-calendar-event text-emerald-600"></i>
+                          <span class="font-semibold text-sm text-slate-900">Meeting Reminder</span>
+                        </div>
+                        <p class="text-xs text-slate-600">Committee meeting in 1 hour</p>
+                        <span class="text-xs text-slate-400">1 hour ago</span>
+                      </div>
+                      
+                      <div class="bg-amber-50 rounded-xl p-3 border-l-4 border-amber-500">
+                        <div class="flex items-center gap-2 mb-1">
+                          <i class="bi bi-list-check text-amber-600"></i>
+                          <span class="font-semibold text-sm text-slate-900">Agenda Updated</span>
+                        </div>
+                        <p class="text-xs text-slate-600">New item added to Thursday's agenda</p>
+                        <span class="text-xs text-slate-400">3 hours ago</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Floating notification badge -->
+                <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                  4
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-6">
+            Ready to Organize Your Committees?
+          </h2>
+          <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+            Give every committee the private workspace they need. Documents, discussions, and meetings—all in one secure place.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg">
+              <span>Book a Demo</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="pricing.html" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/20 text-white font-bold rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 text-lg">
+              <span>View Pricing</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+  </body>
+</html>
