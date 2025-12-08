@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board News & Updates – Keep Stakeholders Informed | BoardBlocs</title>
+    <meta name="description" content="Share announcements, press releases, policy updates, and meeting highlights with your community. BoardBlocs makes board-level communication simple and transparent.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-orange-400 to-rose-500 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <span class="inline-block bg-gradient-to-r from-rose-500 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+            <i class="bi bi-newspaper mr-1"></i> Board Communications
+          </span>
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Board News</span><br />
+            <span class="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">& Updates</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Keep your community informed with timely announcements, policy updates, and meeting highlights. BoardBlocs gives your board its own communications hub—separate from daily operations, focused on governance.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-pink-600 to-rose-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <!-- News Feed Mockup -->
+          <div class="w-full max-w-lg px-4">
+            <div class="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
+              <!-- Header -->
+              <div class="bg-gradient-to-r from-rose-500 to-pink-600 p-4 text-white">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <i class="bi bi-newspaper text-2xl"></i>
+                    <span class="font-bold text-lg">Board News</span>
+                  </div>
+                  <span class="text-sm bg-white/20 px-3 py-1 rounded-full">3 New</span>
+                </div>
+              </div>
+              
+              <!-- News Items -->
+              <div class="divide-y divide-slate-100">
+                <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="bi bi-megaphone-fill text-blue-600"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Announcement</span>
+                        <span class="text-xs text-slate-400">2 hours ago</span>
+                      </div>
+                      <h4 class="font-semibold text-slate-900 text-sm truncate">2024-2025 Budget Approved Unanimously</h4>
+                      <p class="text-slate-500 text-xs mt-1 line-clamp-2">The board voted to approve the annual operating budget with key investments in...</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="bi bi-file-earmark-text-fill text-purple-600"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">Policy Update</span>
+                        <span class="text-xs text-slate-400">Yesterday</span>
+                      </div>
+                      <h4 class="font-semibold text-slate-900 text-sm truncate">Remote Participation Policy Revised</h4>
+                      <p class="text-slate-500 text-xs mt-1 line-clamp-2">Updated guidelines for virtual attendance at board meetings now in effect...</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="bi bi-calendar-check-fill text-green-600"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">Meeting Recap</span>
+                        <span class="text-xs text-slate-400">Dec 5</span>
+                      </div>
+                      <h4 class="font-semibold text-slate-900 text-sm truncate">December Board Meeting Highlights</h4>
+                      <p class="text-slate-500 text-xs mt-1 line-clamp-2">Key decisions from last week's regular session including facility updates...</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Footer -->
+              <div class="p-4 bg-slate-50 border-t border-slate-100">
+                <button class="w-full text-center text-rose-600 font-semibold text-sm hover:text-rose-700 transition-colors">
+                  View All Updates <i class="bi bi-arrow-right ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile tagline -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Keep your community informed with timely announcements, policy updates, and meeting highlights. BoardBlocs gives your board its own communications hub.
+          </p>
+        </div>
+        
+        <!-- Mobile CTA -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);">
+            <span class="relative z-10">Book a Demo</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Board News Matters -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-rose-100 text-rose-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-question-circle-fill"></i>
+            <span>WHY IT MATTERS</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Your Board Needs Its Own Voice</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Board-level communications are different from daily operations. Give your governance team a dedicated space to share decisions, updates, and announcements with stakeholders.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <!-- Transparency -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <i class="bi bi-eye text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Transparency</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Demonstrate openness to the public. Show what decisions are being made and why—reducing confusion and building trust.</p>
+          </div>
+          
+          <!-- Communication -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <i class="bi bi-chat-square-text text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Communication</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Many boards don't have a communications team. A simple news feed keeps stakeholders informed without extra overhead.</p>
+          </div>
+          
+          <!-- Trust -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <i class="bi bi-shield-check text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Public Trust</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Publishing news articles improves professional perception, stakeholder trust, and demonstrates active governance.</p>
+          </div>
+          
+          <!-- Separation -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <i class="bi bi-diagram-3 text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Separation</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Keep board communications separate from daily operations. Your governance team deserves its own communications home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Content Belongs Here -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-rose-500/20 text-rose-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-rose-500/30">
+            <i class="bi bi-list-check"></i>
+            <span>CONTENT TYPES</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">Board-Level News, Not Daily Updates</h2>
+          <p class="text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">This is NOT where daily operational news goes. Board News & Updates is for governance-focused, high-level communications.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-megaphone text-blue-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Announcements</h3>
+            <p class="text-slate-400 text-sm">Official board announcements and public statements</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-file-earmark-text text-purple-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Policy Updates</h3>
+            <p class="text-slate-400 text-sm">New policies, revisions, and governance changes</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-calendar-check text-green-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Meeting Highlights</h3>
+            <p class="text-slate-400 text-sm">Recaps of key decisions from board meetings</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-cash-stack text-amber-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Funding Updates</h3>
+            <p class="text-slate-400 text-sm">Budget approvals, grants, and financial news</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-bank text-rose-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Legal & Compliance</h3>
+            <p class="text-slate-400 text-sm">Court rulings, regulatory changes, compliance updates</p>
+          </div>
+          
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-person-badge text-cyan-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Leadership Updates</h3>
+            <p class="text-slate-400 text-sm">Superintendent updates, board member news</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-rose-100 text-rose-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-gear-fill"></i>
+            <span>FEATURES</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Everything You Need to Communicate</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Simple, powerful tools to publish and manage board communications without needing a dedicated PR team.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <!-- Left: Feature List -->
+          <div class="space-y-6">
+            <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-list-ul text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 mb-1">News Article List</h3>
+                <p class="text-slate-600 text-sm">Recent articles with titles, timestamps, and categories. Scrollable, searchable, and easy to browse.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-file-richtext text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 mb-1">Rich Article Editor</h3>
+                <p class="text-slate-600 text-sm">Format text, add links and images, save drafts, and publish when ready. No coding required.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-tags text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 mb-1">Categories & Tags</h3>
+                <p class="text-slate-600 text-sm">Organize news by type: Legal, Finance, Community, Policy, etc. Makes finding content easy.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-bell text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 mb-1">Subscribe to Updates</h3>
+                <p class="text-slate-600 text-sm">Stakeholders can subscribe to receive notifications when new articles are published.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="bi bi-shield-lock text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900 mb-1">Permission Controls</h3>
+                <p class="text-slate-600 text-sm">Public can read, admins can publish. Optional committee-specific news categories.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Article Detail Mockup -->
+          <div>
+            <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+              <!-- Article Header -->
+              <div class="p-6 border-b border-slate-100">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">Announcement</span>
+                  <span class="text-xs text-slate-400">December 8, 2024</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">2024-2025 Budget Approved Unanimously</h2>
+                <p class="text-slate-500 text-sm">Board of Directors • 3 min read</p>
+              </div>
+              
+              <!-- Article Content -->
+              <div class="p-6">
+                <p class="text-slate-700 leading-relaxed mb-4">
+                  The Board of Directors voted unanimously to approve the 2024-2025 operating budget at last night's regular session. The $12.5 million budget includes key investments in:
+                </p>
+                <ul class="space-y-2 mb-6">
+                  <li class="flex items-start gap-2 text-slate-700">
+                    <i class="bi bi-check-circle-fill text-green-500 mt-1"></i>
+                    <span>Technology infrastructure upgrades</span>
+                  </li>
+                  <li class="flex items-start gap-2 text-slate-700">
+                    <i class="bi bi-check-circle-fill text-green-500 mt-1"></i>
+                    <span>Staff professional development programs</span>
+                  </li>
+                  <li class="flex items-start gap-2 text-slate-700">
+                    <i class="bi bi-check-circle-fill text-green-500 mt-1"></i>
+                    <span>Community outreach initiatives</span>
+                  </li>
+                </ul>
+                <a href="#" class="inline-flex items-center gap-2 text-rose-600 font-semibold hover:text-rose-700 transition-colors">
+                  <i class="bi bi-file-earmark-pdf"></i>
+                  <span>Download Full Budget Document</span>
+                </a>
+              </div>
+              
+              <!-- Article Footer -->
+              <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <button class="text-slate-500 hover:text-slate-700 transition-colors text-sm flex items-center gap-1">
+                    <i class="bi bi-share"></i> Share
+                  </button>
+                  <button class="text-slate-500 hover:text-slate-700 transition-colors text-sm flex items-center gap-1">
+                    <i class="bi bi-printer"></i> Print
+                  </button>
+                </div>
+                <button class="text-rose-600 hover:text-rose-700 transition-colors text-sm flex items-center gap-1 font-semibold">
+                  <i class="bi bi-bell"></i> Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integration with Board Portal -->
+    <section class="py-20 bg-gradient-to-br from-slate-50 to-rose-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Integrated with Your Board Portal</h2>
+            <p class="text-lg text-slate-600 leading-relaxed">Board News & Updates isn't a standalone tool—it's part of your complete BoardBlocs portal, connected to everything else.</p>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-200 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-calendar-event text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Link to Meetings</h3>
+              <p class="text-slate-600 text-sm">Reference specific meetings, agendas, and minutes directly in your news articles.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-200 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-file-earmark-text text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Attach Documents</h3>
+              <p class="text-slate-600 text-sm">Include policy documents, reports, and files from your DocMersion document center.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-200 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-phone text-white text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 mb-2">Mobile Notifications</h3>
+              <p class="text-slate-600 text-sm">Push news updates to stakeholders via the BoardBlocs mobile app.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-rose-500 via-pink-500 to-rose-600">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">Ready to Communicate Better?</h2>
+          <p class="text-xl text-white/90 mb-10 leading-relaxed">Give your board a dedicated communications hub. Keep stakeholders informed with BoardBlocs.</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-rose-600 bg-white shadow-2xl transition-all duration-300 hover:shadow-3xl hover:scale-105 text-lg">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            </a>
+            <a href="public-and-private-sites.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white border-2 border-white hover:bg-white hover:text-rose-600 transition-all duration-300 text-lg">
+              <span class="relative z-10">Explore Public Sites</span>
+              <i class="bi bi-globe relative z-10"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

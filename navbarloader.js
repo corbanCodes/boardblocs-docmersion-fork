@@ -807,11 +807,11 @@
                   <a href="meetings-and-agenda.html" class="mobile-submenu-item">Meetings &amp; Agendas</a>
                   <a href="committees-&-groups.html" class="mobile-submenu-item">Committees &amp; Groups</a>
                   <a href="discussions.html" class="mobile-submenu-item">Discussions (Avatar-Based + Sentiment)</a>
-                  <a href="#" class="mobile-submenu-item">Integrations</a>
+                  <a href="integrations.html" class="mobile-submenu-item">Integrations</a>
                   <a href="mobileapp.html" class="mobile-submenu-item">Mobile App &amp; Notifications</a>
                   <a href="accessibility.html" class="mobile-submenu-item">Accessibility (Compliance Suite)</a>
-                  <a href="#" class="mobile-submenu-item">Welcome Chat (BoardBlocs AI Assistant)</a>
-                  <a href="#" class="mobile-submenu-item">Board News &amp; Updates</a>
+                  <a href="welcome-chat.html" class="mobile-submenu-item">Welcome Chat (BoardBlocs AI Assistant)</a>
+                  <a href="board-news.html" class="mobile-submenu-item">Board News &amp; Updates</a>
                 </div>
                 <div class="dropdown-product-panel">
                   <div class="product-grid-title">Product</div>
@@ -851,13 +851,13 @@
                         <p class="product-item-body">Facilitate secure, avatar-guided discussions with insight into sentiment and tone.</p>
                       </div>
                     </a>
-                    <div class="product-item">
+                    <a href="integrations.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-link-45deg"></i></div>
                       <div>
                         <div class="product-item-title">Integrations</div>
                         <p class="product-item-body">Connect BoardBlocs with the tools and systems your board already uses.</p>
                       </div>
-                    </div>
+                    </a>
                     <a href="mobileapp.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-phone"></i></div>
                       <div>
@@ -872,20 +872,20 @@
                         <p class="product-item-body">Built-in tools to support accessibility and compliance across your board work.</p>
                       </div>
                     </a>
-                    <div class="product-item">
+                    <a href="welcome-chat.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-stars"></i></div>
                       <div>
                         <div class="product-item-title">Welcome Chat (BoardBlocs AI Assistant)</div>
                         <p class="product-item-body">An AI-powered assistant to welcome visitors and guide stakeholders to what they need.</p>
                       </div>
-                    </div>
-                    <div class="product-item">
+                    </a>
+                    <a href="board-news.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-newspaper"></i></div>
                       <div>
                         <div class="product-item-title">Board News &amp; Updates</div>
                         <p class="product-item-body">Share timely updates, announcements, and highlights with your board and community.</p>
                       </div>
-                    </div>
+                    </a>
                   </div>
                   <div class="product-footer">
                     <a href="book-demo.html">

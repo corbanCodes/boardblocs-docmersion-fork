@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WelcomeChat – AI-Powered Board Communication | BoardBlocs</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Custom Styles for WelcomeChat -->
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+      }
+      
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      .animate-pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+      
+      @keyframes typing-cursor {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      
+      .typing-cursor::after {
+        content: '|';
+        animation: typing-cursor 1s infinite;
+        color: #3b82f6;
+      }
+      
+      @keyframes scroll-tags {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      .animate-scroll-tags {
+        animation: scroll-tags 20s linear infinite;
+      }
+    </style>
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="relative flex items-center justify-center bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
+      <!-- Subtle background elements -->
+      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full opacity-8 blur-3xl"></div>
+      
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
+        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
+          <span class="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+            <i class="bi bi-stars mr-1"></i> AI-Powered Assistant
+          </span>
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            <span class="text-slate-900">Intelligent Board</span><br />
+            <span class="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">Communication</span>
+          </h1>
+          
+          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Transform your board's communication with intelligent AI assistance that provides instant, accurate answers to common questions. WelcomeChat learns from your content to deliver personalized responses 24/7.
+          </p>
+          
+          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
+          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);">
+              <span class="relative z-10">Discover AI Chat</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+              <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
+          <!-- Chat Interface Mockup -->
+          <div class="w-full max-w-md px-4">
+            <div class="bg-white rounded-3xl shadow-2xl p-6 border border-slate-200 animate-pulse-glow">
+              <!-- Chat Header -->
+              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <i class="bi bi-chat-dots-fill text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900">WelcomeChat</h3>
+                  <p class="text-sm text-green-500 flex items-center gap-1">
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    Online - Ready to help
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Chat Messages -->
+              <div class="space-y-4 mb-6">
+                <div class="chat-bubble flex gap-3">
+                  <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-robot text-white text-sm"></i>
+                  </div>
+                  <div class="bg-slate-100 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%]">
+                    <p class="text-slate-700 text-sm">Hi! I'm your BoardBlocs assistant. How can I help you today?</p>
+                  </div>
+                </div>
+                
+                <div class="chat-bubble flex gap-3 justify-end">
+                  <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%]">
+                    <p class="text-white text-sm">When is the next board meeting?</p>
+                  </div>
+                </div>
+                
+                <div class="chat-bubble flex gap-3">
+                  <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="bi bi-robot text-white text-sm"></i>
+                  </div>
+                  <div class="bg-slate-100 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%]">
+                    <p class="text-slate-700 text-sm">The next board meeting is scheduled for <strong>December 15th at 6:00 PM</strong>. Would you like me to share the agenda?</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Chat Input -->
+              <div class="flex items-center gap-3 bg-slate-50 rounded-full px-4 py-3">
+                <input type="text" placeholder="Ask a question..." class="flex-1 bg-transparent outline-none text-sm text-slate-700" disabled>
+                <button class="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all">
+                  <i class="bi bi-send-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile tagline - shown between logo and CTA button -->
+        <div class="lg:hidden w-full text-center order-3 px-4">
+          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
+            Transform your board's communication with intelligent AI assistance that provides instant, accurate answers to common questions. WelcomeChat learns from your content to deliver personalized responses 24/7.
+          </p>
+        </div>
+        
+        <!-- Book a Demo button - shown on mobile below logo -->
+        <div class="lg:hidden w-full flex justify-center order-4">
+          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);">
+            <span class="relative z-10">Discover AI Chat</span>
+            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instant Intelligence Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-lightning-charge-fill"></i>
+            <span>INSTANT INTELLIGENCE</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Transform How Your Community Accesses Information</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Intelligent processing that understands context and intent, delivering accurate answers when your community needs them.</p>
+        </div>
+
+        <!-- Feature Pills (Clickable Tabs) -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12" id="feature-tabs">
+          <button class="feature-tab active px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold text-sm shadow-lg transition-all duration-300" data-tab="realtime">Real-time Response</button>
+          <button class="feature-tab px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full font-semibold text-sm hover:bg-slate-200 transition-all duration-300" data-tab="natural">Natural Conversation</button>
+          <button class="feature-tab px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full font-semibold text-sm hover:bg-slate-200 transition-all duration-300" data-tab="context">Context Awareness</button>
+          <button class="feature-tab px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full font-semibold text-sm hover:bg-slate-200 transition-all duration-300" data-tab="adaptive">Adaptive Learning</button>
+          <button class="feature-tab px-5 py-2.5 bg-slate-100 text-slate-700 rounded-full font-semibold text-sm hover:bg-slate-200 transition-all duration-300" data-tab="integration">Smart Integration</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="max-w-4xl mx-auto">
+          <!-- Real-time Response -->
+          <div class="feature-content active" id="content-realtime">
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12 border border-amber-100">
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <i class="bi bi-lightning-charge-fill text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">Real-time Response</h3>
+                  <p class="text-lg text-slate-600 leading-relaxed mb-6">WelcomeChat provides quick responses to common questions, helping reduce wait times for your community. When someone asks about meeting schedules, policies, or general information, they get helpful answers without delay.</p>
+                  <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-amber-500"></i>
+                      <span>Quick answers to frequently asked questions</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-amber-500"></i>
+                      <span>Available around the clock</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-amber-500"></i>
+                      <span>Reduces repetitive inquiries for staff</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Natural Conversation -->
+          <div class="feature-content hidden" id="content-natural">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 border border-blue-100">
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <i class="bi bi-chat-dots-fill text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">Natural Conversation</h3>
+                  <p class="text-lg text-slate-600 leading-relaxed mb-6">Users can ask questions in their own words, just like they would ask a colleague. WelcomeChat understands everyday language and responds in a friendly, conversational way that feels natural and approachable.</p>
+                  <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-blue-500"></i>
+                      <span>No need to learn special commands or keywords</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-blue-500"></i>
+                      <span>Friendly, approachable responses</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-blue-500"></i>
+                      <span>Handles follow-up questions naturally</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Context Awareness -->
+          <div class="feature-content hidden" id="content-context">
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 md:p-12 border border-purple-100">
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <i class="bi bi-diagram-3-fill text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">Context Awareness</h3>
+                  <p class="text-lg text-slate-600 leading-relaxed mb-6">WelcomeChat remembers the flow of conversation and understands what users are referring to. If someone asks a follow-up question, it connects the dots and provides relevant information based on the ongoing discussion.</p>
+                  <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-purple-500"></i>
+                      <span>Remembers conversation history</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-purple-500"></i>
+                      <span>Understands references to previous questions</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-purple-500"></i>
+                      <span>Provides more relevant answers over time</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adaptive Learning -->
+          <div class="feature-content hidden" id="content-adaptive">
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 md:p-12 border border-green-100">
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <i class="bi bi-arrow-repeat text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">Adaptive Learning</h3>
+                  <p class="text-lg text-slate-600 leading-relaxed mb-6">As your content changes and grows, WelcomeChat stays up to date. When you update policies, add new documents, or change meeting schedules, the assistant learns from these updates to keep its answers current.</p>
+                  <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-green-500"></i>
+                      <span>Stays current with your latest content</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-green-500"></i>
+                      <span>Learns from new documents and updates</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-green-500"></i>
+                      <span>Improves over time based on usage</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Integration -->
+          <div class="feature-content hidden" id="content-integration">
+            <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-8 md:p-12 border border-cyan-100">
+              <div class="flex items-start gap-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <i class="bi bi-plug-fill text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">Smart Integration</h3>
+                  <p class="text-lg text-slate-600 leading-relaxed mb-6">WelcomeChat works seamlessly with your BoardBlocs portal. It can reference your meeting calendars, policy documents, and other content to provide helpful answers that point users to the right resources.</p>
+                  <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-cyan-500"></i>
+                      <span>Connected to your document library</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-cyan-500"></i>
+                      <span>Links to relevant pages and resources</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                      <i class="bi bi-check-circle-fill text-cyan-500"></i>
+                      <span>Works with your existing BoardBlocs setup</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Feature tabs functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.feature-tab');
+        const contents = document.querySelectorAll('.feature-content');
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-tab');
+            
+            // Remove active state from all tabs
+            tabs.forEach(t => {
+              t.classList.remove('active', 'bg-gradient-to-r', 'from-amber-500', 'to-orange-500', 'text-white', 'shadow-lg');
+              t.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            
+            // Add active state to clicked tab
+            this.classList.remove('bg-slate-100', 'text-slate-700');
+            this.classList.add('active', 'bg-gradient-to-r', 'from-amber-500', 'to-orange-500', 'text-white', 'shadow-lg');
+            
+            // Hide all content
+            contents.forEach(c => {
+              c.classList.add('hidden');
+              c.classList.remove('active');
+            });
+            
+            // Show target content
+            const targetContent = document.getElementById('content-' + targetId);
+            if (targetContent) {
+              targetContent.classList.remove('hidden');
+              targetContent.classList.add('active');
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- Knowledge Training Section -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
+            <i class="bi bi-database-fill"></i>
+            <span>KNOWLEDGE TRAINING</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">Trained on Your Content</h2>
+          <p class="text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">WelcomeChat learns from your existing website content and any specific documents you choose to include, ensuring responses are accurate, relevant, and aligned with your board's policies and information.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <!-- Left: Content Analysis -->
+          <div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center">
+                  <i class="bi bi-search text-white"></i>
+                </div>
+                Comprehensive Content Analysis
+              </h3>
+              <p class="text-slate-300 mb-8 leading-relaxed">Our advanced training process analyzes your entire website, extracting key information, policies, procedures, and frequently asked questions to build a comprehensive knowledge base tailored specifically to your board.</p>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3">
+                    <i class="bi bi-globe text-blue-400 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-white mb-1">Website Crawling</h4>
+                  <p class="text-slate-400 text-sm">Automatically scans all public pages</p>
+                </div>
+                
+                <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center mb-3">
+                    <i class="bi bi-file-earmark-pdf text-orange-400 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-white mb-1">Document Processing</h4>
+                  <p class="text-slate-400 text-sm">Extracts information from PDFs and files</p>
+                </div>
+                
+                <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mb-3">
+                    <i class="bi bi-shield-lock text-green-400 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-white mb-1">Privacy Protection</h4>
+                  <p class="text-slate-400 text-sm">Only processes approved content</p>
+                </div>
+                
+                <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center mb-3">
+                    <i class="bi bi-arrow-repeat text-purple-400 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-white mb-1">Regular Updates</h4>
+                  <p class="text-slate-400 text-sm">Stays current with content changes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Knowledge Base Visual -->
+          <div>
+            <div class="bg-white rounded-2xl p-6 shadow-2xl">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center">
+                  <i class="bi bi-database text-white"></i>
+                </div>
+                <span class="font-bold text-slate-900">WelcomeChat Knowledge Base</span>
+              </div>
+              
+              <!-- Scrolling Tags -->
+              <div class="overflow-hidden mb-6">
+                <div class="flex gap-3 animate-scroll-tags" style="width: max-content;">
+                  <span class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium whitespace-nowrap">Homepage</span>
+                  <span class="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium whitespace-nowrap">Policies</span>
+                  <span class="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium whitespace-nowrap">Events</span>
+                  <span class="px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-medium whitespace-nowrap">Staff</span>
+                  <span class="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium whitespace-nowrap">FAQs</span>
+                  <span class="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium whitespace-nowrap">News</span>
+                  <span class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium whitespace-nowrap">Homepage</span>
+                  <span class="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium whitespace-nowrap">Policies</span>
+                  <span class="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium whitespace-nowrap">Events</span>
+                  <span class="px-3 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-medium whitespace-nowrap">Staff</span>
+                  <span class="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-sm font-medium whitespace-nowrap">FAQs</span>
+                  <span class="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium whitespace-nowrap">News</span>
+                </div>
+              </div>
+              
+              <!-- Progress Bars -->
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="text-slate-600">Meeting Documents</span>
+                    <span class="text-slate-900 font-semibold">156 files</span>
+                  </div>
+                  <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="text-slate-600">Policy Documents</span>
+                    <span class="text-slate-900 font-semibold">42 files</span>
+                  </div>
+                  <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style="width: 65%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="text-slate-600">FAQ Entries</span>
+                    <span class="text-slate-900 font-semibold">89 entries</span>
+                  </div>
+                  <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full" style="width: 92%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-6 pt-6 border-t border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600 text-sm">Last updated: 2 hours ago</span>
+                  <span class="text-green-600 text-sm font-semibold flex items-center gap-1">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Fully synced
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Choose Your Training Documents Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Choose Your Training Documents</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Select specific documents and content areas to include in your WelcomeChat training for the most relevant and accurate responses.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+          <!-- Policy Documents -->
+          <div class="group bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-100 hover:border-blue-400 hover:shadow-xl transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="bi bi-file-earmark-text text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Policy Documents</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Board handbooks, bylaws, code of conduct, governance procedures</p>
+          </div>
+          
+          <!-- Procedures & Forms -->
+          <div class="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-100 hover:border-green-400 hover:shadow-xl transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="bi bi-clipboard-check text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Procedures & Forms</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Meeting processes, voting procedures, administrative forms</p>
+          </div>
+          
+          <!-- Schedules & Calendars -->
+          <div class="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-100 hover:border-purple-400 hover:shadow-xl transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="bi bi-calendar-event text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Schedules & Calendars</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Meeting calendars, event schedules, important dates, deadlines</p>
+          </div>
+          
+          <!-- FAQs & Guides -->
+          <div class="group bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border-2 border-amber-100 hover:border-amber-400 hover:shadow-xl transition-all duration-300">
+            <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="bi bi-question-circle text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">FAQs & Guides</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Common questions, how-to guides, troubleshooting resources</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="text-slate-600 mb-2 flex items-center justify-center gap-2">
+            <i class="bi bi-shield-check text-green-500"></i>
+            <span>You maintain full control over what content is included</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 bg-gradient-to-br from-slate-50 via-amber-50 to-slate-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-gear-fill"></i>
+            <span>HOW IT WORKS</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Simple Setup, Powerful Results</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Get WelcomeChat up and running in minutes, not months. Our streamlined process makes implementation effortless.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Step 1 -->
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-200 h-full">
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">1</div>
+              <div class="pt-4">
+                <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="bi bi-cloud-upload text-amber-600 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Connect Your Content</h3>
+                <p class="text-slate-600 leading-relaxed">Point WelcomeChat to your BoardBlocs site and select which documents to include in training.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-200 h-full">
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">2</div>
+              <div class="pt-4">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="bi bi-cpu text-blue-600 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">AI Learns Your Content</h3>
+                <p class="text-slate-600 leading-relaxed">Our AI analyzes your documents, policies, and FAQs to build a comprehensive knowledge base.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-200 h-full">
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">3</div>
+              <div class="pt-4">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                  <i class="bi bi-chat-heart text-green-600 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Start Helping Visitors</h3>
+                <p class="text-slate-600 leading-relaxed">WelcomeChat goes live on your site, instantly answering questions and guiding visitors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>BENEFITS</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">Why Boards Love WelcomeChat</h2>
+          <p class="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">Reduce staff workload while improving stakeholder satisfaction with intelligent, always-available assistance.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Benefit 1 -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border border-amber-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-clock-history text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Save Staff Time</h3>
+            <p class="text-slate-600 leading-relaxed">Automate responses to common questions, freeing your team to focus on complex issues that need human attention.</p>
+          </div>
+          
+          <!-- Benefit 2 -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-emoji-smile text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Improve Satisfaction</h3>
+            <p class="text-slate-600 leading-relaxed">Instant answers mean happier stakeholders. No more waiting for email responses or phone callbacks.</p>
+          </div>
+          
+          <!-- Benefit 3 -->
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-moon-stars text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">24/7 Availability</h3>
+            <p class="text-slate-600 leading-relaxed">WelcomeChat never sleeps. Provide support around the clock, even outside business hours.</p>
+          </div>
+          
+          <!-- Benefit 4 -->
+          <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-bullseye text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Accurate Responses</h3>
+            <p class="text-slate-600 leading-relaxed">Trained on your actual content, WelcomeChat provides consistent, accurate information every time.</p>
+          </div>
+          
+          <!-- Benefit 5 -->
+          <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-8 border border-cyan-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-translate text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Multi-Language Support</h3>
+            <p class="text-slate-600 leading-relaxed">Communicate with stakeholders in their preferred language with automatic translation capabilities.</p>
+          </div>
+          
+          <!-- Benefit 6 -->
+          <div class="bg-gradient-to-br from-rose-50 to-red-50 rounded-2xl p-8 border border-rose-100">
+            <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-red-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+              <i class="bi bi-bar-chart-line text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Actionable Insights</h3>
+            <p class="text-slate-600 leading-relaxed">Understand what your community is asking about with detailed analytics and conversation reports.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">Ready to Try WelcomeChat?</h2>
+          <p class="text-xl text-white/90 mb-10 leading-relaxed">See how AI can transform your board communication!</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-amber-600 bg-white shadow-2xl transition-all duration-300 hover:shadow-3xl hover:scale-105 text-lg">
+              <span class="relative z-10">Try WelcomeChat</span>
+              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
+            </a>
+            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white border-2 border-white hover:bg-white hover:text-amber-600 transition-all duration-300 text-lg">
+              <span class="relative z-10">Book a Demo</span>
+              <i class="bi bi-calendar-check relative z-10"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

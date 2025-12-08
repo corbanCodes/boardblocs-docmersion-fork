@@ -26,8 +26,11 @@ function loadFooter() {
               <li><a href="meetings-and-agenda.html" class="text-slate-600 hover:text-blue-600 transition-colors">Meetings & Agendas</a></li>
               <li><a href="committees-&-groups.html" class="text-slate-600 hover:text-blue-600 transition-colors">Committees & Groups</a></li>
               <li><a href="discussions.html" class="text-slate-600 hover:text-blue-600 transition-colors">Discussions</a></li>
+              <li><a href="integrations.html" class="text-slate-600 hover:text-blue-600 transition-colors">Integrations</a></li>
               <li><a href="mobileapp.html" class="text-slate-600 hover:text-blue-600 transition-colors">Mobile App</a></li>
               <li><a href="accessibility.html" class="text-slate-600 hover:text-blue-600 transition-colors">Accessibility</a></li>
+              <li><a href="welcome-chat.html" class="text-slate-600 hover:text-blue-600 transition-colors">Welcome Chat</a></li>
+              <li><a href="board-news.html" class="text-slate-600 hover:text-blue-600 transition-colors">Board News</a></li>
             </ul>
           </div>
           
