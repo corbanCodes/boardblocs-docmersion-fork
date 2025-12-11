@@ -87,7 +87,7 @@ function loadFooter() {
         </div>
         
         <!-- Bottom Bar -->
-        <div class="pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="text-sm text-slate-500">© <span id="year"></span> Sopris Apps, LLC. All rights reserved.</div>
         </div>
       </div>

@@ -84,47 +84,50 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hero video
   const heroVideo = document.getElementById('hero-video');
   const playButton = document.getElementById('play-button');
-  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
   
-  let isPlaying = false;
-  
-  if (Hls.isSupported()) {
-    const heroHls = new Hls();
-    heroHls.loadSource(heroVideoSrc);
-    heroHls.attachMedia(heroVideo);
-  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
-    // Safari native HLS support
-    heroVideo.src = heroVideoSrc;
-  }
-  
-  // Video click handler
-  function toggleVideo() {
-    if (isPlaying) {
-      heroVideo.pause();
-      playButton.style.opacity = '1';
-      isPlaying = false;
-    } else {
-      heroVideo.play();
+  if (heroVideo && playButton) {
+    const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
+    
+    let isPlaying = false;
+    
+    if (Hls.isSupported()) {
+      const heroHls = new Hls();
+      heroHls.loadSource(heroVideoSrc);
+      heroHls.attachMedia(heroVideo);
+    } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS support
+      heroVideo.src = heroVideoSrc;
+    }
+    
+    // Video click handler
+    function toggleVideo() {
+      if (isPlaying) {
+        heroVideo.pause();
+        playButton.style.opacity = '1';
+        isPlaying = false;
+      } else {
+        heroVideo.play();
+        playButton.style.opacity = '0';
+        isPlaying = true;
+      }
+    }
+    
+    // Add click handlers
+    heroVideo.addEventListener('click', toggleVideo);
+    playButton.addEventListener('click', toggleVideo);
+    
+    // Hide play button when video is playing
+    heroVideo.addEventListener('play', function() {
       playButton.style.opacity = '0';
       isPlaying = true;
-    }
+    });
+    
+    // Show play button when video is paused
+    heroVideo.addEventListener('pause', function() {
+      playButton.style.opacity = '1';
+      isPlaying = false;
+    });
   }
-  
-  // Add click handlers
-  heroVideo.addEventListener('click', toggleVideo);
-  playButton.addEventListener('click', toggleVideo);
-  
-  // Hide play button when video is playing
-  heroVideo.addEventListener('play', function() {
-    playButton.style.opacity = '0';
-    isPlaying = true;
-  });
-  
-  // Show play button when video is paused
-  heroVideo.addEventListener('pause', function() {
-    playButton.style.opacity = '1';
-    isPlaying = false;
-  });
 
   
   // Engagement video
@@ -281,6 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const replayButton = document.getElementById('replay-clutter-clarity');
     const container = document.getElementById('clutter-clarity-container');
     
+    // Exit early if required elements don't exist
+    if (!paperClutter || !organizedDocs) return;
+    
     let clutterTimeout;
     
     // Define target positions for organized grid (4x2 grid)
@@ -369,8 +375,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Store original transforms on load
+    const papers = paperClutter.querySelectorAll('.paper');
     setTimeout(() => {
-      const papers = paperClutter.querySelectorAll('.paper');
       papers.forEach(paper => {
         paper.setAttribute('data-original-transform', paper.style.transform);
       });
@@ -385,21 +391,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const scrollLeftBtn = document.getElementById('scroll-left');
   const scrollRightBtn = document.getElementById('scroll-right');
   
-  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
-  
   if (carousel && scrollLeftBtn && scrollRightBtn) {
     scrollLeftBtn.addEventListener('click', () => {
-      console.log('Left button clicked, scrolling left');
-      carousel.scrollBy({ left: -350, behavior: 'smooth' });
+      carousel.scrollBy({ left: -312, behavior: 'smooth' });
     });
     
     scrollRightBtn.addEventListener('click', () => {
-      console.log('Right button clicked, scrolling right');
-      carousel.scrollBy({ left: 350, behavior: 'smooth' });
+      carousel.scrollBy({ left: 312, behavior: 'smooth' });
     });
-    console.log('Event listeners attached successfully');
-  } else {
-    console.error('Failed to find carousel elements');
   }
 });
     </script>
@@ -467,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     <!-- All-in-One Board Management Hub Section -->
-    <section class="py-20 bg-white" style="overflow: visible;">
+    <section class="py-20 bg-white">
       <!-- Header stays in container -->
       <div class="container mx-auto px-4">
         <div class="mb-12 max-w-6xl mx-auto">
@@ -480,12 +479,12 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
         
-      <!-- Feature Cards - Responsive Grid on Mobile, Carousel on Desktop -->
-      <div class="container mx-auto px-4">
-        <!-- Mobile/Tablet Grid (hidden on xl+) -->
+      <!-- Feature Cards - Mobile/Tablet Grid -->
+      <div class="container mx-auto px-4 xl:hidden">
+        <!-- Mobile/Tablet Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:hidden">
           <!-- 1. Public and Private Sites -->
-          <a href="#" class="block bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="public-and-private-sites.html" class="block bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -496,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 2. Policies & Documents -->
-          <a href="#" class="block bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="policies-&-documents.html" class="block bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -507,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 3. Meetings & Agendas -->
-          <a href="#" class="block bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="meetings-and-agenda.html" class="block bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -518,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 4. Committees & Groups -->
-          <a href="#" class="block bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="committees-&-groups.html" class="block bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -529,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 5. Discussions -->
-          <a href="#" class="block bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="discussions.html" class="block bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -540,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 6. Integrations -->
-          <a href="#" class="block bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="integrations.html" class="block bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -551,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 7. Mobile App & Notifications -->
-          <a href="#" class="block bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="mobileapp.html" class="block bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -562,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 8. Accessibility -->
-          <a href="#" class="block bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="accessibility.html" class="block bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -573,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 9. Welcome Chat -->
-          <a href="#" class="block bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="welcome-chat.html" class="block bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -584,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
           <!-- 10. Board News & Updates -->
-          <a href="#" class="block bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
+          <a href="board-news.html" class="block bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl transition-all">
             <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
             <div class="relative z-10">
               <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-4">
@@ -595,13 +594,14 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </a>
         </div>
+      </div>
 
-        <!-- Desktop Carousel (hidden below xl) -->
-        <div class="hidden xl:block relative" style="overflow: visible;">
-          <div id="feature-carousel" class="flex gap-6 py-8 snap-x snap-mandatory scrollbar-hide" style="overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch;">
+      <!-- Desktop Carousel (hidden below xl) -->
+      <div class="hidden xl:block relative pl-4 xl:pl-[max(1rem,calc((100vw-1280px)/2+1rem))]">
+        <div id="feature-carousel" class="flex gap-6 py-8 snap-x snap-mandatory scrollbar-hide overflow-x-auto pr-8" style="-webkit-overflow-scrolling: touch;">
             <!-- 1. Public and Private Sites Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="public-and-private-sites.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -614,10 +614,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 2. Policies & Documents Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="policies-&-documents.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -630,10 +630,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 3. Meetings & Agendas Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="meetings-and-agenda.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -646,10 +646,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 4. Committees & Groups Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="committees-&-groups.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-purple-600 to-purple-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -662,10 +662,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 5. Discussions Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="discussions.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -678,10 +678,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 6. Integrations Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="integrations.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -694,10 +694,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 7. Mobile App & Notifications Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="mobileapp.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -710,10 +710,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 8. Accessibility Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="accessibility.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -726,10 +726,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 9. Welcome Chat Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-yellow-500 to-amber-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="welcome-chat.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-yellow-500 to-amber-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -742,10 +742,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 10. Board News & Updates Card -->
-            <div class="flex-shrink-0 w-72 snap-start">
-              <div class="h-full bg-gradient-to-br from-rose-500 to-rose-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <a href="board-news.html" class="flex-shrink-0 w-72 snap-start block" style="z-index: 1;">
+              <div class="h-full bg-gradient-to-br from-rose-500 to-rose-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-50">
                 <div class="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -mr-14 -mt-14"></div>
                 <div class="relative z-10">
                   <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center mb-5">
@@ -758,18 +758,19 @@ document.addEventListener('DOMContentLoaded', function() {
                   </span>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <!-- Navigation Arrows (Desktop only) -->
-          <div class="flex gap-3 mt-6">
-            <button type="button" id="scroll-left" onclick="document.getElementById('feature-carousel').scrollBy({ left: -300, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
-              <i class="bi bi-chevron-left text-xl"></i>
-            </button>
-            <button type="button" id="scroll-right" onclick="document.getElementById('feature-carousel').scrollBy({ left: 300, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
-              <i class="bi bi-chevron-right text-xl"></i>
-            </button>
-          </div>
+            </a>
+            <!-- Spacer for right edge -->
+            <div class="flex-shrink-0 w-8"></div>
+        </div>
+        
+        <!-- Navigation Arrows (Desktop only) -->
+        <div class="flex gap-3 mt-6">
+          <button type="button" id="scroll-left" onclick="document.getElementById('feature-carousel').scrollBy({ left: -312, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
+            <i class="bi bi-chevron-left text-xl"></i>
+          </button>
+          <button type="button" id="scroll-right" onclick="document.getElementById('feature-carousel').scrollBy({ left: 312, behavior: 'smooth' });" class="flex w-12 h-12 bg-blue-100 rounded-full items-center justify-center text-blue-600 hover:bg-blue-200 transition-all duration-300 cursor-pointer">
+            <i class="bi bi-chevron-right text-xl"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -1428,7 +1429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-slate-600 text-sm leading-relaxed">A cloud-based solution for leaders in tech.</p>
           </div>
         </a>
-        <a href="community.html" class="group relative block h-full">
+        <a href="community-organizations.html" class="group relative block h-full">
           <div class="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg h-full">
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-500 transition-colors duration-300">
               <i class="bi bi-people text-blue-600 text-xl group-hover:text-white"></i>
@@ -1446,7 +1447,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-slate-600 text-sm leading-relaxed">Built for better governance and shaping policies.</p>
           </div>
         </a>
-        <a href="realestate.html" class="group relative block h-full">
+        <a href="real-estate.html" class="group relative block h-full">
           <div class="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg h-full">
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-500 transition-colors duration-300">
               <i class="bi bi-house-door text-blue-600 text-xl group-hover:text-white"></i>
@@ -1455,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-slate-600 text-sm leading-relaxed">One place for all materials and communications.</p>
           </div>
         </a>
-        <a href="solutions.html" class="group relative block h-full">
+        <a href="view-all-solutions.html" class="group relative block h-full">
           <div class="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-500 transition-all duration-300 hover:shadow-lg h-full">
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-500 transition-colors duration-300">
               <i class="bi bi-grid-3x3 text-blue-600 text-xl group-hover:text-white"></i>
@@ -1480,7 +1481,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-slate-600 text-sm leading-relaxed">Solutions for managing board operations efficiently.</p>
           </div>
         </a>
-        <a href="board-leaders.html" class="group relative block h-full">
+        <a href="leaders.html" class="group relative block h-full">
           <div class="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-indigo-500 transition-all duration-300 hover:shadow-lg h-full">
             <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-500 transition-colors duration-300">
               <i class="bi bi-award text-indigo-600 text-xl group-hover:text-white"></i>
@@ -1489,7 +1490,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="text-slate-600 text-sm leading-relaxed">Tools for effective board leadership and governance.</p>
           </div>
         </a>
-        <a href="board-members.html" class="group relative block h-full">
+        <a href="members.html" class="group relative block h-full">
           <div class="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-indigo-500 transition-all duration-300 hover:shadow-lg h-full">
             <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-500 transition-colors duration-300">
               <i class="bi bi-person-circle text-indigo-600 text-xl group-hover:text-white"></i>

@@ -1018,7 +1018,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="pricing.html">Pricing</a>
               </li>
               <li class="nav-item dropdown-resources">
                 <a class="nav-link flex items-center gap-1" href="#" id="navResources">
