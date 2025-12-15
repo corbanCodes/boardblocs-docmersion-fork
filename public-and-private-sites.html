@@ -229,7 +229,7 @@
               </div>
               <div class="flex-shrink-0 hidden md:block">
                 <div class="bg-white/10 rounded-2xl p-4 w-64">
-                  <div class="bg-white/20 rounded-xl p-3 mb-3">
+                  <div class="bg-white/20 rounded-xl p-3 mb-3" style="cursor: default;">
                     <div class="flex items-center gap-2 text-sm mb-2">
                       <i class="bi bi-search"></i>
                       <span class="opacity-70">Search policies...</span>
@@ -351,26 +351,29 @@
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-16">
             <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-bold mb-6">
-              <i class="bi bi-mortarboard"></i>
-              <span>UNDERSTANDING POLICY GOVERNANCE</span>
+              <i class="bi bi-globe"></i>
+              <span>PUBLIC & PRIVATE SITES IN ACTION</span>
             </div>
             <h2 class="text-4xl md:text-5xl font-black mb-6">
-              What Does the School Board Do?
+              How Do Boards Make the Most of BoardBlocs?
             </h2>
             <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-              In our school district, voters elect school board members to represent the interests of all citizens and students.
+              Boards govern through policies, transparency, and community engagement—BoardBlocs makes it easy to share this work publicly while keeping sensitive discussions private.
             </p>
           </div>
           
           <!-- Video Embed Placeholder -->
           <div class="bg-slate-800 rounded-3xl p-8 mb-12 border border-slate-700">
-            <div class="aspect-video bg-slate-700 rounded-2xl flex items-center justify-center mb-6">
-              <a href="https://www.youtube.com/watch?v=8CxsV_RKMY0" target="_blank" class="group flex flex-col items-center gap-4 text-slate-400 hover:text-white transition-colors">
-                <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <i class="bi bi-play-fill text-4xl text-white ml-1"></i>
-                </div>
-                <span class="font-semibold">Watch: Understanding Policy Governance</span>
-              </a>
+            <div class="aspect-video bg-slate-700 rounded-2xl overflow-hidden mb-6">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/8CxsV_RKMY0" 
+                title="Understanding Policy Governance" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
             </div>
           </div>
           
@@ -482,58 +485,7 @@
           
           <!-- Right Visual -->
           <div class="relative">
-            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 shadow-2xl">
-              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-700">
-                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
-                  <i class="bi bi-shield-check text-white"></i>
-                </div>
-                <div>
-                  <div class="text-white font-bold">Private Board Portal</div>
-                  <div class="text-slate-400 text-sm">Secure • Encrypted • Members Only</div>
-                </div>
-              </div>
-              
-              <div class="space-y-4">
-                <div class="bg-slate-700/50 rounded-xl p-4">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i class="bi bi-folder-fill text-blue-400"></i>
-                    <span class="text-white font-semibold">Executive Session Materials</span>
-                    <span class="ml-auto bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded-full">Confidential</span>
-                  </div>
-                  <div class="text-slate-400 text-sm">3 documents • Updated 2 hours ago</div>
-                </div>
-                
-                <div class="bg-slate-700/50 rounded-xl p-4">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i class="bi bi-people-fill text-purple-400"></i>
-                    <span class="text-white font-semibold">Finance Committee</span>
-                    <span class="ml-auto bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded-full">Active</span>
-                  </div>
-                  <div class="text-slate-400 text-sm">New discussion • 5 members</div>
-                </div>
-                
-                <div class="bg-slate-700/50 rounded-xl p-4">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i class="bi bi-calendar-event-fill text-amber-400"></i>
-                    <span class="text-white font-semibold">Upcoming: Board Retreat</span>
-                  </div>
-                  <div class="text-slate-400 text-sm">March 15, 2024 • 9:00 AM</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Floating notification -->
-            <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 animate-float">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <i class="bi bi-bell-fill text-blue-600"></i>
-                </div>
-                <div>
-                  <div class="text-sm font-bold text-slate-900">New Comment</div>
-                  <div class="text-xs text-slate-500">Finance Committee</div>
-                </div>
-              </div>
-            </div>
+            <img src="access-restriction.png" alt="Private Board Portal" class="rounded-3xl shadow-2xl w-full">
           </div>
         </div>
       </div>
@@ -611,7 +563,7 @@
                   
                   <!-- News Items -->
                   <div class="divide-y divide-slate-100">
-                    <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                    <div class="p-4">
                       <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
@@ -622,7 +574,7 @@
                       </div>
                     </div>
                     
-                    <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                    <div class="p-4">
                       <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
@@ -633,7 +585,7 @@
                       </div>
                     </div>
                     
-                    <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+                    <div class="p-4">
                       <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
@@ -647,10 +599,10 @@
                   
                   <!-- Subscribe -->
                   <div class="p-4 bg-slate-50 border-t border-slate-100">
-                    <button class="w-full flex items-center justify-center gap-2 bg-rose-500 text-white py-2 rounded-lg font-semibold hover:bg-rose-600 transition-colors">
+                    <div class="w-full flex items-center justify-center gap-2 bg-rose-500 text-white py-2 rounded-lg font-semibold">
                       <i class="bi bi-bell"></i>
                       Subscribe to Updates
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>

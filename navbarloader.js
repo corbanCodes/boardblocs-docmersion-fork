@@ -16,6 +16,10 @@
 
         .navbar-brand span {
           font-size: 1.25rem;
+          text-decoration: underline;
+          text-decoration-color: #7DD3FC;
+          text-underline-offset: 4px;
+          text-decoration-thickness: 2px;
         }
 
         /* Hamburger menu styling */
@@ -94,11 +98,12 @@
           border-bottom: 2px solid currentColor;
           transform: rotate(45deg);
           display: inline-block;
-          margin-left: 2px;
-          margin-top: 1px;
+          margin-left: 4px;
+          margin-top: -2px;
           transform-origin: center;
           flex-shrink: 0;
           transition: transform 0.2s ease-in-out;
+          vertical-align: middle;
         }
 
         .login-arrow {
@@ -191,7 +196,7 @@
         }
 
         .dropdown-product.show-panel .nav-caret {
-          transform: rotate(-135deg) translateY(-2px);
+          transform: rotate(-135deg) translateY(-4px);
         }
 
         .dropdown-product.show-panel .nav-link {
@@ -220,7 +225,7 @@
         }
 
         .dropdown-solutions.show-panel .nav-caret {
-          transform: rotate(-135deg) translateY(-2px);
+          transform: rotate(-135deg) translateY(-4px);
         }
 
         .dropdown-solutions.show-panel .nav-link {
@@ -356,7 +361,7 @@
         }
 
         .dropdown-resources.show-panel .nav-caret {
-          transform: rotate(-135deg) translateY(-2px);
+          transform: rotate(-135deg) translateY(-4px);
         }
 
         .dropdown-resources.show-panel .nav-link {
@@ -492,7 +497,7 @@
         }
 
         .dropdown-why.show-panel .nav-caret {
-          transform: rotate(-135deg) translateY(-2px);
+          transform: rotate(-135deg) translateY(-4px);
         }
 
         .dropdown-why.show-panel .nav-link {
@@ -810,7 +815,7 @@
                   <a href="integrations.html" class="mobile-submenu-item">Integrations</a>
                   <a href="mobileapp.html" class="mobile-submenu-item">Mobile App &amp; Notifications</a>
                   <a href="accessibility.html" class="mobile-submenu-item">Accessibility (Compliance Suite)</a>
-                  <a href="welcome-chat.html" class="mobile-submenu-item">Welcome Chat (BoardBlocs AI Assistant)</a>
+                  <a href="welcome-chat.html" class="mobile-submenu-item">AI Answers</a>
                   <a href="board-news.html" class="mobile-submenu-item">Board News &amp; Updates</a>
                 </div>
                 <div class="dropdown-product-panel">
@@ -875,8 +880,8 @@
                     <a href="welcome-chat.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-stars"></i></div>
                       <div>
-                        <div class="product-item-title">Welcome Chat (BoardBlocs AI Assistant)</div>
-                        <p class="product-item-body">An AI-powered assistant to welcome visitors and guide stakeholders to what they need.</p>
+                        <div class="product-item-title">AI Answers</div>
+                        <p class="product-item-body">Ask about a policy, get the answers quickly.</p>
                       </div>
                     </a>
                     <a href="board-news.html" class="product-item">
@@ -1193,16 +1198,11 @@
             </ul>
 
             <div class="mobile-cta lg:hidden">
-              <a href="book-demo.html" class="btn-trial">Start Trial</a>
-              <a href="#" class="no-underline text-gray-800">Log In</a>
+              <a href="book-demo.html" class="btn-trial">Book Demo</a>
             </div>
 
             <div class="hidden lg:flex items-center gap-3">
-              <a href="book-demo.html" class="btn-trial">Start Trial</a>
-              <a href="#" class="no-underline text-gray-800 flex items-center gap-1">
-                <span>Log In</span>
-                <img src="log-in.png" alt="Log in" class="login-arrow" />
-              </a>
+              <a href="book-demo.html" class="btn-trial">Book Demo</a>
             </div>
           </div>
         </div>
