@@ -65,6 +65,93 @@
       </div>
     </section>
 
+    <!-- Q&A Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <i class="bi bi-chat-quote-fill"></i>
+            <span>COMMON QUESTIONS</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900">Quick <span style="color: #3b82f6;">Answers</span></h2>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- Q1 -->
+          <div class="faq-item bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200 overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-colors">
+              <span class="text-lg font-bold text-slate-900 pr-4">How is BoardBlocs priced?</span>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="bi bi-plus text-white text-xl faq-icon transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-slate-600 leading-relaxed">BoardBlocs requires a one-time setup fee as well as an annual hosting fee. The price is based on the size of your organization and averages $1k/year.</p>
+            </div>
+          </div>
+          
+          <!-- Q2 -->
+          <div class="faq-item bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200 overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-colors">
+              <span class="text-lg font-bold text-slate-900 pr-4">Is conversion of my PDFs to an ADA compliant view included?</span>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="bi bi-plus text-white text-xl faq-icon transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-slate-600 leading-relaxed">The startup fee is customized to include the work required to convert the documents you request. Additional conversions in the future may incur additional fees.</p>
+            </div>
+          </div>
+          
+          <!-- Q3 -->
+          <div class="faq-item bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200 overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-colors">
+              <span class="text-lg font-bold text-slate-900 pr-4">Is there a free trial?</span>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="bi bi-plus text-white text-xl faq-icon transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-slate-600 leading-relaxed">Only kinda! We offer a personalized demo and ability to login to a sandbox account to try all of the features so you can experience BoardBlocs before committing. <a href="book-demo.html" class="text-blue-600 font-semibold hover:underline">Book a demo</a> to get started.</p>
+            </div>
+          </div>
+          
+          <!-- Q4 -->
+          <div class="faq-item bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200 overflow-hidden">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-colors">
+              <span class="text-lg font-bold text-slate-900 pr-4">What's included in the onboarding?</span>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                <i class="bi bi-plus text-white text-xl faq-icon transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-slate-600 leading-relaxed">Our white-glove onboarding includes discovery and planning, complete technical setup, integration with your existing tools, custom branding, training for your board members, and ongoing support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <script>
+      function toggleFaq(button) {
+        const item = button.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const icon = button.querySelector('.faq-icon');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.querySelector('.faq-answer').classList.add('hidden');
+            otherItem.querySelector('.faq-icon').classList.remove('rotate-45');
+          }
+        });
+        
+        // Toggle current item
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-45');
+      }
+    </script>
+
     <!-- What's Included Section -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4">
