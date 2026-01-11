@@ -357,54 +357,28 @@ document.addEventListener('DOMContentLoaded', function() {
             </p>
           </div>
           
-          <!-- Problem cards -->
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-blue-500/50 transition-colors h-full">
-              <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
-                <i class="bi bi-eye-slash text-3xl text-blue-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-4">Screen Reader Failures</h3>
-              <p class="text-slate-400 leading-relaxed">
-                Most PDFs lack proper tagging, making them completely inaccessible to visually impaired users who rely on screen readers.
-              </p>
-            </div>
-            
-            <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-blue-500/50 transition-colors h-full">
-              <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
-                <i class="bi bi-phone-flip text-3xl text-blue-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-4">Mobile Nightmares</h3>
-              <p class="text-slate-400 leading-relaxed">
-                PDFs don't reflow on mobile devices. Users pinch, zoom, and scroll endlessly just to read a single paragraph.
-              </p>
-            </div>
-            
-            <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 hover:border-blue-500/50 transition-colors h-full">
-              <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
-                <i class="bi bi-briefcase text-3xl text-blue-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-4">Lawsuit Liability</h3>
-              <p class="text-slate-400 leading-relaxed">
-                ADA lawsuits against public entities are skyrocketing. Inaccessible documents are low-hanging fruit for plaintiffs.
-              </p>
-            </div>
-          </div>
-          
           <!-- Stat callout -->
-          <div class="mt-16 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-3xl p-8 md:p-12 border border-blue-500/30">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div class="text-5xl font-black text-blue-400 mb-2">97%</div>
-                <div class="text-slate-400">of PDFs fail basic accessibility tests</div>
+          <div class="mt-16 grid md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl p-8 border border-blue-500/30 text-center flex flex-col justify-center min-h-[160px]">
+              <div class="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-building text-blue-400 text-2xl"></i>
               </div>
-              <div>
-                <div class="text-5xl font-black text-indigo-400 mb-2">$75K+</div>
-                <div class="text-slate-400">average ADA lawsuit settlement</div>
+              <div class="text-xl font-bold text-blue-400 mb-2">Most Organizations</div>
+              <div class="text-slate-400 text-sm">Struggle with digital accessibility</div>
+            </div>
+            <div class="bg-gradient-to-br from-indigo-500/20 to-indigo-600/10 rounded-2xl p-8 border border-indigo-500/30 text-center flex flex-col justify-center min-h-[160px]">
+              <div class="w-14 h-14 bg-indigo-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-file-earmark-text text-indigo-400 text-2xl"></i>
               </div>
-              <div>
-                <div class="text-5xl font-black text-purple-400 mb-2">3x</div>
-                <div class="text-slate-400">increase in digital accessibility lawsuits</div>
+              <div class="text-xl font-bold text-indigo-400 mb-2">Millions of Documents</div>
+              <div class="text-slate-400 text-sm">Are shared online every day</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl p-8 border border-purple-500/30 text-center flex flex-col justify-center min-h-[160px]">
+              <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <i class="bi bi-arrow-up-right-circle text-purple-400 text-2xl"></i>
               </div>
+              <div class="text-xl font-bold text-purple-400 mb-2">Accessibility Standards</div>
+              <div class="text-slate-400 text-sm">Are evolving rapidly</div>
             </div>
           </div>
         </div>

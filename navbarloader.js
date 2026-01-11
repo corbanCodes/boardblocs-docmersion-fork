@@ -809,7 +809,7 @@
                   <div class="mobile-submenu-header">Product</div>
                   <a href="public-and-private-sites.html" class="mobile-submenu-item">Public and Private Sites</a>
                   <a href="policies-&-documents.html" class="mobile-submenu-item">Policies &amp; Documents (DocMersion ADA Engine)</a>
-                  <a href="meetings-and-agenda.html" class="mobile-submenu-item">Meetings &amp; Agendas</a>
+                  <a href="meetings-and-agenda.html" class="mobile-submenu-item">Meetings, Events, &amp; Agendas</a>
                   <a href="committees-&-groups.html" class="mobile-submenu-item">Committees &amp; Groups</a>
                   <a href="discussions.html" class="mobile-submenu-item">Discussions (Avatar-Based + Sentiment)</a>
                   <a href="integrations.html" class="mobile-submenu-item">Integrations</a>
@@ -838,7 +838,7 @@
                     <a href="meetings-and-agenda.html" class="product-item">
                       <div class="product-item-icon"><i class="bi bi-calendar-check"></i></div>
                       <div>
-                        <div class="product-item-title">Meetings &amp; Agendas</div>
+                        <div class="product-item-title">Meetings, Events, &amp; Agendas</div>
                         <p class="product-item-body">Plan, organize, and share board and committee meetings with clear agendas.</p>
                       </div>
                     </a>
@@ -894,12 +894,8 @@
                   </div>
                   <div class="product-footer">
                     <a href="book-demo.html">
-                      <i class="bi bi-person-circle"></i>
-                      <span>Start free trial</span>
-                    </a>
-                    <a href="#">
-                      <i class="bi bi-play-circle"></i>
-                      <span>Watch demo</span>
+                      <i class="bi bi-calendar-check"></i>
+                      <span>Book Demo</span>
                     </a>
                   </div>
                 </div>
@@ -1012,12 +1008,8 @@
                   </div>
                   <div class="solutions-footer">
                     <a href="book-demo.html">
-                      <i class="bi bi-person-circle"></i>
-                      <span>Start free trial</span>
-                    </a>
-                    <a href="#">
-                      <i class="bi bi-play-circle"></i>
-                      <span>Watch demo</span>
+                      <i class="bi bi-calendar-check"></i>
+                      <span>Book Demo</span>
                     </a>
                   </div>
                 </div>
@@ -1039,10 +1031,9 @@
                   <a href="board-committee-meetings.html" class="mobile-submenu-item">Board & Committee Meetings</a>
                   <a href="fundraising.html" class="mobile-submenu-item">Fundraising</a>
                   <a href="agenda-resources.html" class="mobile-submenu-item">Agendas, Minutes & Record Keeping</a>
-                  <div class="mobile-submenu-header">By Type</div>
-                  <a href="blog.html" class="mobile-submenu-item">Blogs</a>
-                  <a href="case-studies.html" class="mobile-submenu-item">Case Studies</a>
-                  <a href="book-demo.html" class="mobile-submenu-item">Boardblocs Consultant</a>
+                  <div class="mobile-submenu-header">Other Resources</div>
+                  <a href="case-studies.html" class="mobile-submenu-item">Case Study</a>
+                  <a href="blog.html" class="mobile-submenu-item">Blog</a>
                 </div>
                 <div class="dropdown-resources-panel">
                   <div class="resources-columns">
@@ -1107,25 +1098,20 @@
                       </div>
                     </div>
                     <div>
-                      <div class="resources-column-title">View By Type</div>
+                      <div class="resources-column-title">View Other Resources</div>
                       <div class="resources-list single-column">
-                        <a href="blog.html" class="resources-item no-underline">
-                          <div class="resources-item-icon"><i class="bi bi-rss"></i></div>
-                          <div>
-                            <div class="resources-item-title">Blogs</div>
-                          </div>
-                        </a>
-                        <a href="case-studies.html" class="resources-item no-underline">
+                        <a href="case-studies.html" class="resources-item" style="text-decoration: none; color: inherit;">
                           <div class="resources-item-icon"><i class="bi bi-file-earmark-text"></i></div>
                           <div>
-                            <div class="resources-item-title">Case Studies</div>
+                            <div class="resources-item-title">Case Study</div>
+                            <p class="resources-item-body">See how DocMersion by BoardBlocs transformed policy management.</p>
                           </div>
                         </a>
-                        <a href="book-demo.html" class="resources-item no-underline">
-                          <div class="resources-item-icon"><i class="bi bi-phone"></i></div>
+                        <a href="blog.html" class="resources-item" style="text-decoration: none; color: inherit;">
+                          <div class="resources-item-icon"><i class="bi bi-rss"></i></div>
                           <div>
-                            <div class="resources-item-title">Boardblocs Consultant</div>
-                            <p class="resources-item-body">Meet Boardblocs Consultant, your new go-to advisor for elevating your nonprofit!</p>
+                            <div class="resources-item-title">Blog</div>
+                            <p class="resources-item-body">Insights and updates on board management best practices.</p>
                           </div>
                         </a>
                       </div>
@@ -1133,12 +1119,8 @@
                   </div>
                   <div class="resources-footer">
                     <a href="book-demo.html">
-                      <i class="bi bi-person-circle"></i>
-                      <span>Start free trial</span>
-                    </a>
-                    <a href="#">
-                      <i class="bi bi-play-circle"></i>
-                      <span>Watch demo</span>
+                      <i class="bi bi-calendar-check"></i>
+                      <span>Book Demo</span>
                     </a>
                   </div>
                 </div>
@@ -1185,12 +1167,8 @@
                   </div>
                   <div class="why-footer">
                     <a href="book-demo.html">
-                      <i class="bi bi-person-circle"></i>
-                      <span>Start free trial</span>
-                    </a>
-                    <a href="#">
-                      <i class="bi bi-play-circle"></i>
-                      <span>Watch demo</span>
+                      <i class="bi bi-calendar-check"></i>
+                      <span>Book Demo</span>
                     </a>
                   </div>
                 </div>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- BEGIN BOARDBLOCS FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <!-- END BOARDBLOCS FAVICONS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making Board Documents Accessible to Everyone – BoardBlocs Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Navbar and Footer Loaders -->
+    <script src="navbarloader.js"></script>
+    <script src="footerloader.js"></script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter">
+    <!-- Navbar will be loaded by navbarloader.js -->
+    <div id="navbar-container"></div>
+
+    <!-- Article Header -->
+    <section class="relative bg-gradient-to-br from-emerald-500 to-teal-600 py-20 md:py-28 overflow-hidden">
+      <div class="absolute top-20 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors">
+            <i class="bi bi-arrow-left"></i>
+            <span>Back to Blog</span>
+          </a>
+          
+          <div class="flex items-center justify-center gap-2 mb-6">
+            <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-bold">Accessibility</span>
+          </div>
+          
+          <h1 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">
+            Making Board Documents Accessible to Everyone
+          </h1>
+          
+          <p class="text-xl text-emerald-100 leading-relaxed">
+            Why accessible documents matter and how to make policies and meeting materials easier for all community members to use.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto">
+          <article class="prose prose-lg max-w-none">
+            
+            <p class="text-xl text-slate-600 leading-relaxed mb-8">
+              Board documents like policies, agendas, and minutes are meant to inform the public. But if those documents are difficult to read, search, or access on different devices, they're not serving their purpose as well as they could.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 mt-12 mb-4">The Challenge with Traditional PDFs</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              Many boards publish documents as PDF files. While PDFs preserve formatting, they can create barriers for some users. Screen readers may struggle with poorly structured PDFs. Mobile users often have to pinch and zoom to read content. And searching across multiple documents becomes difficult.
+            </p>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              This doesn't mean PDFs are bad—they have their place. But relying solely on PDFs can make it harder for some community members to access the information they need.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 mt-12 mb-4">What Accessible Documents Look Like</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              Accessible documents work well for everyone, regardless of how they're accessing the content. This means:
+            </p>
+            <ul class="space-y-3 text-slate-600 mb-6">
+              <li class="flex items-start gap-3">
+                <i class="bi bi-check-circle text-emerald-600 mt-1"></i>
+                <span>Text that can be read by screen readers and other assistive technologies</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="bi bi-check-circle text-emerald-600 mt-1"></i>
+                <span>Content that adjusts to fit different screen sizes</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="bi bi-check-circle text-emerald-600 mt-1"></i>
+                <span>The ability to search within and across documents</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="bi bi-check-circle text-emerald-600 mt-1"></i>
+                <span>Clear headings and structure that make navigation easier</span>
+              </li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-slate-900 mt-12 mb-4">Translation and Language Access</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              Communities are diverse, and not everyone reads English as their primary language. When documents are published in accessible web formats rather than static PDFs, browser translation tools work better. This helps more community members understand board policies and decisions.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 mt-12 mb-4">Practical Steps Forward</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              Improving document accessibility doesn't have to happen all at once. Start with your most-viewed documents—often policies that community members reference frequently. Consider publishing these as web pages in addition to PDFs.
+            </p>
+            <p class="text-slate-600 leading-relaxed mb-6">
+              When creating new documents, use proper heading structures and avoid relying solely on visual formatting to convey meaning. These small changes add up over time.
+            </p>
+
+            <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 mt-12">
+              <h3 class="text-lg font-bold text-slate-900 mb-3">Key Takeaways</h3>
+              <ul class="space-y-2 text-slate-600">
+                <li class="flex items-start gap-2">
+                  <i class="bi bi-check-circle-fill text-emerald-600 mt-1"></i>
+                  <span>PDFs alone can create barriers for some users</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="bi bi-check-circle-fill text-emerald-600 mt-1"></i>
+                  <span>Web-based documents work better on mobile and with screen readers</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="bi bi-check-circle-fill text-emerald-600 mt-1"></i>
+                  <span>Accessible formats make translation easier for diverse communities</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="bi bi-check-circle-fill text-emerald-600 mt-1"></i>
+                  <span>Start with your most-viewed documents and build from there</span>
+                </li>
+              </ul>
+            </div>
+
+          </article>
+
+          <!-- Back to Blog -->
+          <div class="mt-12 pt-8 border-t border-slate-200">
+            <a href="blog.html" class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:gap-3 transition-all">
+              <i class="bi bi-arrow-left"></i>
+              <span>Back to All Articles</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-br from-slate-900 to-slate-800">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to make your documents more accessible?</h2>
+          <p class="text-slate-300 mb-8">DocMersion by BoardBlocs transforms your policies into searchable, accessible web pages.</p>
+          <a href="book-demo.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <span>Book a Demo</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will be loaded by footerloader.js -->
+    <script src="contactformloader.js"></script>
+  </body>
+</html>

@@ -12,7 +12,7 @@
     <!-- END BOARDBLOCS FAVICONS -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Board Portal Software for Associations – BoardBlocs</title>
+    <title>Blog – BoardBlocs</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,528 +31,146 @@
       };
     </script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- HLS.js for video streaming -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="styles.css" />
-    <!-- Custom Styles for Search Story Animation -->
-    <style>
-      @keyframes scroll-up {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-50%); }
-      }
-      
-      .animate-scroll-up {
-        animation: scroll-up 8s linear infinite;
-      }
-      
-      @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
-      }
-      
-      .typing-effect {
-        overflow: hidden;
-        white-space: nowrap;
-        animation: typing 2s steps(20, end);
-      }
-      
-      /* Hide scrollbar for feature cards carousel */
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
     <!-- Navbar and Footer Loaders -->
     <script src="navbarloader.js"></script>
     <script src="footerloader.js"></script>
   </head>
-  <body class="bg-white text-gray-900">
+  <body class="bg-white text-gray-900 font-inter">
     <!-- Navbar will be loaded by navbarloader.js -->
     <div id="navbar-container"></div>
-    <script>
-// Initialize HLS video players
-document.addEventListener('DOMContentLoaded', function() {
-  // Hero video
-  const heroVideo = document.getElementById('hero-video');
-  const playButton = document.getElementById('play-button');
-  const heroVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/39541dbdf185fd1af5e1853fb94e75e0/manifest/video.m3u8';
-  
-  let isPlaying = false;
-  
-  if (Hls.isSupported()) {
-    const heroHls = new Hls();
-    heroHls.loadSource(heroVideoSrc);
-    heroHls.attachMedia(heroVideo);
-  } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
-    // Safari native HLS support
-    heroVideo.src = heroVideoSrc;
-  }
-  
-  // Video click handler
-  function toggleVideo() {
-    if (isPlaying) {
-      heroVideo.pause();
-      playButton.style.opacity = '1';
-      isPlaying = false;
-    } else {
-      heroVideo.play();
-      playButton.style.opacity = '0';
-      isPlaying = true;
-    }
-  }
-  
-  // Add click handlers
-  heroVideo.addEventListener('click', toggleVideo);
-  playButton.addEventListener('click', toggleVideo);
-  
-  // Hide play button when video is playing
-  heroVideo.addEventListener('play', function() {
-    playButton.style.opacity = '0';
-    isPlaying = true;
-  });
-  
-  // Show play button when video is paused
-  heroVideo.addEventListener('pause', function() {
-    playButton.style.opacity = '1';
-    isPlaying = false;
-  });
-
-  
-  // Engagement video
-  const engagementVideo = document.getElementById('engagement-video');
-  if (engagementVideo) {
-    const engagementVideoSrc = 'https://customer-394md8sxxno51fu2.cloudflarestream.com/d93e730cd30a2e3c52a91ae8270b9231/manifest/video.m3u8';
-    
-    if (Hls.isSupported()) {
-      const engagementHls = new Hls();
-      engagementHls.loadSource(engagementVideoSrc);
-      engagementHls.attachMedia(engagementVideo);
-    } else if (engagementVideo.canPlayType('application/vnd.apple.mpegurl')) {
-      // Safari native HLS support
-      engagementVideo.src = engagementVideoSrc;
-    }
-  }
-  
-  // Search Story Animation
-  function initSearchStoryAnimation() {
-    const textWall = document.getElementById('text-wall');
-    const searchOverlay = document.getElementById('search-overlay');
-    const cleanResult = document.getElementById('clean-result');
-    const typingText = document.getElementById('typing-text');
-    const replayButton = document.getElementById('replay-animation');
-    
-    let animationTimeout;
-    
-    function startAnimation() {
-      // Reset all states
-      textWall.style.opacity = '1';
-      searchOverlay.style.opacity = '0';
-      cleanResult.style.opacity = '0';
-      typingText.textContent = '';
-      
-      // Clear any existing timeouts
-      if (animationTimeout) clearTimeout(animationTimeout);
-      
-      // Step 1: Show scrolling text for 3 seconds
-      animationTimeout = setTimeout(() => {
-        // Step 2: Show search overlay
-        searchOverlay.style.opacity = '1';
-        searchOverlay.querySelector('.bg-white').style.transform = 'scale(1)';
-        
-        // Step 3: Type search query
-        const searchQuery = 'DocMersion transforms';
-        let currentChar = 0;
-        
-        const typeInterval = setInterval(() => {
-          if (currentChar < searchQuery.length) {
-            typingText.textContent = searchQuery.substring(0, currentChar + 1);
-            currentChar++;
-          } else {
-            clearInterval(typeInterval);
-            
-            // Step 4: Fade out text wall and search, show result
-            setTimeout(() => {
-              textWall.style.opacity = '0';
-              searchOverlay.style.opacity = '0';
-              cleanResult.style.opacity = '1';
-            }, 500);
-          }
-        }, 100);
-        
-      }, 3000);
-    }
-    
-    // Start animation when section comes into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startAnimation();
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    const container = document.getElementById('search-story-container');
-    if (container) {
-      observer.observe(container);
-    }
-    
-    // Replay button functionality
-    if (replayButton) {
-      replayButton.addEventListener('click', startAnimation);
-    }
-  }
-  
-  // Initialize search story animation
-  initSearchStoryAnimation();
-  
-  // PDF Transform Animation
-  function initPDFTransformAnimation() {
-    const staticPdf = document.getElementById('static-pdf');
-    const interactiveWebpage = document.getElementById('interactive-webpage');
-    const replayButton = document.getElementById('replay-pdf-transform');
-    const pdfContainer = document.getElementById('pdf-transform-container');
-    
-    let transformTimeout;
-    
-    function startTransformation() {
-      // Reset states
-      staticPdf.style.opacity = '1';
-      staticPdf.style.transform = 'scale(1)';
-      interactiveWebpage.style.opacity = '0';
-      interactiveWebpage.style.transform = 'scale(0.8)';
-      
-      // Clear any existing timeouts
-      if (transformTimeout) clearTimeout(transformTimeout);
-      
-      // Start transformation after 2 seconds
-      transformTimeout = setTimeout(() => {
-        // Shrink and fade out PDF
-        staticPdf.style.transform = 'scale(0.8)';
-        staticPdf.style.opacity = '0';
-        
-        // Fade in and scale up webpage
-        setTimeout(() => {
-          interactiveWebpage.style.opacity = '1';
-          interactiveWebpage.style.transform = 'scale(1)';
-        }, 500);
-      }, 2000);
-    }
-    
-    // Click handler for PDF
-    if (staticPdf) {
-      staticPdf.addEventListener('click', startTransformation);
-    }
-    
-    // Auto-start when section comes into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(startTransformation, 1000);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    if (pdfContainer) {
-      observer.observe(pdfContainer);
-    }
-    
-    // Replay button functionality
-    if (replayButton) {
-      replayButton.addEventListener('click', startTransformation);
-    }
-  }
-  
-  // Initialize PDF transform animation
-  initPDFTransformAnimation();
-  
-  // Clutter to Clarity Animation
-  function initClutterClarityAnimation() {
-    const paperClutter = document.getElementById('paper-clutter');
-    const organizedDocs = document.getElementById('organized-docs');
-    const replayButton = document.getElementById('replay-clutter-clarity');
-    const container = document.getElementById('clutter-clarity-container');
-    
-    let clutterTimeout;
-    
-    // Define target positions for organized grid (4x2 grid)
-    const targetPositions = [
-      { x: -180, y: -60 },  // Top row, 1st position
-      { x: -60, y: -60 },   // Top row, 2nd position  
-      { x: 60, y: -60 },    // Top row, 3rd position
-      { x: 180, y: -60 },   // Top row, 4th position
-      { x: -180, y: 60 },   // Bottom row, 1st position
-      { x: -60, y: 60 },    // Bottom row, 2nd position
-      { x: 60, y: 60 },     // Bottom row, 3rd position
-      { x: 180, y: 60 }     // Bottom row, 4th position
-    ];
-    
-    function startClutterTransform() {
-      // Reset states
-      paperClutter.style.opacity = '1';
-      organizedDocs.style.opacity = '0';
-      
-      // Clear any existing timeouts
-      if (clutterTimeout) clearTimeout(clutterTimeout);
-      
-      // Start transformation after 2 seconds
-      clutterTimeout = setTimeout(() => {
-        // Organize papers into grid positions
-        const papers = paperClutter.querySelectorAll('.paper');
-        papers.forEach((paper, index) => {
-          const target = targetPositions[index];
-          if (target) {
-            setTimeout(() => {
-              // Move to organized position and straighten
-              paper.style.transform = `translate(${target.x}px, ${target.y}px) rotate(0deg) scale(0.7)`;
-              paper.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            }, index * 150);
-          }
-        });
-        
-        // After papers are organized, fade to final organized view
-        setTimeout(() => {
-          paperClutter.style.opacity = '0';
-          organizedDocs.style.opacity = '1';
-        }, 2000);
-      }, 2000);
-    }
-    
-    // Click handler for container
-    if (container) {
-      container.addEventListener('click', startClutterTransform);
-    }
-    
-    // Auto-start when section comes into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(startClutterTransform, 1000);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    if (container) {
-      observer.observe(container);
-    }
-    
-    // Replay button functionality
-    if (replayButton) {
-      replayButton.addEventListener('click', () => {
-        // Reset paper positions to original chaotic state
-        const papers = paperClutter.querySelectorAll('.paper');
-        papers.forEach((paper, index) => {
-          paper.style.transition = 'none';
-          paper.style.transform = paper.getAttribute('data-original-transform') || '';
-          paper.style.opacity = '1';
-        });
-        
-        // Store original transforms if not already stored
-        papers.forEach(paper => {
-          if (!paper.getAttribute('data-original-transform')) {
-            const computedStyle = window.getComputedStyle(paper);
-            const transform = computedStyle.transform;
-            paper.setAttribute('data-original-transform', paper.style.transform);
-          }
-        });
-        
-        setTimeout(startClutterTransform, 100);
-      });
-    }
-    
-    // Store original transforms on load
-    setTimeout(() => {
-      const papers = paperClutter.querySelectorAll('.paper');
-      papers.forEach(paper => {
-        paper.setAttribute('data-original-transform', paper.style.transform);
-      });
-    }, 100);
-  }
-  
-  // Initialize clutter to clarity animation
-  initClutterClarityAnimation();
-  
-  // Feature carousel navigation
-  const carousel = document.getElementById('feature-carousel');
-  const scrollLeftBtn = document.getElementById('scroll-left');
-  const scrollRightBtn = document.getElementById('scroll-right');
-  
-  console.log('Carousel elements:', { carousel, scrollLeftBtn, scrollRightBtn });
-  
-  if (carousel && scrollLeftBtn && scrollRightBtn) {
-    scrollLeftBtn.addEventListener('click', () => {
-      console.log('Left button clicked, scrolling left');
-      carousel.scrollBy({ left: -350, behavior: 'smooth' });
-    });
-    
-    scrollRightBtn.addEventListener('click', () => {
-      console.log('Right button clicked, scrolling right');
-      carousel.scrollBy({ left: 350, behavior: 'smooth' });
-    });
-    console.log('Event listeners attached successfully');
-  } else {
-    console.error('Failed to find carousel elements');
-  }
-});
-    </script>
 
     <!-- Hero Section -->
-    <section class="relative flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 py-16 md:py-24 overflow-hidden" style="min-height: calc(100vh - 80px);">
-      <!-- Subtle background elements -->
-      <div class="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-10 blur-3xl"></div>
-      <div class="absolute bottom-32 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-full opacity-8 blur-3xl"></div>
+    <section class="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-20 md:py-28 overflow-hidden">
+      <div class="absolute top-20 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full opacity-15 blur-3xl"></div>
+      <div class="absolute bottom-20 left-1/4 w-80 h-80 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full opacity-10 blur-3xl"></div>
       
-      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-8 relative z-10">
-        <div class="max-w-xl lg:text-left text-center lg:basis-5/12 lg:max-w-[45%] w-full order-1 lg:order-1">
-          <!-- <span class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
-            ✨ Introducing DocMersion
-          </span> -->
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-white/20">
+            <i class="bi bi-journal-richtext text-blue-400"></i>
+            <span>BOARDBLOCS BLOG</span>
+          </div>
           
-          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-            <span class="text-slate-900">The Boardblocs</span><br />
-            <span class="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">board portal blog</span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white">
+            Insights for Modern Boards
           </h1>
           
-          <p class="hidden lg:block text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium">
-            Ideas, examples, and practical takes on public board sites, private portals, accessible documents, and the tools modern boards actually use.
+          <p class="text-xl text-blue-100 leading-relaxed">
+            Practical ideas on running better board meetings, managing documents, and keeping your community informed.
           </p>
-          
-          <!-- Book a Demo button - hidden on mobile, shown on desktop -->
-          <div class="hidden lg:flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-center lg:text-left">
-            <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-lg" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
-              <span class="relative z-10">Book a Demo</span>
-              <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
-              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
-          </div>
-        </div>
-        
-        <div class="flex-1 flex justify-center items-center lg:basis-7/12 lg:max-w-[55%] w-full order-2 lg:order-2">
-          <div class="w-full max-w-md px-4 flex justify-center">
-            <i class="bi bi-rss text-blue-600" style="font-size: 12rem;"></i>
-          </div>
-        </div>
-        
-        <!-- Mobile tagline - shown between logo and CTA button -->
-        <div class="lg:hidden w-full text-center order-3 px-4">
-          <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed font-medium">
-            Read how public-facing boards are modernizing meetings, documents, and communication without adding more systems to manage.
-          </p>
-        </div>
-        
-        <!-- Book a Demo button - shown on mobile below logo -->
-        <div class="lg:hidden w-full flex justify-center order-4">
-          <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
-            <span class="relative z-10">Book a Demo</span>
-            <i class="bi bi-arrow-right relative z-10 group-hover:translate-x-1 transition-transform duration-300"></i>
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- Blog List -->
-    <section class="py-16 bg-white border-t border-slate-200">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center mb-10">
-          <div class="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold mb-4 tracking-wide">
-            <i class="bi bi-journal-text text-sm"></i>
-            <span>BOARDBLOCS BLOG</span>
+    <!-- Blog Posts Grid -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Post 1: Public Board Websites -->
+            <a href="blog-public-board-websites.html" class="group block bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:border-blue-500 hover:shadow-2xl transition-all duration-300">
+              <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                <i class="bi bi-globe text-white/80 text-6xl group-hover:scale-110 transition-transform duration-300"></i>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">Board Websites</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  What Makes a Good Public Board Website
+                </h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                  A look at the key elements that help communities find meeting information, policies, and updates on your board site.
+                </p>
+                <div class="flex items-center gap-2 text-blue-600 font-bold group-hover:gap-3 transition-all">
+                  <span>Read Article</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+
+            <!-- Post 2: Document Accessibility -->
+            <a href="blog-document-accessibility.html" class="group block bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:border-emerald-500 hover:shadow-2xl transition-all duration-300">
+              <div class="h-48 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+                <i class="bi bi-file-earmark-text text-white/80 text-6xl group-hover:scale-110 transition-transform duration-300"></i>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">Accessibility</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                  Making Board Documents Accessible to Everyone
+                </h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                  Why accessible documents matter and how to make policies and meeting materials easier for all community members to use.
+                </p>
+                <div class="flex items-center gap-2 text-emerald-600 font-bold group-hover:gap-3 transition-all">
+                  <span>Read Article</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+
+            <!-- Post 3: Meeting Management -->
+            <a href="blog-meeting-management.html" class="group block bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:border-purple-500 hover:shadow-2xl transition-all duration-300">
+              <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                <i class="bi bi-calendar-check text-white/80 text-6xl group-hover:scale-110 transition-transform duration-300"></i>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">Meetings</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors">
+                  Organizing Board Meetings and Agendas
+                </h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                  Tips for keeping meeting materials organized, sharing agendas ahead of time, and making minutes easy to find.
+                </p>
+                <div class="flex items-center gap-2 text-purple-600 font-bold group-hover:gap-3 transition-all">
+                  <span>Read Article</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+
+            <!-- Post 4: Board Communication -->
+            <a href="blog-board-communication.html" class="group block bg-white rounded-3xl border-2 border-slate-200 overflow-hidden hover:border-amber-500 hover:shadow-2xl transition-all duration-300">
+              <div class="h-48 bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+                <i class="bi bi-chat-dots text-white/80 text-6xl group-hover:scale-110 transition-transform duration-300"></i>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">Communication</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                  Keeping Your Board Connected Between Meetings
+                </h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                  How boards can stay in touch, share updates, and prepare for decisions without endless email threads.
+                </p>
+                <div class="flex items-center gap-2 text-amber-600 font-bold group-hover:gap-3 transition-all">
+                  <span>Read Article</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+
           </div>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Stories from public-facing boards</h2>
-          <p class="text-slate-600 text-sm md:text-base leading-relaxed">
-            Browse a mix of ideas and examples while were still populating the full blog. These posts are placeholders today and will link to full articles soon.
-          </p>
-        </div>
-
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-          <!-- Post 1 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-2">Board websites</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600">What a modern public board site should actually include</h3>
-            <p class="text-sm text-slate-600 mb-3">A simple checklist for meetings, policies, and streams that make sense to your community.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 2 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600 mb-2">Private portals</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-indigo-600">Keeping drafts and discussion out of email</h3>
-            <p class="text-sm text-slate-600 mb-3">How boards use a private workspace for agendas, comments, and prep work without losing the thread.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 3 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600 mb-2">Accessible documents</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-emerald-600">Why PDFs alone arent enough for policies</h3>
-            <p class="text-sm text-slate-600 mb-3">A quick overview of how DocMersion-style pages make life easier for the public and your board.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 4 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-rose-600 mb-2">Board discussions</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-rose-600">Using avatars and sentiment to see how the board feels</h3>
-            <p class="text-sm text-slate-600 mb-3">Why avatar-based comments and simple sentiment tracking can surface concerns before votes.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-rose-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 5 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-sky-600 mb-2">Meeting prep</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-sky-600">How to send board packets without burning out your staff</h3>
-            <p class="text-sm text-slate-600 mb-3">A simple workflow for collecting materials, building packets, and sharing links instead of massive email attachments.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-sky-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 6 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-amber-600 mb-2">Public engagement</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-amber-600">Making public comment feel less chaotic and more constructive</h3>
-            <p class="text-sm text-slate-600 mb-3">Ideas for setting expectations, sharing agendas early, and using technology to keep public input organized.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 7 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-fuchsia-600 mb-2">Board recruitment</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-fuchsia-600">Onboarding new board members without overwhelming them</h3>
-            <p class="text-sm text-slate-600 mb-3">A lightweight checklist for sharing past minutes, key policies, and upcoming decisions in one place.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-fuchsia-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 8 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-            <p class="text-xs font-semibold uppercase tracking-wide text-teal-600 mb-2">Transparency</p>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-teal-600">Simple ways to help the public actually find your board information</h3>
-            <p class="text-sm text-slate-600 mb-3">Navigation, search, and naming patterns that make it easier for residents to follow what the board is doing.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-teal-600">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
-
-          <!-- Post 9 -->
-          <a href="#" class="group block rounded-2xl border border-slate-200 bg-slate-50/70 p-6 hover:bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 md:col-span-2">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 mb-2">Real-world example</p>
-            <h3 class="text-lg md:text-xl font-semibold text-slate-900 mb-2 group-hover:text-blue-700">What we learned building the Board of Buffalo sample site</h3>
-            <p class="text-sm text-slate-600 mb-3">A walkthrough of how a public board site, private workspace, and accessible policies all fit together on one platform.</p>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-slate-700">Read placeholder post <i class="bi bi-arrow-right"></i></span>
-          </a>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
     <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
-      <div class="container mx-auto px-4">
+      <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">Ready to Transform Your Association Board?</h2>
-          <p class="text-xl text-white/90 mb-10 leading-relaxed">Join forward-thinking associations who have streamlined their board operations with BoardBlocs.</p>
+          <h2 class="text-3xl md:text-5xl font-extrabold mb-6 text-white leading-tight">Ready to Modernize Your Board?</h2>
+          <p class="text-xl text-white/90 mb-10 leading-relaxed">See how BoardBlocs can help your board work better together.</p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="book-demo.html" class="group relative inline-flex items-center gap-2 px-10 py-5 rounded-full font-bold text-blue-600 bg-white shadow-2xl transition-all duration-300 hover:shadow-3xl hover:scale-105 text-lg">
