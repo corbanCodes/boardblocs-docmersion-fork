@@ -11,7 +11,7 @@ function loadFooter() {
               <img src="logo.png" alt="BoardBlocs Logo" class="w-8 h-8">
               <div class="text-2xl font-bold text-slate-900">Boardblocs</div>
             </div>
-            <a href="book-demo.html" class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 px-5 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+            <a href="book-demo.html" class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 px-5 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap w-fit">
               Book a Demo
               <i class="bi bi-arrow-right text-xs"></i>
             </a>
