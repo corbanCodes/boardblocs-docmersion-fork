@@ -59,29 +59,22 @@
     <link rel="stylesheet" href="styles.css" />
     <style>
       .font-inter { font-family: 'Inter', sans-serif; }
-
-      /* Smooth scroll */
       html { scroll-behavior: smooth; }
 
-      /* Feature card hover */
       .feature-card {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
       .feature-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       }
 
-      /* CTA pulse animation */
-      @keyframes subtle-pulse {
-        0%, 100% { box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4); }
-        50% { box-shadow: 0 4px 30px rgba(59, 130, 246, 0.6); }
+      .vertical-card {
+        transition: all 0.2s ease;
       }
-      .cta-primary {
-        animation: subtle-pulse 3s ease-in-out infinite;
-      }
-      .cta-primary:hover {
-        animation: none;
+      .vertical-card:hover {
+        background-color: #f8fafc;
+        border-color: #cbd5e1;
       }
     </style>
     <!-- Navbar and Footer Loaders -->
@@ -103,21 +96,19 @@
   </noscript>
 
     <!-- Hero Section -->
-    <section class="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <section class="pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div class="container mx-auto px-4 max-w-6xl">
         <div class="grid md:grid-cols-2 gap-12 items-center">
-          <!-- Left: Copy -->
           <div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+            <h1 class="text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-slate-900 leading-tight mb-6">
               Everything your board needs—in one place.
             </h1>
             <p class="text-xl text-slate-600 mb-8 leading-relaxed">
               Meetings, documents, and communication—organized and accessible. BoardBlocs is a reliable hub for managing board work without unnecessary complexity.
             </p>
 
-            <!-- Primary CTA: Book Demo -->
-            <div class="flex flex-col sm:flex-row gap-4 mb-6">
-              <a href="book-demo.html" class="cta-primary inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300">
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+              <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
                 <i class="bi bi-calendar-check"></i>
                 <span>Schedule a Demo</span>
               </a>
@@ -126,16 +117,10 @@
                 <span>Send a Message</span>
               </a>
             </div>
-
-            <p class="text-sm text-slate-500">
-              <i class="bi bi-shield-check mr-1"></i>
-              Trusted by school boards, government agencies, healthcare organizations, and nonprofits.
-            </p>
           </div>
 
-          <!-- Right: Visual -->
           <div class="relative">
-            <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 md:p-8">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8">
               <div class="flex items-center gap-3 mb-6">
                 <img src="logo.png" alt="BoardBlocs" class="w-10 h-10">
                 <span class="font-bold text-xl text-slate-900">BoardBlocs</span>
@@ -175,86 +160,311 @@
       </div>
     </section>
 
-    <!-- Problem/Solution Section -->
-    <section class="py-16 md:py-24 bg-white">
+    <!-- Problem Statement Section -->
+    <section class="py-16 md:py-20 bg-white">
       <div class="container mx-auto px-4 max-w-4xl text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
           Many boards reach a point where email and shared drives start to feel limiting.
         </h2>
-        <p class="text-xl text-slate-600 mb-12 leading-relaxed">
-          BoardBlocs helps bring structure without adding complexity—a single, secure place where your board can prepare for meetings, access documents, and stay connected.
+        <p class="text-lg text-slate-600 leading-relaxed">
+          BoardBlocs helps bring structure without adding complexity—a single, secure place where your board can prepare for meetings, access documents, and stay connected between sessions.
         </p>
+      </div>
+    </section>
 
-        <!-- Features Grid -->
-        <div class="grid md:grid-cols-3 gap-6 text-left">
-          <div class="feature-card bg-slate-50 rounded-xl p-6">
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <i class="bi bi-check-circle text-green-600 text-2xl"></i>
-            </div>
-            <h3 class="font-semibold text-lg text-slate-900 mb-2">Simple to Use</h3>
-            <p class="text-slate-600">Clean, intuitive interface that board members can navigate without training.</p>
-          </div>
-          <div class="feature-card bg-slate-50 rounded-xl p-6">
+    <!-- What BoardBlocs Brings Together -->
+    <section class="py-16 md:py-20 bg-slate-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            What BoardBlocs brings together
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Instead of scattered tools, everything your board needs lives in one organized workspace.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="public-and-private-sites.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <i class="bi bi-shield-lock text-blue-600 text-2xl"></i>
+              <i class="bi bi-globe text-blue-600 text-xl"></i>
             </div>
-            <h3 class="font-semibold text-lg text-slate-900 mb-2">Secure & Private</h3>
-            <p class="text-slate-600">Role-based access keeps sensitive information protected and organized.</p>
-          </div>
-          <div class="feature-card bg-slate-50 rounded-xl p-6">
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Public & Private Sites</h3>
+            <p class="text-slate-600 text-sm">A public-facing website for transparency and a private workspace for board members—both managed from one place.</p>
+          </a>
+
+          <a href="meetings-and-agenda.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-calendar-check text-green-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Meetings & Agendas</h3>
+            <p class="text-slate-600 text-sm">Plan meetings, build agendas, and share materials so everyone arrives prepared and aligned.</p>
+          </a>
+
+          <a href="policies-&-documents.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-              <i class="bi bi-universal-access text-purple-600 text-2xl"></i>
+              <i class="bi bi-folder text-purple-600 text-xl"></i>
             </div>
-            <h3 class="font-semibold text-lg text-slate-900 mb-2">ADA Accessible</h3>
-            <p class="text-slate-600">Built-in accessibility ensures everyone can participate fully.</p>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Documents & Policies</h3>
+            <p class="text-slate-600 text-sm">Centralized storage with version control, search, and automatic ADA-accessible formatting.</p>
+          </a>
+
+          <a href="committees-&-groups.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
+            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-people text-orange-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Committees & Groups</h3>
+            <p class="text-slate-600 text-sm">Dedicated spaces for committees and working groups to collaborate without cluttering the main board workspace.</p>
+          </a>
+
+          <a href="discussions.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
+            <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-chat-dots text-teal-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Secure Discussions</h3>
+            <p class="text-slate-600 text-sm">Threaded conversations that stay organized and searchable—no more digging through email chains.</p>
+          </a>
+
+          <a href="accessibility.html" class="feature-card bg-white rounded-xl p-6 border border-slate-200">
+            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+              <i class="bi bi-universal-access text-indigo-600 text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Built-in Accessibility</h3>
+            <p class="text-slate-600 text-sm">ADA-compliant document conversion and accessible design ensure everyone can participate fully.</p>
+          </a>
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="book-demo.html" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold">
+            See all features in a demo
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How Boards Use BoardBlocs -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            How boards use BoardBlocs
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            From meeting prep to public transparency, here's how BoardBlocs fits into your workflow.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+            <div>
+              <h3 class="font-semibold text-xl text-slate-900 mb-2">Before meetings: Prepare and distribute</h3>
+              <p class="text-slate-600">Upload agenda items, attach supporting documents, and share everything with board members. They can review materials on any device and add comments or questions ahead of time.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+            <div>
+              <h3 class="font-semibold text-xl text-slate-900 mb-2">During meetings: Stay organized</h3>
+              <p class="text-slate-600">Follow the agenda in real time, access linked documents instantly, and capture notes or action items as you go. No more shuffling through papers or searching for files.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+            <div>
+              <h3 class="font-semibold text-xl text-slate-900 mb-2">After meetings: Publish and archive</h3>
+              <p class="text-slate-600">Post approved minutes to your public site with one click. All meeting materials are automatically archived and searchable for future reference.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">4</div>
+            <div>
+              <h3 class="font-semibold text-xl text-slate-900 mb-2">Between meetings: Keep momentum</h3>
+              <p class="text-slate-600">Use discussions to continue conversations, share updates via board news, and keep committees on track with their own dedicated workspaces.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Who We Serve -->
+    <!-- Who We Serve - All Verticals -->
     <section class="py-16 md:py-20 bg-slate-50">
-      <div class="container mx-auto px-4 max-w-5xl">
+      <div class="container mx-auto px-4 max-w-6xl">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Built for boards that serve the public
+            Built for boards across industries
           </h2>
-          <p class="text-lg text-slate-600">
-            Organizations that need both public transparency and private workspace.
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            BoardBlocs works for any organization that needs to manage board operations, whether you're serving the public or governing internally.
           </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <a href="education.html" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow border border-slate-200">
-            <i class="bi bi-mortarboard text-3xl text-blue-600 mb-3"></i>
-            <div class="font-semibold text-slate-900">Education</div>
-          </a>
-          <a href="government.html" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow border border-slate-200">
-            <i class="bi bi-building text-3xl text-blue-600 mb-3"></i>
-            <div class="font-semibold text-slate-900">Government</div>
-          </a>
-          <a href="healthcare.html" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow border border-slate-200">
-            <i class="bi bi-heart-pulse text-3xl text-blue-600 mb-3"></i>
-            <div class="font-semibold text-slate-900">Healthcare</div>
-          </a>
-          <a href="non-profit.html" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow border border-slate-200">
-            <i class="bi bi-people text-3xl text-blue-600 mb-3"></i>
-            <div class="font-semibold text-slate-900">Nonprofits</div>
-          </a>
+        <div class="mb-10">
+          <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">By Industry</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <a href="education.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-mortarboard text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Education</span>
+            </a>
+            <a href="government.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-bank text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Government</span>
+            </a>
+            <a href="healthcare.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-heart-pulse text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Healthcare</span>
+            </a>
+            <a href="non-profit.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-hand-thumbs-up text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Nonprofits</span>
+            </a>
+            <a href="associations.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-building text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Associations</span>
+            </a>
+            <a href="community-organizations.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-people-fill text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Community Orgs</span>
+            </a>
+            <a href="real-estate.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-houses text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Real Estate</span>
+            </a>
+            <a href="technology.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200 flex items-center gap-3">
+              <i class="bi bi-laptop text-2xl text-blue-600"></i>
+              <span class="font-medium text-slate-900">Technology</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">By Role</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="administrators.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200">
+              <i class="bi bi-briefcase text-2xl text-blue-600 mb-2"></i>
+              <div class="font-medium text-slate-900">Administrators</div>
+              <p class="text-sm text-slate-500 mt-1">Manage board operations efficiently</p>
+            </a>
+            <a href="leaders.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200">
+              <i class="bi bi-person-badge text-2xl text-blue-600 mb-2"></i>
+              <div class="font-medium text-slate-900">Board Leaders</div>
+              <p class="text-sm text-slate-500 mt-1">Lead with clear visibility</p>
+            </a>
+            <a href="members.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200">
+              <i class="bi bi-person-check text-2xl text-blue-600 mb-2"></i>
+              <div class="font-medium text-slate-900">Board Members</div>
+              <p class="text-sm text-slate-500 mt-1">Stay informed and prepared</p>
+            </a>
+            <a href="executives.html" class="vertical-card bg-white rounded-xl p-5 border border-slate-200">
+              <i class="bi bi-person-vcard text-2xl text-blue-600 mb-2"></i>
+              <div class="font-medium text-slate-900">Executives</div>
+              <p class="text-sm text-slate-500 mt-1">Support board effectiveness</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Makes BoardBlocs Different -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            What makes BoardBlocs different
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="bi bi-check-lg text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-slate-900 mb-2">Public and private in one platform</h3>
+              <p class="text-slate-600">Most board tools focus only on the private side. BoardBlocs gives you both—a public website for transparency and a secure workspace for board operations.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="bi bi-check-lg text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-slate-900 mb-2">Accessibility built in, not bolted on</h3>
+              <p class="text-slate-600">Documents are automatically converted to ADA-compliant formats. No extra steps, no third-party tools, no compliance headaches.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="bi bi-check-lg text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-slate-900 mb-2">Designed for how boards actually work</h3>
+              <p class="text-slate-600">Not a generic project tool adapted for boards. BoardBlocs was built specifically for the rhythms and requirements of board governance.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="bi bi-check-lg text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-slate-900 mb-2">Simple enough for every board member</h3>
+              <p class="text-slate-600">Clean interface that doesn't require training. Board members can log in, find what they need, and get to work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Questions -->
+    <section class="py-16 md:py-20 bg-slate-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Questions we often hear
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white rounded-xl p-6 border border-slate-200">
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">How long does it take to get started?</h3>
+            <p class="text-slate-600">Most organizations are up and running within a few days. We help with initial setup, data migration, and can provide training sessions for your team if needed.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-slate-200">
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Can we migrate our existing documents?</h3>
+            <p class="text-slate-600">Yes. We can help you bring over existing meeting materials, policies, and archives so your historical records are available from day one.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-slate-200">
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">Is our information secure?</h3>
+            <p class="text-slate-600">BoardBlocs uses enterprise-grade security with role-based access controls. Board members only see what they're supposed to see, and sensitive materials stay protected.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-slate-200">
+            <h3 class="font-semibold text-lg text-slate-900 mb-2">What about board members who aren't tech-savvy?</h3>
+            <p class="text-slate-600">BoardBlocs is designed to be intuitive. If someone can use email, they can use BoardBlocs. We also offer a mobile app for easy access on any device.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Demo CTA Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
+    <section class="py-16 md:py-20 bg-gradient-to-br from-blue-600 to-indigo-700">
       <div class="container mx-auto px-4 max-w-4xl text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
           See how BoardBlocs can work for your board
         </h2>
         <p class="text-xl text-blue-100 mb-10 leading-relaxed max-w-2xl mx-auto">
-          Schedule a brief demo and we'll show you how BoardBlocs brings meetings, documents, and communication together—tailored to how your board works.
+          Schedule a brief demo and we'll walk through the platform together—tailored to how your board works and what matters most to you.
         </p>
-        <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-blue-700 font-bold text-lg px-10 py-5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+        <a href="book-demo.html" class="inline-flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-blue-700 font-bold text-lg px-10 py-5 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300">
           <i class="bi bi-calendar-check text-xl"></i>
           <span>Schedule Your Demo</span>
         </a>
@@ -265,14 +475,14 @@
     </section>
 
     <!-- Contact Form Section -->
-    <section id="contact-form" class="py-16 md:py-24 bg-white">
+    <section id="contact-form" class="py-16 md:py-20 bg-white">
       <div class="container mx-auto px-4 max-w-3xl">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Prefer to send a message?
           </h2>
           <p class="text-lg text-slate-600 max-w-xl mx-auto">
-            Tell us a bit about your board and we'll follow up with information that's relevant to your situation.
+            Tell us a bit about your board and what you're looking for. We'll follow up with information relevant to your situation.
           </p>
         </div>
 
@@ -306,7 +516,6 @@
             <textarea name="message" rows="4" required class="rounded-lg px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all duration-200 resize-none bg-white" placeholder="Tell us about your board's current setup and what you're looking for..."></textarea>
           </label>
 
-          <!-- Hidden field for source tracking -->
           <input type="hidden" name="_source" value="boardblocs-introduction">
 
           <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-lg py-4 rounded-full transition-all duration-300">
