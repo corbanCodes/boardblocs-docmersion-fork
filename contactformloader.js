@@ -57,7 +57,7 @@ function loadContactForm(containerId, options = {}) {
               </label>
               <label class="flex flex-col gap-2 font-semibold text-slate-900 text-sm">
                 Website URL
-                <input type="url" name="website" class="rounded-lg px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all duration-200 text-base font-normal text-slate-700" placeholder="https://yourwebsite.com">
+                <input type="text" name="website" class="rounded-lg px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all duration-200 text-base font-normal text-slate-700" placeholder="yourwebsite.com">
               </label>
             </div>
             <label class="flex flex-col gap-2 font-semibold text-slate-900 text-sm">
